@@ -1,0 +1,32 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Execute JS
+
+*** Test Cases ***
+MAC Admin Operational Test
+	Open MAC Admin
+	SelectRole
+	
+
+*** Variables ***
+${FF}	Firefox
+${DELAY}	0.1
+
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open MAC Admin
+	Open Browser	${URL}	${FF}
+	Set Selenium speed	${DELAY}
+
+# ExecuteJS
+#	${argList}=    Create List    Sally    45
+#	${s2l}=    Get Library Instance    Selenium2Library
+#	Call Method    ${s2l._current_browser()}    execute_script   alert('Hello ' + arguments[0] + ', you are ' + arguments[1] + ' years old');    @{argList}
+
+Select from DDL
+	${argList}=    Create List    dlRolesAssigned    id	role2
+	${s2l}=    Get Library Instance    Selenium2Library
+	Call Method    ${s2l._current_browser()}    execute_script   selectoption(arguments[0], arguments[1], arguments[2]); 	@{argList}

@@ -1,0 +1,102 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Operational test suite, High level test cases for MAC Admin, MAC Services, Golf Shop Demo, Online Bank Demo, Online Merchant Demo
+
+*** Test Cases ***
+MAC Admin Operational Test
+	Open MAC Admin
+	Verify MAC Admin Landing Page
+	Admin Login
+	Create QAUser2
+#	Create QAUser3
+#	Create QAUser4
+#	Create QAUser5
+#	Create QAUser6
+#	Create QAUser7
+#	[Teardown]     Close Browser
+
+
+
+*** Variables ***
+${FF}	Firefox
+${DELAY}	0.1
+${SYSADMINUSER}	system@mobileauthcorp.com
+${QAUser1}	QAUser@mobileauthcorp.com
+${QAPWD}	QA1234
+${QAPHONE}	4802684076
+
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open MAC Admin
+	Open Browser	${URL}	${FF}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+
+Verify MAC Admin Landing Page
+	Title Should Be	MAC Otp System Administration
+	Selenium2Library.Element Should Be Visible	txtUsername_Desktop
+
+Admin Login
+	Run Keyword If	'${SUT}' == 'LOCALHOST'
+	...	Login Using Existing Credentuals
+	...	ELSE				
+	...	Login As QAUser1
+
+Login Using Existing Credentuals
+	Selenium2Library.Element Should Be Visible	LinkUseExistingCredentials_Desktop
+	Input Text	txtUsername_Desktop	${SYSADMINUSER}
+	Click Element	LinkUseExistingCredentials_Desktop
+	Selenium2Library.Element Should Be Visible	txtPassword_Desktop
+	Input Text	txtPassword_Desktop	${SYSADMINPWD}
+	Click Element	btnAdminOtpRequest_Desktop
+
+Login As QAUser1
+	Input Text	txtUsername_Desktop	${QAUser1}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	txtPassword_Desktop
+	Input Text	txtPassword_Desktop	${QAPWD}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	divLoginMyAccountControlsContainer_Desktop
+
+Create QAUser2
+	Selenium2Library.Element Should Be Visible	lnkAdminUsers
+	Click Element	lnkAdminUsers
+	Selenium2Library.Element Should Be Visible	xpath=.//*[@id='dlRolesAssigned_chosen']/a
+	SelectRoll2
+	Input Text	txtFirstName	QAUser
+	Input Text	txtLastName	Tester2
+	Input Text	txtEmail	QAUser1@gmai123456l.com
+	Input Text	txtPhone	${QAPHONE}
+	Input Text	txtUsername	QAUser1@gmail.com
+	Input Text	txtPassword	${QAPWD}
+	Click Element	btnSaveUser
+	Selenium2Library.Element Should Be Visible	userUpdateMessage
+
+
+SelectRoll2
+	${argList}=    Create List    dlRolesAssigned	role2
+	${s2l}=    Get Library Instance    Selenium2Library
+	Call Method    ${s2l._current_browser()}    execute_script   selectoptionbyid(arguments[0], arguments[1] );	@{argList}
+
+Create QAUser3
+	Selenium2Library.Element Should Be Visible	lnkAdminUsers
+	Click Element	lnkAdminUsers
+
+Create QAUser4
+	Selenium2Library.Element Should Be Visible	lnkAdminUsers
+	Click Element	lnkAdminUsers
+
+Create QAUser5
+	Selenium2Library.Element Should Be Visible	lnkAdminUsers
+	Click Element	lnkAdminUsers
+
+Create QAUser6
+	Selenium2Library.Element Should Be Visible	lnkAdminUsers
+	Click Element	lnkAdminUsers
+
+Create QAUser7
+	Selenium2Library.Element Should Be Visible	lnkAdminUsers
+	Click Element	lnkAdminUsers

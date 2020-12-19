@@ -1,0 +1,1 @@
+pybot --variable SUT:QA --outputdir "C:\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\QA\MAC_TestCases\0MAC_Admin_CreateUser\results" "C:\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\QA\MAC_TestCases\0MAC_Admin_CreateUser\Admin_CreateUser.txt"

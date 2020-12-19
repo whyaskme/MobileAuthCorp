@@ -1,0 +1,41 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Golf Shop Demo
+
+*** Test Cases ***
+MAC Golf Shop Demo
+	Open	
+	Verify Landing Page
+	Login
+	[Teardown]     Close Browser
+
+*** Variables ***
+${GOLFSHOP}	.otp-ap.us/iis/golfshop/default.aspx
+${QA_UserName}	QAUser@mobileauthcorp.com
+${QAPWD}	QA1234
+${FF}	Firefox
+${DELAY}	0.1
+
+*** Keywords ***
+# ------- Golf Shop ASP.Net Demo ------------------------------
+Open
+	Run Keyword If	'${SUT}' == 'LOCALHOST'
+	...	Open Browser	http://localhost/demos/iis/golfshop/	${FF}
+	...	ELSE	
+	...	Open Browser	http://${SUT}${GOLFSHOP}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify Landing Page
+	Title Should Be	Welcome To The Scottsdale Golf Shop
+	Selenium2Library.Element Should Be Visible	divLoginContainer	
+
+Login
+	Input Text	txtLoginName	${QA_UserName}
+	Click Element	btnValidateLoginName
+	Selenium2Library.Element Should Be Visible	divLoginOTPContainer
+	Selenium2Library.Element Should Be Visible	btnLoginOTP
+	Click Element	btnLoginOTP
+	Selenium2Library.Element Should Be Visible	item7
+	Selenium2Library.Element Should Be Visible	item8

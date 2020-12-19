@@ -1,0 +1,1 @@
+pybot --variable LOC:LOCALHOST --outputdir C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests\OperationalTest_results C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests\OperationalTest.txt

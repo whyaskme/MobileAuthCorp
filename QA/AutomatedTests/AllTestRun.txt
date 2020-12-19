@@ -1,0 +1,5 @@
+pybot --outputdir C:\QA_Test\AutomatedTests\results C:\QA_Test\AutomatedTests\maclogin.txt
+
+pybot --outputdir C:\QA_Test\AutomatedTests\results C:\QA_Test\AutomatedTests\macqalogin.txt
+
+pybot --outputdir C:\QA_Test\AutomatedTests\results C:\QA_Test\AutomatedTests\test1.txt

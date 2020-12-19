@@ -1,0 +1,1 @@
+pybot --variable "URL:https://qa.mobileauthcorp.net" --variable "USER:QAUser@mobileauthcorp.com" --variable "PWD:QA1234" --outputdir "C:\RobotTests\TestScript\results" "C:\RobotTests\TestScript\Admin_CreateUser.txt"

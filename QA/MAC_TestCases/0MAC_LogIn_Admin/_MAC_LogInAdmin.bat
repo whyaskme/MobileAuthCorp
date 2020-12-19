@@ -1,0 +1,1 @@
+pybot --variable "URL:http://localhost/Admin/Security" --variable "USER:QAUser@mobileauthcorp.com" --variable "PWD:QA1234" --outputdir "C:\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\QA\MAC_TestCases\0MAC_LogIn_Admin\results" "C:\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\QA\MAC_TestCases\0MAC_LogIn_Admin\0MAC_LogIn_Admin.txt"

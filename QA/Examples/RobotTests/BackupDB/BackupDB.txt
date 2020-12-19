@@ -1,0 +1,90 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+Library	OperatingSystem
+
+Documentation  Backup Database
+
+*** Test Cases ***
+MAC Admin Test
+	Open MAC Admin
+	Verify MAC Admin Landing Page
+	Admin Login
+	Select System Management
+	Backup Database
+	Save Backup Version
+	[Teardown]     Close Browser
+
+*** Variables ***
+${URL}	...
+${FF}	Firefox
+${DELAY}	0.1
+${SYSADMINUSER}	system@mobileauthcorp.com
+${QAUser}	QAUser@mobileauthcorp.com
+${QAPWD}	QA1234
+${QAPHONE}	4802684076
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open MAC Admin
+	Run Keyword If	'${SUT}' == 'LOCALHOST'
+    	...	set test variable    ${URL}    http://localhost/Admin/Security
+	...	ELSE
+    	...	set test variable    ${URL}    http://${SUT}.mobileauthcorp.net/Admin/Security
+	Log	${URL}
+	Open Browser	${URL}	${FF}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+
+Verify MAC Admin Landing Page
+	Title Should Be	MAC Otp System Administration
+	Selenium2Library.Element Should Be Visible	txtUsername_Desktop
+
+Admin Login
+	Run Keyword If	'${SUT}' == 'LOCALHOST'
+	...	Login Using Existing Credentuals
+	...	ELSE				
+	...	Login As QAUser
+
+Login Using Existing Credentuals
+	Selenium2Library.Element Should Be Visible	LinkUseExistingCredentials_Desktop
+	Input Text	txtUsername_Desktop	${SYSADMINUSER}
+	Click Element	LinkUseExistingCredentials_Desktop
+	Selenium2Library.Element Should Be Visible	txtPassword_Desktop
+	Input Text	txtPassword_Desktop	${SYSADMINPWD}
+	Click Element	btnAdminOtpRequest_Desktop
+
+Login As QAUser
+	Selenium2Library.Element Should Be Visible	txtUsername_Desktop
+	Input Text	txtUsername_Desktop	${QAUser}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	txtPassword_Desktop
+	Input Text	txtPassword_Desktop	${QAPWD}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	divLoginMyAccountControlsContainer_Desktop
+
+Select System Management
+	Selenium2Library.Element Should Be Visible	clientTab2
+	Click Element	clientTab2
+
+Backup Database
+	${argList}=    Create List    systemManagementFunctions	Backup
+	${s2l}=    Get Library Instance    Selenium2Library
+	Call Method    ${s2l._current_browser()}    execute_script   selectoptionbyvalue(arguments[0], arguments[1] );	@{argList}
+	Call Method    ${s2l._current_browser()}    execute_script   systemManagementSelection();
+
+Save Backup Version
+	Wait Until Page Contains Element	updateMessage
+	${BackupMsg}=	Get Text	updateMessage
+	Log	${BackupMsg}	WARN
+	${argList}=    Create List    ${BackupMsg}
+	${s2l}=    Get Library Instance    Selenium2Library
+	${var}=	Call Method	${s2l._current_browser()}    execute_script   getBackupNameFromMsg(arguments[0] );	@{argList}
+	Sleep	1 sec
+	Selenium2Library.Confirm Action
+	Remove File	c:\\temp\\dbbackup.txt
+	Sleep	10ms
+	Create File     c:\\temp\\dbbackup.txt    ${var}
+	Sleep	1 sec
+	Selenium2Library.Element Should Be Visible	clientTab1
+	Click Element	clientTab1

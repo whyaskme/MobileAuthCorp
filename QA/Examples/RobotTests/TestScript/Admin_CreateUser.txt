@@ -1,0 +1,48 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  MAC Admin Create New User Test
+*** Test Cases ***
+MAC Admin Login Test
+	Log Variables
+	Open Admin
+	Verify MAC Admin Landing Page
+
+*** Test Cases ***
+MAC Admin CreateUser
+	Click Element	lnkAdminUsers
+	Input Text	txtFirstName	QATest
+	Input Text	txtlastName	QATest
+	Input Text	txtEmail	qa@qa.com
+	Input Text	txtPhone	555 555-5555
+	Input Text	txtUsername	QATester
+	Input Text	txtPassword	QA1234
+	Click Element	btnSaveUser
+
+*** Test Cases ***
+	[Teardown]     Close Browser
+
+*** Variables ***
+${FF}	Firefox
+${DELAY}	0.1
+
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open Admin
+	Open Browser	${URL}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify MAC Admin Landing Page
+	Title Should Be	MAC Otp System Administration
+	Selenium2Library.Element Should Be Visible	txtUsername_Desktop
+
+Admin Login
+	Input Text	txtUsername_Desktop	${USER}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	txtPassword_Desktop
+	Input Text	txtPassword_Desktop	${PWD}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	divLoginMyAccountControlsContainer_Desktop
+

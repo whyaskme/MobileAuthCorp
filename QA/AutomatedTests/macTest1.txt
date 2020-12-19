@@ -1,0 +1,31 @@
+*** Settings ***
+Library	Selenium2Library
+
+Documentation  A test suite.
+
+*** Test Cases ***
+MAC QA Login
+	Log To Console  	--Open MAC QA--
+	Open MAC QA
+	Log To Console  	--Login--
+	Input User
+	Close Browser
+
+*** Variables ***
+${MAC DEMO URL}	http://corp.mobileauthcorp.com
+${MAC QA URL}	http://qa.mobileauthcorp.com
+${BROWSER}	Firefox
+${DELAY}	0.1
+
+*** Keywords ***
+Open MAC QA
+	Open Browser	${MAC QA URL}	${BROWSER}
+	Set Selenium speed	${DELAY}
+	Login Page Should Be Open
+
+Input User
+	Input Text	txtUsername_Desktop	dld07sierra@gmail.com
+	Click Element	btnAdminOtpRequest_Desktop
+
+Login Page Should Be Open
+	Title Should Be	MAC Otp System Administration

@@ -1,0 +1,27 @@
+*** Settings ***
+Library	Selenium2Library
+
+
+*** Test Cases ***
+Mac QA login
+   Log To Console	---Test1---
+   MAC QA
+   Close Browser
+	
+
+
+*** Variables ***
+${MAC QA URL}	http:\\qa.mobileauthcorp.com
+${Browser}	FireFox
+${Delay}	0.1
+
+
+
+*** Keywords ***
+MAC QA
+    Open browser	${MAC QA URL}	${Browser}
+    Set Selenium speed	${Delay}
+    LogInPage Should Be Open
+
+Login Page Should Be Open
+    Title Should Be	MAC Otp System Administration

@@ -1,0 +1,110 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Operational test suite, High level test cases for MAC Admin, MAC Services, Golf Shop Demo, Online Bank Demo, Online Merchant Demo
+
+*** Test Cases ***
+MAC Admin Operational Test
+	Open Admin
+	Verify MAC Admin Landing Page
+	Admin Login
+	[Teardown]     Close Browser
+
+
+*** Variables ***
+${DEMO_AdminURL}	http://corp.mobileauthcorp.com/Admin/Security/Default.aspx
+${LOCAL_AdminURL}	http://localhost/Admin/Security/Default.aspx
+${DEMO_GolfShopURL}	http://www.otp-ap.com/GolfShop/Default.aspx
+${LOCAL_GolfShopURL}	http://localhost/Demos/GolfShop/Default.aspx
+${DEMO_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${LOCAL_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${DEMO_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${LOCAL_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${QA_UserName}	QAUser@mobileauthcorp.com
+${QAPWD}	QA1234
+${FF}	Firefox
+${DELAY}	0.1
+
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open Admin
+	Run Keyword If	'${SUT}' == 'DEMO'
+	...	Open Browser	${DEMO_AdminURL}	${FF}
+	...	ELSE	
+	...	Open Browser	${LOCAL_AdminURL}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify MAC Admin Landing Page
+	Title Should Be	MAC Otp System Administration
+	Selenium2Library.Element Should Be Visible	txtUsername_Desktop
+
+Admin Login
+	Input Text	txtUsername_Desktop	${QA_UserName}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	txtPassword_Desktop
+	Input Text	txtPassword_Desktop	${QAPWD}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	divLoginMyAccountControlsContainer_Desktop
+
+# ------- Golf Shop ASP.Net Demo ------------------------------
+Open Golf Shop
+	Run Keyword If	'$[SUT]' == 'DEMO'
+	...	Open Browser	${DEMO_GolfShopURL}	${FF}
+	...	ELSE	
+	...	Open Browser	${LOCAL_GolfShopURL}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify Golf Shop Landing Page
+	Title Should Be	Welcome To The Scottsdale Golf Shop
+	Selenium2Library.Element Should Be Visible	divLoginContainer	
+
+Golf Shop Login
+	Input Text	txtLoginName	${QA_UserName}
+	Click Element	btnValidateLoginName
+	Selenium2Library.Element Should Be Visible	divLoginOTPContainer
+	Selenium2Library.Element Should Be Visible	btnLoginOTP
+	Click Element	btnLoginOTP
+	Selenium2Library.Element Should Be Visible	item7
+	Selenium2Library.Element Should Be Visible	item8
+
+# ------- Golf Store PHP Demo ------------------------------------
+Open Golf Store
+	Run Keyword If	'$[SUT]' == 'DEMO'
+	...	Open Browser	${DEMO_GolfStoreURL}	${FF}
+	...	ELSE	
+	...	Open Browser	${LOCAL_GolfStoreURL}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify Golf Store Landing Page
+	Title Should Be	MAC Test Shopping Cart
+	Selenium2Library.Element Should Be Visible	hero
+
+Golf Store Login
+	Selenium2Library.Element Should Be Visible	login-container
+	Click Element	xpath=.//*[@id='login-container']/div/span
+	Selenium2Library.Element Should Be Visible	user_id
+	Input Text	user_id	${QA_UserName}
+	Click Element	login-submit-button
+
+
+# --------- Test Bank PHP Demo ----------------------------------
+Open Test Bank
+	Run Keyword If	'$[SUT]' == 'DEMO'
+	...	Open Browser	${DEMO_TestBankURL}	${FF}
+	...	ELSE	
+	...	Open Browser	${LOCAL_TestBankURL}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify Test Bank Landing Page
+	Title Should Be	MAC Bank
+	Selenium2Library.Element Should Be Visible	login-submit-button
+
+Test Bank Login
+	Input Text	user_id	${DemoUserName}
+	Click Element	login-submit-button
+
+Verify Test Bank Login Page
+	Selenium2Library.Element Should Be Visible	otp-submit-button
+

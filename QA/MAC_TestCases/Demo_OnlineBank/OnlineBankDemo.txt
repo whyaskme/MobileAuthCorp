@@ -1,0 +1,140 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  MAC Online Bank Demo
+
+*** Test Cases ***
+Bank Demo
+	Open	
+	Verify Landing Page
+	Login
+	# Is user registered
+	${s2l}=    Get Library Instance    Selenium2Library
+	${Result}=	Call Method    ${s2l._current_browser()}    execute_script   return $("#errorMessage").is(':visible');
+	Log	${Result}
+	#if registered Unsubscribe(unregister)
+	Run Keyword If	${Result}==False
+	...	Unsubscribe
+	Register
+	Login
+	Authenticate
+	BuiltIn.Run Keyword And Continue On Failure	View Accounts
+	BuiltIn.Run Keyword And Continue On Failure	View Log
+	BuiltIn.Run Keyword And Continue On Failure	Transfer Funds
+	BuiltIn.Run Keyword And Continue On Failure	Make Deposit to Prepaid Account
+	BuiltIn.Run Keyword And Continue On Failure	Make Payment
+	BuiltIn.Run Keyword And Continue On Failure	Make Widthdrawl
+	[Teardown]     Close Browser
+
+*** Variables ***
+${URL}	http://localhost/demos/php/bankdemo
+${URI}	.otp-ap.us/php/bankdemo
+${USER}	QAUser@mobileauthcorp.com
+${FF}	Firefox
+${DELAY}	0.1
+${NO}	NO
+${Prepaid_Account_Balance}	0
+
+*** Keywords ***
+Open
+	Run Keyword If	'${SUT}' != 'LOCALHOST'
+    	...	set test variable    ${URL}    http://${SUT}${URI}	${FF}
+	Log	${URL}
+	Open Browser	${URL}	${FF}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+
+Verify Landing Page
+	Title Should Be	MAC Bank
+	Selenium2Library.Element Should Be Visible	divLoginContainer
+
+Login
+	Input Text	user_id	${USER}
+	Click Element	login-submit-button
+
+Authenticate
+	Selenium2Library.Wait Until Page Contains Element	successMessage	10
+	${OTP}=	Selenium2Library.Get Text	otpCode
+	Log	${OTP}
+	Click Element	otp-submit-button
+	Selenium2Library.Wait Until Page Contains Element	menu_home	10
+	Selenium2Library.Element Should Be Visible	menu_accounts
+	Selenium2Library.Element Should Be Visible	menu_log
+	Selenium2Library.Element Should Be Visible	menu_transfers
+	Selenium2Library.Element Should Be Visible	menu_transactions
+	Selenium2Library.Element Should Be Visible	menu_payments
+
+Register
+	Selenium2Library.Element Should Be Visible	xpath=.//*[@id='divLoginContainer']/div[2]/div/a
+	Click Element	xpath=.//*[@id='divLoginContainer']/div[2]/div/a
+	Selenium2Library.Wait Until Page Contains Element	registrationMessage	30
+	Input Text	txtFirstName	QAUser
+	Input Text	txtLastName	Test1
+	Input Text	txtCompany	MAC
+	Input Text	txtJobTitle	Tester
+	Input Text	txtMPhoneNo	4802684076
+	Input Text	txtEmailAdr	${USER}
+	Input Text	txtimgcode	QA1234
+	Click Element	chkTermsAndConditions
+	Selenium2Library.Element Should Be Visible	btnRegisterEndUser
+	Click Element	btnRegisterEndUser
+	${s2l}=    Get Library Instance    Selenium2Library
+	${Error}=	Call Method    ${s2l._current_browser()}    execute_script   return $("#messageRow").is(':visible');
+	Log	${Error}
+	Run Keyword If	${Error}==True
+	...	Log and Error
+	...	ELSE
+	...	Selenium2Library.Wait Until Page Contains Element	btnTitleAreaHome	5
+
+Log and Error
+	${Msg}	Get Text	   lbError
+	Log	${Msg}
+	Selenium2Library.Element Should Not Be Visible	lbError
+
+Unsubscribe
+	Click Element	xpath=.//*[@id='footer-disclaimer']/fieldset/p[6]/a
+	Selenium2Library.Wait Until Page Contains Element	txtUnsubscribe	30
+	Input Text	txtUnsubscribe	${USER}
+	Click Element	btnUnsubscribe
+	Selenium2Library.Wait Until Page Contains Element	btnHome1	10
+	Click Element	btnHome1
+
+View Accounts
+	Click Element	menu_accounts
+	${Prepaid_Account_Balance}=	Selenium2Library.Get Text	xpath=.//*[@id='cart-content']/tbody/tr[1]/td[5]/span
+	Log	${Prepaid_Account_Balance}
+	Click Element	menu_home
+
+View Log
+	Click Element	menu_log
+	Click Element	menu_home
+	
+Transfer Funds
+	Click Element	menu_transfers
+	Click Element	menu_home
+
+Make Deposit to Prepaid Account
+	Click Element	menu_transactions
+	Select From List By Value	account_affected	Prepaid Account
+	Select From List By Value	transaction	deposit
+	Input Text	transfer_amount	100
+	Click Element	xpath=.//*[@id='depwith_funds']/div[4]/div[1]/input[2]
+	Selenium2Library.Wait Until Page Contains Element	successMessage	10
+	Selenium2Library.Element Should Be Visible	otp-submit-button
+	Click Element	otp-submit-button
+	Selenium2Library.Page Should Contain	MAC Bank Funds Deposit/Withdraw
+	#successMessage
+	Click Element	menu_home
+
+Make Widthdrawl
+	Click Element	menu_transactions
+	Click Element	menu_home
+
+Make Payment
+	Click Element	menu_payments
+	Select From List By Value	account_affected	Prepaid Account
+	Input Text	pay-bill-amount	10
+	Click Element	xpath=.//*[@id='cart-content']/tbody/tr/td[7]/span[2]
+	Selenium2Library.Element Should Be Visible	successMessage
+	Click Element	menu_home	

@@ -1,0 +1,1 @@
+pybot --variable URL:http://corp.mobileauthcorp.com/Admin/Security/Default.aspx LOGINNAME:QAUser@mobileauthcorp.com PWD:QA1234 --outputdir C:\RobotTests\OperationalTests\OperationalTest_results C:\RobotTests\OperationalTests\NewOperationalTest.txt >>OUT.TXT

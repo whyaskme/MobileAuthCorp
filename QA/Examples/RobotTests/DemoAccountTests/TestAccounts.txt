@@ -1,0 +1,75 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation	Service Test
+
+*** Test Cases ***
+MAC Account Test
+	Open Accounts Test Page
+	Verify Service Test Page
+	Set System Under Test
+	Shop Account Exists
+	Store Account Exists
+	Electric Company Account Exists
+	Water Company Account Exists
+	${RESULTShop}=	Get Text	lbShop
+	${RESULTStore}=	Get Text	lbStore
+	${RESULTElecCo}=	Get Text	lbElecCo
+	${RESULTWaterCo}=	Get Text	lbWaterCo
+	Log	${RESULTShop}
+	Log	${RESULTStore}
+	Log	${RESULTElecCo}
+	Log	${RESULTWaterCo}
+	Close Browser
+	Should Match	${RESULTShop}	Success
+	Should Match	${RESULTStore}	Success
+	Should Match	${RESULTElecCo}	Success
+	Should Match	${RESULTWaterCo}	Success
+
+*** Variables ***
+${FF}	Firefox
+${DELAY}	0.1
+${RESULT}	PASS
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open Accounts Test Page
+	Open Browser	${URL}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify Service Test Page
+	Title Should Be	Service Tester
+
+Set System Under Test
+	Selenium2Library.Element Should Be Visible	txtSUTName
+	Input Text	txtSUTName	${SUT}
+
+Shop Account Exists                 # Scottsdale Golf Shop
+	Selenium2Library.Element Should Be Visible	btnTestShop
+	Click Button	btnTestShop
+
+Store Account Exists                # Scottsdale Golf Store
+	Selenium2Library.Element Should Be Visible	btnTestStore
+	Click Button	btnTestStore
+
+Electric Company Account Exists     # The Electric Company
+	Selenium2Library.Element Should Be Visible	btnTestElecCo
+	Click Button	btnTestElecCo
+
+Water Company Account Exists        # The Water Company
+	Selenium2Library.Element Should Be Visible	btnTestWaterCo
+	Click Button	btnTestWaterCo
+
+Test Results
+	${RESULTShop}=	Get Text	lbShop
+	${RESULTStore}=	Get Text	lbStore
+	${RESULTElecCo}=	Get Text	lbElecCo
+	${RESULTWaterCo}=	Get Text	lbWaterCo
+	Log	${RESULTShop}
+	Log	${RESULTStore}
+	Log	${RESULTElecCo}
+	Log	${RESULTWaterCo}
+
+	
+	

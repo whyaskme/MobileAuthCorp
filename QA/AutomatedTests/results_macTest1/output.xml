@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150303 17:32:55.623" generator="Robot 2.8.7 (Python 2.7.9 on win32)">
+<suite source="C:\QA_Test\AutomatedTests\macTest1.txt" id="s1" name="macTest1">
+<test id="s1-t1" name="MAC QA Login">
+<kw type="kw" name="BuiltIn.Log To Console">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>--Open MAC QA--</arg>
+</arguments>
+<status status="PASS" endtime="20150303 17:32:55.873" starttime="20150303 17:32:55.873"></status>
+</kw>
+<kw type="kw" name="Open MAC QA">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Open Browser">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${MAC QA URL}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20150303 17:32:55.889" level="INFO">Opening browser 'Firefox' to base url 'http://qa.mobileauthcorp.com'</msg>
+<status status="PASS" endtime="20150303 17:33:07.639" starttime="20150303 17:32:55.889"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${DELAY}</arg>
+</arguments>
+<status status="PASS" endtime="20150303 17:33:07.639" starttime="20150303 17:33:07.639"></status>
+</kw>
+<kw type="kw" name="Login Page Should Be Open">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>MAC Otp System Administration</arg>
+</arguments>
+<msg timestamp="20150303 17:33:07.858" level="INFO">Page title is 'MAC Otp System Administration'.</msg>
+<status status="PASS" endtime="20150303 17:33:07.858" starttime="20150303 17:33:07.639"></status>
+</kw>
+<status status="PASS" endtime="20150303 17:33:07.858" starttime="20150303 17:33:07.639"></status>
+</kw>
+<status status="PASS" endtime="20150303 17:33:07.858" starttime="20150303 17:32:55.873"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log To Console">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>--Login--</arg>
+</arguments>
+<status status="PASS" endtime="20150303 17:33:07.858" starttime="20150303 17:33:07.858"></status>
+</kw>
+<kw type="kw" name="Input User">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>txtUsername_Desktop</arg>
+<arg>dld07sierra@gmail.com</arg>
+</arguments>
+<msg timestamp="20150303 17:33:07.858" level="INFO">Typing text 'dld07sierra@gmail.com' into text field 'txtUsername_Desktop'</msg>
+<status status="PASS" endtime="20150303 17:33:08.592" starttime="20150303 17:33:07.858"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>btnAdminOtpRequest_Desktop</arg>
+</arguments>
+<msg timestamp="20150303 17:33:08.592" level="INFO">Clicking element 'btnAdminOtpRequest_Desktop'.</msg>
+<status status="PASS" endtime="20150303 17:33:11.295" starttime="20150303 17:33:08.592"></status>
+</kw>
+<status status="PASS" endtime="20150303 17:33:11.295" starttime="20150303 17:33:07.858"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20150303 17:33:12.295" starttime="20150303 17:33:11.295"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20150303 17:33:12.295" critical="yes" starttime="20150303 17:32:55.873"></status>
+</test>
+<doc>A test suite.</doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20150303 17:33:12.295" starttime="20150303 17:32:55.623"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" pass="1" id="s1" name="macTest1">macTest1</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

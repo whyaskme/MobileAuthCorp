@@ -1,0 +1,148 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Golf Shop demo test Register, Login and Unregister
+
+*** Test Cases ***
+MAC Demo Registration
+	Open Golf Shop on Demo Server
+	Verify Welcome Page
+	Login As Unknown User
+	Validate Unknown User Error
+	GoTo Register Page
+	Verify Registration Page
+	Enter Unknown User Info
+	Register User
+	Verify Registration Successful
+	GoTo Unregister Page
+	Unregister User
+	Verify Unregister Successful
+	[Teardown]     Close Browser
+
+	
+
+*** Variables ***
+${DEMO_AdminURL}	http://corp.mobileauthcorp.com/Admin/Security/Default.aspx
+${LOCAL_AdminURL}	http://localhost/Admin/Security/Default.aspx
+${DEMO_GolfShopURL}	http://www.otp-ap.com/GolfShop/Default.aspx
+${LOCAL_GolfShopURL}	http://localhost/Demos/GolfShop/Default.aspx
+${DEMO_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${LOCAL_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${DEMO_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${LOCAL_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${QA_UserName}	QAUser@mobileauthcorp.com
+${QAPWD}	QA1234
+${Unknown_User_FirstName}	QAUser1
+${Unknown_User_LastName}	Tester1
+${Unknown_User_Company}	MAC
+${Unknown_User_Title}	Tester
+${Unknown_User_MPhoneNo}	4802684076
+${Unknown_User_EmailAdr}	QAUser1@mobileauthcorp.com
+${Unknown_QA_imgcode}	QA1234
+
+*** Keywords ***
+Open Golf Shop on Demo Server
+	Open Browser	${URL}	${BROWSER}
+	Set Selenium speed	${DELAY}
+
+Verify Welcome Page
+	Title Should Be	Welcome To The Scottsdale Golf Shop
+	Selenium2Library.Element Should Be Visible	divLoginContainer	
+
+Login As Known User
+	Input Text	txtLoginName	${KnownUserName}
+	Click Element	btnValidateLoginName
+
+Verify Enter OTP Page
+	Selenium2Library.Element Should Be Visible	divLoginOTPContainer
+
+Submit Login OTP
+	Selenium2Library.Element Should Be Visible	btnLoginOTP
+	Click Element	btnLoginOTP
+
+Verify Shopping Page
+	Selenium2Library.Element Should Be Visible	item7
+	Selenium2Library.Element Should Be Visible	item8
+
+Add Items To Cart
+	Click Element	item7
+	Selenium2Library.Element Should Be Visible	item_number7_display
+	Click Element	item8
+	Selenium2Library.Element Should Be Visible	item_number8_display
+
+Make Purchase
+	Should Not Be Equal	totalPrice	0.00
+	Click Element	btnPurchase
+
+Verify Purchase Summary Page
+	Selenium2Library.Element Should Be Visible	tableContainerPurchase
+
+Authorize Transaction
+	Click Element	btnVerifyOtp
+
+Verify Comment Page
+	Selenium2Library.Element Should Be Visible	selectFeedback
+
+Enter And Submit Comment
+	Input Text	selectFeedback	From GolfShopTestSuite.txt
+	Click Element	chkContact
+	Selenium2Library.Checkbox Should Be Selected	chkContact
+	Click Element	btnFeedbackSubmit
+
+Verify Thank You Page
+	Selenium2Library.Element Should Be Visible	divThankYou
+
+Go Home
+	Selenium2Library.Element Should Be Visible	btnHome
+	Click Element	btnHome
+
+Login As Unknown User
+	Input Text	txtLoginName	${UnknownUserName}
+	Click Element	btnValidateLoginName
+
+Validate Unknown User Error
+	Selenium2Library.Element Should Be Visible	btnToRegister1
+
+GoTo Register Page
+	Selenium2Library.Click Link	btnToRegister1
+
+Verify Registration Page
+	Selenium2Library.Element Should Be Visible	registrationMessage
+	Selenium2Library.Element Should Be Visible	btnTestNavBack
+
+Enter Unknown User Info
+	Input Text	txtFirstName	${Unknown_User_FirstName}
+	Input Text	txtLastName	${Unknown_User_LastName}
+	Input Text	txtCompany	${Unknown_User_Company}
+	Input Text	txtJobTitle	${Unknown_User_Title}
+	Input Text	txtMPhoneNo	${Unknown_User_MPhoneNo}
+	Input Text	txtEmailAdr	${Unknown_User_EmailAdr}
+	Input Text	txtimgcode	${Unknown_QA_imgcode}
+	Click Element	chkTermsAndConditions
+	Selenium2Library.Checkbox Should Be Selected	chkTermsAndConditions
+	Selenium2Library.Element Should Be Visible	btnRegisterEndUser
+
+Register User
+	Selenium2Library.Element Should Be Visible	btnRegisterEndUser
+	Click	btnRegisterEndUser
+
+Verify Registration Successful
+	Selenium2Library.Element Should Be Visible	btnValidateLoginName
+
+GoTo Unregister Page
+	Click	btnGoToUnsubscribe
+	Selenium2Library.Element Should Be Visible	btnToRegister
+
+Verify Unregister Successful
+	Selenium2Library.Element Should Not Be Visible	btnUnsubscribe
+
+Unregister User
+	Input Text	txtUnsubscribe	${Unknown_User_EmailAdr}
+	Selenium2Library.Element Should Be Visible	btnUnsubscribe
+	Click	btnGoToUnsubscribe
+
+Verify Unregister Successful
+	Selenium2Library.Element Should Be Visible	deletedEmail
+	Selenium2Library.Element Should Be Visible	btnHome1
+	Click Element	btnHome1

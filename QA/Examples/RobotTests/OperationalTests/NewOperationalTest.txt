@@ -1,0 +1,35 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Operational test for MAC Admin
+
+*** Test Cases ***
+MAC Admin Operational Test
+	Log Variables
+	Open Admin
+	Verify MAC Admin Landing Page
+	Admin Login
+	[Teardown]     Close Browser
+
+
+*** Variables ***
+${FF}	Firefox
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open Admin
+	Open Browser	${URL}	${FF}
+	Set Selenium speed	0.1
+
+Verify MAC Admin Landing Page
+	Title Should Be	MAC Otp System Administration
+	Selenium2Library.Element Should Be Visible	txtUsername_Desktop
+
+Admin Login
+	Input Text	txtUsername_Desktop	${LOGINNAME}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	txtPassword_Desktop
+	Input Text	txtPassword_Desktop	${PWD}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	divLoginMyAccountControlsContainer_Desktop

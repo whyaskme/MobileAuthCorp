@@ -1,0 +1,46 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Test Suite, Online Merchant (Golf Store) Demo
+
+*** Test Cases ***
+Golf Store Demo Operational Test
+	Open Golf Store
+	Verify Golf Store Landing Page
+	Golf Store Login
+	[Teardown]     Close Browser
+
+*** Variables ***
+${DEMO_AdminURL}	http://corp.mobileauthcorp.com/Admin/Security/Default.aspx
+${LOCAL_AdminURL}	http://localhost/Admin/Security/Default.aspx
+${DEMO_GolfShopURL}	http://www.otp-ap.com/GolfShop/Default.aspx
+${LOCAL_GolfShopURL}	http://localhost/Demos/GolfShop/Default.aspx
+${DEMO_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${LOCAL_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${DEMO_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${LOCAL_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${QA_UserName}	QAUser@mobileauthcorp.com
+${QAPWD}	QA1234
+${FF}	Firefox
+${DELAY}	0.1
+
+*** Keywords ***
+# ------- Golf Store PHP Demo ------------------------------------
+Open Golf Store
+	Run Keyword If	'$[INSTANCE]' == 'DEMO'
+	...	Open Browser	${DEMO_GolfStoreURL}	${FF}
+	...	ELSE	
+	...	Open Browser	${LOCAL_GolfStoreURL}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify Golf Store Landing Page
+	Title Should Be	MAC Test Shopping Cart
+	Selenium2Library.Element Should Be Visible	hero
+
+Golf Store Login
+	Selenium2Library.Element Should Be Visible	login-container
+	Click Element	xpath=.//*[@id='login-container']/div/span
+	Selenium2Library.Element Should Be Visible	user_id
+	Input Text	user_id	${QA_UserName}
+	Click Element	login-submit-button

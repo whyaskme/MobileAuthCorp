@@ -1,0 +1,33 @@
+    pybot --variable BROWSER:Firefox --outputdir firefox login_tests
+    pybot --variable BROWSER:IE --outputdir ie login_tests
+
+
+https://code.google.com/p/robotframework-seleniumlibrary/wiki/Demo#Running_tests_using_pybot
+
+
+
+| | Run Keyword If | '${BROWSER}' == 'IE'
+| | ... | Location should be | ${LOGIN URL IE}
+| | ... | ELSE 
+| | ... | Location should be | ${LOGIN_URL}
+
+Examples:
+	Run Keyword If	'$[INSTANCE]' == 'DEMO'
+	...	Open Browser	${DEMO_GolfShopURL}	${FF}
+	...	ELSE	
+	...	Open Browser	${LOCAL_GolfShopURL}	${FF}
+	Set Selenium speed	${DELAY}
+Or
+	Run Keyword IF	'${LOC}' == 'DEMO'	Open Admin Demo
+	Run Keyword Unless	'${LOC}' == 'DEMO'	Open Admin Local
+	Set Selenium speed	${DELAY}
+
+Open Admin Demo
+	Open Browser	${DEMO_AdminURL}	${FF}
+
+Open Admin Local
+	Open Browser	${LOCAL_AdminURL}	${FF}
+
+
+
+http://stackoverflow.com/questions/25284356/is-an-else-statement-in-robot-framework

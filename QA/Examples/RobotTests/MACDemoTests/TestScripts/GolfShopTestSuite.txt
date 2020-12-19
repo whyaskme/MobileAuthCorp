@@ -1,0 +1,104 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Golf Shop demo test Login, Validate OTP, Shop, Checkout, Validate OTP, Submit comments, Home
+
+*** Test Cases ***
+MAC Known User Login
+	Open Golf Shop on Demo Server
+	Verify Welcome Page
+	Login As Known User
+	Verify Enter OTP Page
+	Submit Login OTP
+	Verify Shopping Page
+	Add Items To Cart
+	Make Purchase
+	Verify Purchase Summary Page
+	Authorize Transaction
+	Verify Comment Page
+	Enter And Submit Comment
+	Verify Thank You Page
+	Go Home
+	[Teardown]     Close Browser
+	
+
+*** Variables ***
+${DEMO_AdminURL}	http://corp.mobileauthcorp.com/Admin/Security/Default.aspx
+${LOCAL_AdminURL}	http://localhost/Admin/Security/Default.aspx
+${DEMO_GolfShopURL}	http://www.otp-ap.com/GolfShop/Default.aspx
+${LOCAL_GolfShopURL}	http://localhost/Demos/GolfShop/Default.aspx
+${DEMO_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${LOCAL_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${DEMO_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${LOCAL_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${KnownUserName}	QAUser@mobileauthcorp.com
+${UnknownUserName}	QAUser1@mobileauthcorp.com
+${BROWSER}	Firefox
+${DELAY}	0.1
+
+*** Keywords ***
+Open Golf Shop on Demo Server
+	Open Browser	${URL}	${BROWSER}
+	Set Selenium speed	${DELAY}
+
+Verify Welcome Page
+	Title Should Be	Welcome To The Scottsdale Golf Shop
+	Selenium2Library.Element Should Be Visible	divLoginContainer	
+
+Login As Known User
+	Input Text	txtLoginName	${KnownUserName}
+	Click Element	btnValidateLoginName
+
+Verify Enter OTP Page
+	Selenium2Library.Element Should Be Visible	divLoginOTPContainer
+
+Submit Login OTP
+	Selenium2Library.Element Should Be Visible	btnLoginOTP
+	Click Element	btnLoginOTP
+
+Verify Shopping Page
+	Selenium2Library.Element Should Be Visible	item7
+	Selenium2Library.Element Should Be Visible	item8
+
+Add Items To Cart
+	Click Element	item7
+	Selenium2Library.Element Should Be Visible	item_number7_display
+	Click Element	item8
+	Selenium2Library.Element Should Be Visible	item_number8_display
+
+Make Purchase
+	Should Not Be Equal	totalPrice	0.00
+	Click Element	btnPurchase
+
+Verify Purchase Summary Page
+	Selenium2Library.Element Should Be Visible	tableContainerPurchase
+
+Authorize Transaction
+	Click Element	btnVerifyOtp
+
+Verify Comment Page
+	Selenium2Library.Element Should Be Visible	selectFeedback
+
+Enter And Submit Comment
+	Input Text	selectFeedback	From GolfShopTestSuite.txt
+	Click Element	chkContact
+	Selenium2Library.Checkbox Should Be Selected	chkContact
+	Click Element	btnFeedbackSubmit
+
+Verify Thank You Page
+	Selenium2Library.Element Should Be Visible	divThankYou
+
+Go Home
+	Selenium2Library.Element Should Be Visible	btnHome
+	Click Element	btnHome
+
+Validate Unknown User Error
+	Element Should Be Visable	btnToRegister1
+
+GoTo Register
+	Click	btnToRegister1
+
+Enter Unknown User
+	Input Text	txtLoginName	${UnknownUserName}
+	Click Element	btnValidateLoginName

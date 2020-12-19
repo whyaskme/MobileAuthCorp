@@ -1,0 +1,47 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Operational test suite, High level test cases for MAC Admin, MAC Services, Golf Shop Demo, Online Bank Demo, Online Merchant Demo
+
+*** Test Cases ***
+MAC Admin Operational Test
+	Open Admin
+	Verify MAC Admin Landing Page
+	[Teardown]     Close Browser
+
+
+*** Variables ***
+${DEMO_AdminURL}	http://corp.mobileauthcorp.com/Admin/Security/Default.aspx
+${LOCAL_AdminURL}	http://localhost/Admin/Security/Default.aspx
+${DEMO_GolfShopURL}	http://www.otp-ap.com/GolfShop/Default.aspx
+${LOCAL_GolfShopURL}	http://localhost/Demos/GolfShop/Default.aspx
+${DEMO_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${LOCAL_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${DEMO_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${LOCAL_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${QA_UserName}	QAUser@mobileauthcorp.com
+${QAPWD}	QA1234
+${FF}	Firefox
+${DELAY}	0.1
+
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open Admin
+	Log Variables
+	Run Keyword IF	'${LOC}' == 'DEMO'	Open Admin Demo
+	Run Keyword Unless	'${LOC}' == 'DEMO'	Open Admin Local
+	Set Selenium speed	${DELAY}
+
+Open Admin Demo
+	Open Browser	${DEMO_AdminURL}	${FF}
+
+Open Admin Local
+	Open Browser	${LOCAL_AdminURL}	${FF}
+
+
+Verify MAC Admin Landing Page
+	Title Should Be	MAC Otp System Administration
+	Selenium2Library.Element Should Be Visible	txtUsername_Desktop
+

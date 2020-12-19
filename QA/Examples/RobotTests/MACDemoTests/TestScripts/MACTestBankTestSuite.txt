@@ -1,0 +1,48 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Test Suite, MAC Test Bank Demo
+
+*** Test Cases ***
+Test Bank Demo Operational Test
+	Open Test Bank
+	Verify Test Bank Landing Page
+	Test Bank Login
+	[Teardown]     Close Browser
+
+*** Variables ***
+${DEMO_AdminURL}	http://corp.mobileauthcorp.com/Admin/Security/Default.aspx
+${LOCAL_AdminURL}	http://localhost/Admin/Security/Default.aspx
+${DEMO_GolfShopURL}	http://www.otp-ap.com/GolfShop/Default.aspx
+${LOCAL_GolfShopURL}	http://localhost/Demos/GolfShop/Default.aspx
+${DEMO_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${LOCAL_GolfStoreURL}	http://lmdemo.mobileauthcorp.net
+${DEMO_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${LOCAL_TestBankURL}	http://lbdemo.mobileauthcorp.net
+${QA_UserName}	QAUser@mobileauthcorp.com
+${QAPWD}	QA1234
+${FF}	Firefox
+${DELAY}	0.1
+
+
+*** Keywords ***
+# --------- Test Bank PHP Demo ----------------------------------
+Open Test Bank
+	Run Keyword If	'$[INSTANCE]' == 'DEMO'
+	...	Open Browser	${DEMO_TestBankURL}	${FF}
+	...	ELSE	
+	...	Open Browser	${LOCAL_TestBankURL}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify Test Bank Landing Page
+	Title Should Be	MAC Bank
+	Selenium2Library.Element Should Be Visible	login-submit-button
+
+Test Bank Login
+	Input Text	user_id	${QA_UserName}
+	Click Element	login-submit-button
+
+Verify Test Bank Login Page
+	Selenium2Library.Element Should Be Visible	otp-submit-button
+
