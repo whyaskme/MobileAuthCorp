@@ -1,0 +1,12 @@
+﻿<Client>
+	<ClientName>Scottsdale Golf Store</ClientName>
+	<ClientId>2e4fc35f-f59c-a4c1-a2e6-08d1b888c80e</ClientId>
+	<Url>api.authenticationads.com/Ad.svc</Url>
+	<UserName>Terry</UserName>
+	<UserPassword>mac123!</UserPassword>
+	<APIKey>1106fdc1-1b91-71c4-296e-08d1b88891e5</APIKey>
+	<APIUserName>macapi</APIUserName>
+	<APIPassword>mac123!</APIPassword>
+	<CampaignName>Golf Store 2</CampaignName>
+	<CampaignId>42d0682e-7648-a9cd-ed23-08d20e19117d</CampaignId>
+</Client>

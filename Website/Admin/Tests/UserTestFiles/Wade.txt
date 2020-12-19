@@ -1,0 +1,4 @@
+﻿MACBank|Type:User|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwards@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Wade.txt
+STSRegister|UserId:513706381012345678901234567890|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwards@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Wade.txt
+RequestOTP|UserId:513706381012345678901234567890|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwards@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Wade.txt
+Register:User|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwards@mobileauthcorp.com|RegType:OpenRegister|File:Wade.txt

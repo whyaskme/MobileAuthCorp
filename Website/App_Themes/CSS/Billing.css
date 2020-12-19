@@ -1,0 +1,168 @@
+﻿body {
+
+}
+
+
+span, div
+{
+    font-size: 14px;
+}
+
+.ClientName
+{
+    color: #ff0000;
+}
+
+.FormField
+{
+    border: solid 1px #c0c0c0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    width: 300px !important;
+    min-height: 37px !important;
+    padding: 0 !important;
+    padding-left: 10px !important;
+    margin-bottom: 5px !important;
+    position: relative;
+    top: -5px;
+}
+
+.StaticFormFieldAsLabel
+{
+    border: solid 0px #ff0000 !important;
+    background: none !important;
+    box-shadow: none !important;
+    width: 300px !important;
+    min-height: 15px !important;
+    padding: 0 !important;
+    margin-bottom: 0px !important;
+}
+
+.StaticFormFieldAsLabelPrint
+{
+    font-size:1rem !important;
+    color:#000 !important;
+    background: none !important;
+    box-shadow: none !important;
+    border:none !important;
+    padding: 0 !important;
+    margin-bottom: 0px !important;
+}
+
+fieldset
+{
+    border-radius: 3px;
+    min-height: 35px;
+    width: 100%;
+    background-color: transparent;
+    border: solid 1px #d8d8d8;
+    position: relative; 
+    top: 0px;
+    padding: 10px;
+}
+
+fieldset legend {
+    background: none;
+    color: #808080;
+    font-weight: bold;
+    border-radius: 3px;
+    margin-left: -5px;
+    border: solid 0px #d8d8d8;
+    padding: 10px;
+}
+
+.AddendumDescription
+{
+    position: relative;
+    left: 87px;
+    width: 85%;
+    /*background-color: #ffff00;*/
+}
+
+.AddendumItem
+{
+    float: left;
+    width: 100%; 
+    border: solid 0px #ff0000;
+    margin-bottom: 25px;
+}
+
+.billingFormField
+{
+    width: 250px;
+}
+
+
+.billingCategory
+{
+    font-weight: normal;
+    font-style: italic;
+    color: #808080;
+}
+
+.billingSectionTotal
+{
+    font-weight: bold;
+    font-style: italic;
+    color: #808080;
+    text-align: right;
+}
+
+.billingData
+{
+    font-weight: normal;
+    /*white-space: nowrap;*/
+}
+
+.billingDataPrint
+{
+    font-size:1rem !important;
+    color:#000 !important;
+}
+
+.BillingLabel
+{
+    float: left; 
+    text-align: right; 
+    width: 70px; 
+    padding-right: 10px;
+    font-weight: normal;
+    font-style: italic;
+    color: #808080;
+    border: solid 0px #000000;
+}
+
+.BillingItemColumn
+{
+    float: left;
+    border: solid 0px #ff0000; 
+    width: 33%;
+}
+
+.BillingCount
+{
+    float: left; 
+    font-weight: normal;
+    border: solid 0px #ff0000;
+    width: 75px;
+    text-align: left;
+}
+
+.BillingCost
+{
+    float: left; 
+    font-weight: normal;
+    border: solid 0px #00ff00;
+    width: 75px;
+    text-align: left;
+}
+
+.BillingCharge
+{
+    float: left; 
+    font-weight: normal;
+    border: solid 0px #0000ff;
+    width: 75px;
+    text-align: left;
+}
+

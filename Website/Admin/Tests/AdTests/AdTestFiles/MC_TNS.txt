@@ -1,0 +1,12 @@
+﻿<Client>
+	<ClientName>TNS Test Client</ClientName>
+	<ClientId>e6f3fe3a-2b30-54cf-3bcd-08d1ffc40653</ClientId>
+	<Url>api.authenticationads.com/Ad.svc</Url>
+	<UserName>Terry</UserName>
+	<UserPassword>mac123!</UserPassword>
+	<APIKey>1106fdc1-1b91-71c4-296e-08d1b88891e5</APIKey>
+	<APIUserName>macapi</APIUserName>
+	<APIPassword>mac123!</APIPassword>
+	<CampaignName>MAC Test 1</CampaignName>
+	<CampaignId>e2ce3357-af65-4dcc-e580-08d1d18dbfb9</CampaignId>
+</Client>

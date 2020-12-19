@@ -1,0 +1,227 @@
+/** { 
+	margin: 0; 
+	padding: 0; 
+}
+
+#page-wrap {
+	margin: 50px;
+}
+
+/* 
+Generic Styling, for Desktops/Laptops 
+*/
+
+/* Joe's test update */
+
+table { 
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #b3b3b3;
+}
+td:nth-child(1) {
+    text-align: left !important;
+    border-left: none !important;
+}
+th:nth-child(1) {
+    border-left: none !important;
+}
+tfoot td:nth-child(1) {
+    text-align: right !important;
+    
+}   
+td:nth-child(2) {
+    /*white-space: nowrap !important;*/
+    position: relative;
+    border-right: 1px solid #b3b3b3;
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+	background: #fff; 
+}
+tr:nth-of-type(even) { 
+	background: #efefef !important; 
+}
+th { 
+	background: #efefef; 
+	color: #222; 
+	font-weight: bold;
+}
+td, th {
+	padding: 8px 6px 6px !important;
+	text-align: right !important;
+    border-left: 1px solid #b3b3b3;
+}
+td:nth-of-type(even) { 
+	
+}
+td {
+    border-top: 1px solid #b3b3b3;
+    /*max-width: 800px !important;*/
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: normal !important;
+    width: 25%;
+    text-align: right !important;
+}
+.tdMisc25 {
+    border-top: 1px solid #b3b3b3;
+    word-break: normal !important;
+    width: 25%;
+}
+.tdMisc50 {
+    border-top: 1px solid #b3b3b3;
+    line-height: 20px;
+    word-break: normal !important;
+    white-space: normal !important;
+    word-wrap: normal !important;
+    width: 50%;
+}
+.tdMisc75 {
+    border-top: 1px solid #b3b3b3;
+    word-break: normal !important;
+    width: 75%;
+}
+tfoot, td {
+	text-align: right !important;
+}
+.miscDesc {
+    text-align: left !important;
+}
+
+.miscTotal {
+
+}
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    /* Force table to not be like tables anymore */
+    /*table, thead, tbody, th, td, tr { 
+			display: block; 
+		}*/
+        tfoot, td {
+	        text-align: center !important;
+        }
+        td {
+            border-left: none;
+        }
+        .miscDesc {
+            text-align: center !important;
+        }
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr { 
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+		
+		tr {
+            display: block !important;
+		}
+
+        /* mobile spacing */
+        tr:nth-of-type(odd) {
+            padding: 6px 0 10px;
+            border-top: 1px solid #b3b3b3;
+        }
+
+        tr:nth-of-type(even) {
+            padding: 6px 0 10px;
+            border-top: 1px solid #b3b3b3;
+        }
+
+td:nth-child(1) {
+    text-align: center !important;
+    
+}
+tfoot td:nth-child(1) {
+    text-align: center !important;
+    
+}
+
+    td {
+        /* Behave  like a "row" */
+        text-align: center !important;
+        display: block !important;
+        border-top: none !important;
+        position: relative;
+        padding: 0.25rem  0.5rem !important;
+        word-break: break-all !important;
+        width: 100%;
+    }
+    
+.tdMisc25 {
+    text-align: center !important;
+    border-top: 1px solid #b3b3b3;
+    word-break: break-all !important;
+    width: 100% !important;
+}
+.tdMisc50 {
+    text-align: center !important;
+    border-top: 1px solid #b3b3b3;
+    word-break: break-all !important;
+    width: 100% !important;
+}
+.tdMisc75 {
+    text-align: center !important;
+    border-top: 1px solid #b3b3b3;
+    word-break: break-all !important;
+    width: 100%;
+}
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 0.5rem;
+            left: 0.5rem;
+            width: 45%;
+            padding-right: 0.625rem;
+            white-space: nowrap;
+        }
+
+        td:nth-of-type(even) {
+            border-left: none;
+        }
+
+        td:nth-child(1) {
+            padding: 0.25rem 0 0.5rem !important;
+        }
+
+        td:nth-child(2) {
+            white-space: nowrap !important;
+            position: relative;
+            border-right: none !important;
+        }
+
+    tr:nth-child(1) {
+        /*border-top: none !important;*/
+    }
+
+    /*
+Label the data
+*/
+    /*td:nth-of-type(1):before { content: "Date"; }
+td:nth-of-type(2):before { content: "Details"; }
+}*/
+
+    /* Smartphones (portrait and landscape) ----------- */
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        body {
+            padding: 0;
+            margin: 0;
+            width: 320px;
+        }
+    }
+
+    /* iPads (portrait and landscape) ----------- */
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        body {
+            width: 495px;
+        }
+    }
+}

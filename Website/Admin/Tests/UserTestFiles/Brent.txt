@@ -1,0 +1,4 @@
+﻿MACBank|Type:User|FirstName:Brent|LastName:Hranicky|PhoneNumber:2142821887|EmailAddress:bhranicky@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Brent.txt
+RequestOTP|FirstName:Brent|LastName:Hranicky|PhoneNumber:2142821887|EmailAddress:bhranicky@mobileauthcorp.com|UserId:214282188712345678901234567890|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Brent.txt
+STSRegister|FirstName:Brent|LastName:Hranicky|PhoneNumber:2142821887|EmailAddress:bhranicky@mobileauthcorp.com|UserId:214282188712345678901234567890|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Brent.txt
+Register:EndUser|FirstName:Brent|LastName:Hranicky|PhoneNumber:2142821887|EmailAddress:bhranicky@mobileauthcorp.com|UserId:214282188712345678901234567890|RegType:OpenRegister|File:Brent.txt

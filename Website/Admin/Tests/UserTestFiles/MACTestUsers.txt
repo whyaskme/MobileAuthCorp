@@ -1,0 +1,34 @@
+﻿MACBank|Type:User|FirstName:Terry|LastName:Davis|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+MACBank|Type:User|FirstName:Chris|LastName:Miller|PhoneNumber:6027999450|EmailAddress:cmiller@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+MACBank|Type:User|FirstName:Don|LastName:Gleason|PhoneNumber:4803304246|EmailAddress:dgleason@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+MACBank|Type:User|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwardss@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+MACBank|Type:User|FirstName:Maria|LastName:Arminio|PhoneNumber:3109401945|EmailAddress:marminio@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+MACBank|Type:User|FirstName:Brent|LastName:Hranicky|PhoneNumber:2142821887|EmailAddress:bhranicky@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+MACBank|Type:User|FirstName:John|LastName:Tester1|PhoneNumber:8479976232|EmailAddress:Tester1@elbsoftware.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+MACBank|Type:User|FirstName:Bob|LastName:Tester2|PhoneNumber:8479976232|EmailAddress:Tester2@elbsoftware.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+MACBank|Type:User|FirstName:Sam|LastName:Tester3|PhoneNumber:8479976232|EmailAddress:Tester3@elbsoftware.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+MACBank|Type:User|FirstName:QAUser|LastName:QAUser|PhoneNumber:4802684076|EmailAddress:QAUser@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:MACTestUsers
+
+MACBank|Type:Merchant|ShortName:SGS|MerchantName:Scottsdale Golf Shop|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com
+MACBank|Type:Merchant|ShortName:Kohl's|MerchantName:Kohl's|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com
+MACBank|Type:Merchant|ShortName:Target|MerchantName:Target|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com
+MACBank|Type:Merchant|ShortName:TOL|MerchantName:Target Online|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com
+MACBank|Type:Utility|ShortName:TECo|MerchantName:The Electric Company|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com
+MACBank|Type:Utility|ShortName:TWCo|MerchantName:The Water Company|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com
+
+RequestOTP|FirstName:Terry|LastName:Davis|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|UserId:480268407612345678901234567890|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+RequestOTP|FirstName:Chris|LastName:Miller|PhoneNumber:6027999450|EmailAddress:cmiller@mobileauthcorp.com|UserId:602799945012345678901234567890|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+RequestOTP|FirstName:Don|LastName:Gleason|PhoneNumber:4802684076|EmailAddress:dgleason@mobileauthcorp.com|UserId:480330424612345678901234567890|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+RequestOTP|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwardss@mobileauthcorp.com|UserId:513706381012345678901234567890|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+RequestOTP|FirstName:Maria|LastName:Arminio|PhoneNumber:3109401945|EmailAddress:marminio@mobileauthcorp.com|UserId:310940194512345678901234567890|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+RequestOTP|FirstName:Brent|LastName:Hranicky|PhoneNumber:2142821887|EmailAddress:bhranicky@mobileauthcorp.com|UserId:214282188712345678901234567890|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+RequestOTP|FirstName:QAUser|LastName:QAUser|PhoneNumber:4802684076|EmailAddress:QAUser@mobileauthcorp.com|UserId:480268407612345678901234567999|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+
+STSRegister|UserId:480268407612345678901234567890|FirstName:Terry|LastName:Davis|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+STSRegister|UserId:602799945012345678901234567890|FirstName:Chris|LastName:Miller|PhoneNumber:6027999450|EmailAddress:cmiller@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+STSRegister|UserId:480330424612345678901234567890|FirstName:Don|LastName:Gleason|PhoneNumber:4803304246|EmailAddress:dgleason@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+STSRegister|UserId:513706381012345678901234567890|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwardss@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+STSRegister|UserId:310940194512345678901234567890|FirstName:Maria|LastName:Arminio|PhoneNumber:3109401945|EmailAddress:marminio@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+STSRegister|UserId:214282188712345678901234567890|FirstName:Brent|LastName:Hranicky|PhoneNumber:2142821887|EmailAddress:bhranicky@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+STSRegister|UserId:480268407612345678901234567999|FirstName:QAUser|LastName:QAUser|PhoneNumber:4802684076|EmailAddress:QAUser@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|File:MACTestUsers
+

@@ -1,0 +1,21 @@
+﻿STSRegister|FirstName:Philip|LastName:Lawer|PhoneNumber:042 235 3392|EmailAddress:plawer@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+STSRegister|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwardss@mobileauthcorp.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+STSRegister|FirstName:Terry|LastName:Davis|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+STSRegister|FirstName:Ashley|LastName:Forsyth|PhoneNumber:3604814563|EmailAddress:aforsyth@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+STSRegister|FirstName:Brad|LastName:Griffith|PhoneNumber:3603381008|EmailAddress:bgriffith@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+
+RequestOTP|FirstName:Philip|LastName:Lawer|PhoneNumber:042 235 3392|EmailAddress:plawer@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+RequestOTP|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwardss@mobileauthcorp.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+RequestOTP|FirstName:Terry|LastName:Davis|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+
+MACBank|Type:User|FirstName:Philip|LastName:Lawer|PhoneNumber:001161422353392|EmailAddress:plawer@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+MACBank|Type:User|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwardss@mobileauthcorp.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+MACBank|Type:User|FirstName:Terry|LastName:Davis|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+MACBank|Type:User|FirstName:Ashley|LastName:Forsyth|PhoneNumber:3604814563|EmailAddress:aforsyth@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+MACBank|Type:User|FirstName:Brad|LastName:Griffith|PhoneNumber:3603381008|EmailAddress:bgriffith@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+
+Register:EndUser|FirstName:Philip|LastName:Lawer|PhoneNumber:042 235 3392|EmailAddress:plawer@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+Register:EndUser|FirstName:Wade|LastName:Edwards|PhoneNumber:5137063810|EmailAddress:wedwardss@mobileauthcorp.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+Register:EndUser|FirstName:Terry|LastName:Davis|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+Register:EndUser|FirstName:Ashley|LastName:Forsyth|PhoneNumber:3604814563|EmailAddress:aforsyth@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers
+Register:EndUser|FirstName:Brad|LastName:Griffith|PhoneNumber:3603381008|EmailAddress:bgriffith@tnsi.com|RegType:OpenRegister|ClientName:TNS Test Client|File:TNSUsers

@@ -1,0 +1,4 @@
+﻿MACBank|Type:User|FirstName:Maria|LastName:Arminio|PhoneNumber:3109401945|EmailAddress:marminio@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|Flie:Maria.txt
+RequestOTP|UserId:310940194512345678901234567890|FirstName:Maria|LastName:Arminio|PhoneNumber:3109401945|EmailAddress:marminio@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|Flie:Maria.txt
+STSRegister|UserId:310940194512345678901234567890|FirstName:Maria|LastName:Arminio|PhoneNumber:3109401945|EmailAddress:marminio@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|Flie:Maria.txt
+Register:EndUser|FirstName:Maria|LastName:Arminio|PhoneNumber:3109401945|EmailAddress:marminio@mobileauthcorp.com|RegType:OpenRegister|Flie:Maria.txt

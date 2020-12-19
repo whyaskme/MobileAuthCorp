@@ -1,0 +1,45 @@
+﻿        <filteringRules>
+          <filteringRule name="SQL_Injection_Mitigation" scanUrl="true" scanQueryString="true">
+            <appliesTo>
+              <add fileExtension=".asp" />
+              <add fileExtension=".aspx" />
+            </appliesTo>
+            <denyStrings>
+              <!-- Make sure these keywords have a space afterwards. If not, any request with these keywords in the query string will be rejected by IIS request filtering and returns a 404.19 not found error -->
+              <add string="select " />
+              <add string="drop " />
+              <add string="update " />
+              <add string="convert " />
+              <add string="--" />
+              <add string=";" />
+              <add string="/*" />
+              <!-- <add string="@" /> -->
+              <add string="char " />
+              <add string="alter " />
+              <add string="begin " />
+              <add string="cast " />
+              <add string="create " />
+              <add string="cursor " />
+              <add string="declare " />
+              <add string="delete " />
+              <add string="end " />
+              <add string="exec " />
+              <add string="fetch " />
+              <add string="insert " />
+              <add string="kill " />
+              <add string="open " />
+              <add string="sys " />
+              <add string="table " />
+            </denyStrings>
+          </filteringRule>
+          <filteringRule name="Embedded_Script" scanUrl="true" scanQueryString="true">
+            <appliesTo>
+              <add fileExtension=".asp" />
+              <add fileExtension=".aspx" />
+            </appliesTo>
+            <denyStrings>
+              <add string="&lt;script&gt;"/>
+              <add string="&lt;/script&gt;"/>
+            </denyStrings>
+          </filteringRule>
+        </filteringRules>

@@ -1,0 +1,2449 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Web.Services;
+using System.Xml;
+using System.Net;
+using System.Web;
+using System.Threading;
+
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
+
+using MACSecurity;
+using MACServices;
+using cs = MACServices.Constants.Strings;
+using sr = MACServices.Constants.ServiceResponse;
+using dk = MACServices.Constants.Dictionary.Keys;
+using dv = MACServices.Constants.Dictionary.Values;
+using dkui = MACServices.Constants.Dictionary.Userinfo;
+using cfg = MACServices.Constants.WebConfig.AppSettingsKeys;
+
+using TestLib;
+using tc = TestLib.TestConstants.TestBank;
+
+
+[WebService(Namespace = "http://mobileauthcorp.com/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+
+[System.Web.Script.Services.ScriptService]
+public class MacTestBank : WebService
+{
+    private const string mSvcName = "MacTestBank";
+    private const string mLogId = "TB";
+    //private string mDatabaseName = ConfigurationManager.AppSettings[tc.MACBankDbName].ToString();
+    public readonly string[] mAccountNames = 
+        {
+            tc.PAN, 
+            "Prepaid Account", 
+            "Credit Card", 
+            "Debit Card", 
+            "Group Credit Card",
+            "Group Debit Card", 
+            "Client Card"
+        };
+    public readonly string[] mAccountUsages =
+        {
+            tc.UsageAccount, 
+            tc.UsageGroup, 
+            tc.UsageOpen, 
+            tc.UsageOpen, 
+            tc.UsageGroup, 
+            tc.UsageGroup, 
+            tc.UsageClient
+        };
+
+
+    [WebMethod]
+    public XmlDocument WsMacTestBank(string data)
+    {
+        #region Init
+        var mUtils = new Utils();
+        var myData = new Dictionary<string, string> { { dk.ServiceName, mSvcName } };
+        var myResponse = new StringBuilder();
+        mUtils.InitializeXmlResponse(myResponse);
+        #endregion
+
+        #region Bank Info
+        /*------  Account and Card numbering (Payment Numbering) -------
+         * An ISO/IEC 7812 card number is most commonly 16 digits in length,[1] and consists of:
+         *  a six-digit Issuer Identification Number (IIN) (previously called the "Bank Identification Number" (BIN)) the first digit of which is the Major Industry Identifier (MII),
+         *  a variable length (up to 12 digits) individual account identifier,
+         *  a single check digit calculated using the Luhn algorithm.[2]
+         * 
+         * For MAC Test bank
+         * a sixteen digit number
+         *   6601 0TAA AAAA AAUC
+         * a six-digit Issuer Identification Number (IIN) 
+         *      6601 0T, where T is the type account or card
+         *      0 = primary account number
+         *      1 = prepaid account
+         *      2 = Credit card
+         *      3 = Debit card
+         *      4 = Private label debit card
+         * an eight-digit individual account identifier (AA AAAA AA)
+         *      00 0000 00 - 99 9999 99
+         * a single check digit cardholder number (U)
+         *      0-9
+         * a single check digit (C)
+         *      calculated using the Luhn algorithm
+         * ----------------------------------------*/
+        #endregion
+
+        #region Decode/Decrypt the request
+
+        try
+        {
+            if (data.StartsWith("99"))
+            {
+
+                // test and development data is not encrypted
+                var requestData = data.Substring(2, data.Length - 2); // dump the 99 from front
+
+                // isloate key from data
+                var request = mUtils.GetIdDataFromRequest(requestData);
+
+                // parse string(data) and add to the dictionary
+                if (mUtils.ParseIntoDictionary(mUtils.HexToString(request.Item2), myData, char.Parse(dk.KVSep)) == false)
+                    return mUtils.FinalizeXmlResponseWithError( mSvcName + ".Decode request!", mLogId);
+            }
+            else
+            {
+                // isloate key from data
+                var request = mUtils.GetIdDataFromRequest(data);
+                if (String.IsNullOrEmpty(request.Item1))
+                    return ReturnError(myResponse, "request data error!" + Environment.NewLine + data, myData);
+
+                // decrypt, parse string and add to the dictionary
+                if (mUtils.DecryptAndParseRequestData(request.Item1, request.Item2, myData, char.Parse(dk.KVSep)) == false)
+                    return mUtils.FinalizeXmlResponseWithError( mSvcName + ".Decrypt request!", mLogId);
+            }
+        }
+        catch (Exception ex)
+        {
+            return mUtils.FinalizeXmlResponseWithError(mSvcName + ".request data error: " + ex.Message, mLogId);
+        }
+
+        #endregion
+
+        var mBank = GetBankUsingBIN(tc.MACBank_BIN);
+
+        // log request if debug set in web.config
+        mUtils.LogRequest(myData, data, mLogId);
+
+        if (myData.ContainsKey(dk.Request) == false)
+            return mUtils.FinalizeXmlResponseWithError(mSvcName + "Request required!", mLogId);
+
+        #region Operational Test Ping
+        if (myData[dk.Request] == dv.Ping)
+        {
+            myResponse.Append("<" + sr.Reply + ">" + sr.Success + "</" + sr.Reply + ">");
+            return mUtils.FinalizeXmlResponse(myResponse, mLogId);
+        }
+        #endregion
+
+        // ------- Ensure there is a request ------------
+        myResponse.Append("<" + sr.Request + ">" + myData[dk.Request] + "</" + sr.Request + ">");
+
+        // ------- Process request ----------------------
+        try
+        {
+            #region Get Bank Status
+
+            if (myData[dk.Request] == tc.GetBankStatus)
+            {
+                myResponse.Append("<" + sr.Reply + ">" + tc.Success + "</" + sr.Reply + ">");
+                myResponse.Append("<" + tc.TotalAccounts + ">" + GetNumberOfAccount() + "</" + tc.TotalAccounts + ">");
+                myResponse.Append("<" + tc.AssignedAccounts + ">" + GetNumberOfAccountAssigned() + "</" + tc.AssignedAccounts + ">");
+                myResponse.Append("<" + tc.PANList + ">" + GetListOfAccountNumbers() + "</" + tc.PANList + ">");
+                myResponse.Append("<" + tc.AccountHoldersList + ">" + GetListOfAccountHolders() + "</" + tc.AccountHoldersList + ">");
+                myResponse.Append("<" + tc.AccountNamesList + ">" + GetListOfAccountNames() + "</" + tc.AccountNamesList + ">");
+                myResponse.Append("<" + tc.LoginNamesList + ">" + GetListOfLoginNames() + "</" + tc.LoginNamesList + ">");
+                //myResponse.Append("<MerchantNamesList>" + GetMerchantNamesList() + "</MerchantNamesList>");
+                var rtn = mUtils.FinalizeXmlResponse(myResponse, mLogId);
+                return rtn;
+            }
+
+            #endregion
+
+            #region Create Accounts
+
+            if (myData[dk.Request] == tc.CreateAccounts)
+            {
+                int number;
+                if (int.TryParse(myData[tc.Number], out number) == false)
+                    return ReturnError(myResponse, "Invalid count", myData);
+                // create accounts
+                var rtn = CreateAccounts(mBank, number);
+                if (rtn.Item1)
+                {
+                    return ReturnSuccess(myResponse, myData[tc.Number]);
+                }
+                return ReturnError(myResponse, rtn.Item2, myData);
+            }
+
+            #endregion
+
+            #region Unassign All Accounts
+
+            if (myData[dk.Request] == tc.UnassignAllAccounts)
+            {
+                //var rtn = UnassignAllAccounts();
+                return ReturnError(myResponse, "not implemented", myData);
+            }
+
+            #endregion
+
+            #region Validate Login Name
+
+            if (myData[dk.Request] == tc.ValidateLoginName)
+            {
+                if (myData.ContainsKey(tc.LoginName) == false)
+                    return ReturnError(myResponse, "Login name required!", myData);
+                var mAccount = GetAccountUsingLoginName(myData[tc.LoginName].ToLower());
+                if (mAccount == null)
+                    return ReturnError(myResponse, " Could not find account for " + myData["LoginName"].ToLower() + "!", myData);
+
+                //todo: check if end user exists if not delete account and return could not find account
+
+
+                myResponse.Append("<" + sr.Reply + ">" + tc.Success + "</" + sr.Reply + ">");
+                myResponse.Append("<" + dkui.LastName + ">" + mAccount.LastName + "</" + dkui.LastName + ">");
+                myResponse.Append("<" + sr.Details + ">" + mAccount.PAN + dk.ItemSep + mAccount.Name + "</" + sr.Details + ">");
+                var rtn = mUtils.FinalizeXmlResponse(myResponse, mLogId);
+                return rtn;
+            }
+
+            #endregion
+
+            #region Get Account Details
+
+            if (myData[dk.Request] == tc.GetAccountDetails)
+            {
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, " Could not find account!", myData);
+
+                return ReturnSuccess(myResponse, GetAccountDetails(mAccount));
+            }
+
+            #endregion
+
+            #region Get Account Balance
+
+            if (myData[dk.Request] == tc.GetAccountBalance)
+            {
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, " Could not find account!", myData);
+                
+                if (myData.ContainsKey(tc.AccountName))
+                {
+                    if (myData[tc.AccountName] == tc.PAN)
+                        return ReturnSuccess(myResponse,
+                            myData[tc.AccountName] + dk.ItemSep + mAccount.Balance.ToString("C"));
+                    foreach (var mSubAccount in mAccount.SubAccounts)
+                    {
+                        if (mSubAccount.Name == myData[tc.AccountName])
+                            return ReturnSuccess(myResponse,
+                                myData[tc.AccountName] + dk.ItemSep + mSubAccount.Balance.ToString("C"));
+                    }
+                    return ReturnError(myResponse, "Invalid account name!", myData);
+                }
+
+                if (myData.ContainsKey(tc.AccountNo))
+                {
+                    if (myData[tc.AccountNo] == mAccount.PAN)
+                        return ReturnSuccess(myResponse, tc.PAN + dk.ItemSep + mAccount.Balance.ToString("C"));
+                    foreach (var mSubAccount in mAccount.SubAccounts)
+                    {
+                        if (mSubAccount.Number == myData[tc.AccountNo])
+                            return ReturnSuccess(myResponse,
+                                myData[tc.AccountName] + dk.ItemSep + mSubAccount.Balance.ToString("C"));
+                    }
+                    return ReturnError(myResponse, "Invalid account number!", myData);
+                }
+                return ReturnError(myResponse, "Request error", myData);
+            }
+
+            #endregion
+
+            #region Get Account names and numbers by account holder name
+
+            if (myData[dk.Request] == tc.GetAccountNamesNumbers)
+            {
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, " Could not find account!", myData);
+
+                var mAccountNamesAndNumbers = tc.PAN + dk.KVSep + mAccount.PAN;
+                foreach (var mSubAccount in mAccount.SubAccounts)
+                {
+                    mAccountNamesAndNumbers += dk.ItemSep + mSubAccount.Name + dk.KVSep + mSubAccount.Number;
+                }
+                return ReturnSuccess(myResponse, mAccountNamesAndNumbers);
+            }
+
+            #endregion
+
+            #region Get Account Log
+
+            if (myData[dk.Request] == tc.GetAccountLog)
+            {
+                //if (myData.ContainsKey(tc.CardName) == false)
+                //{
+                    
+                //}
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, " Could not find account!", myData);
+
+                return ReturnSuccess(myResponse, GetAccountLog(mAccount, true));
+            }
+
+            #endregion
+
+            #region Assign Account AssignAccount & AssignAndReg
+
+            if ((myData[dk.Request] == tc.AssignAccount) || (myData[dk.Request] == tc.AssignAndReg))
+            {
+                //if (myData[dk.Request] == tc.AssignAndReg)
+
+                if (myData.ContainsKey(dk.CID) == false)
+                    return ReturnError(myResponse, "Request data missing client id!", myData);
+                if (myData.ContainsKey(tc.Type) == false)
+                    return ReturnError(myResponse, "Request data missing account type!", myData);
+                if (myData.ContainsKey(dkui.EmailAddress) == false)
+                    return ReturnError(myResponse, "Request data missing email address!", myData);
+                if (myData.ContainsKey(dkui.PhoneNumber) == false)
+                    return ReturnError(myResponse, "Request data missing phone number!", myData);
+
+                if (myData[tc.Type] == tc.User)
+                {
+                    if (myData.ContainsKey(dkui.LastName) == false)
+                        return ReturnError(myResponse, "Request data missing last name!", myData);
+                    if (myData.ContainsKey(dkui.FirstName) == false)
+                        return ReturnError(myResponse, "Request data missing first name!", myData);
+                    // see if there is already an account under this account holder's name
+                    while (true)
+                    {
+                        var mExistingAccount =
+                            GetAccountByAccountHolderName(myData[dkui.FirstName] + " " + myData[dkui.LastName]);
+                        if (mExistingAccount == null) break;
+                        // make first name unique
+                        var fn = myData[dkui.FirstName] + ".";
+                        myData.Remove(dkui.FirstName);
+                        myData.Add(dkui.FirstName, fn);
+                    }
+                }
+ 
+                var myAccount = GetUnusedAccount();
+                try
+                {
+                    if (myAccount == null)
+                    {
+                        var rtn = CreateAccounts(mBank, 1);
+                        if (rtn.Item1 == false)
+                            return ReturnSuccess(myResponse, "Could not create an account!");
+                        myAccount = GetUnusedAccount();
+                        if (myAccount == null)
+                            return ReturnError(myResponse, "No unused accounts available!", myData);
+                    }
+                    switch (myData[tc.Type])
+                    {
+                        case tc.User:
+                            if (
+                                (myData.ContainsKey(dkui.FirstName)
+                                && (myData.ContainsKey(dkui.LastName)
+                                && (myData.ContainsKey(dkui.EmailAddress)
+                                ))))
+                            {
+                                var mCurrentAccount = GetAccountUsingLoginName(myData[dkui.EmailAddress].ToLower());
+                                if (mCurrentAccount != null)
+                                    return ReturnError(myResponse, "Already an account with login of " +  myData[dkui.EmailAddress], myData);
+
+                                mCurrentAccount = GetAccountByAccountHolderName(myData[dkui.FirstName] + " " + myData[dkui.LastName]);
+                                if (mCurrentAccount != null)
+                                    return ReturnError(myResponse, myData[dkui.FirstName] + " " + myData[dkui.LastName] +
+                                                                " already has an account!", myData);
+
+                                if (myData.ContainsKey(dkui.Prefix)) myAccount.Prefix = myData[dkui.Prefix];
+                                if (myData.ContainsKey(dkui.FirstName))
+                                    myAccount.FirstName = myData[dkui.FirstName];
+                                if (myData.ContainsKey(dkui.MiddleName))
+                                    myAccount.MiddleName = myData[dkui.MiddleName];
+                                if (myData.ContainsKey(dkui.LastName))
+                                    myAccount.LastName = myData[dkui.LastName];
+                                if (myData.ContainsKey(dkui.Suffix)) myAccount.Suffix = myData[dkui.Suffix];
+
+                                myAccount.Name = myAccount.Prefix + " " +
+                                                 myAccount.FirstName + " " +
+                                                 myAccount.MiddleName + " " +
+                                                 myAccount.LastName + " " +
+                                                 myAccount.Suffix;
+                                myAccount.Name = myAccount.Name.Replace("  ", " ").Trim();
+
+                                if (myData.ContainsKey(dkui.Street))
+                                    myAccount.Address.Street1 = myData[dkui.Street];
+                                if (myData.ContainsKey(dkui.Unit)) myAccount.Address.Unit = myData[dkui.Unit];
+                                if (myData.ContainsKey(dkui.City)) myAccount.Address.City = myData[dkui.City];
+                                if (myData.ContainsKey(dkui.State))
+                                    myAccount.Address.State = myData[dkui.State];
+                                if (myData.ContainsKey(dkui.ZipCode))
+                                    myAccount.Address.Zipcode = myData[dkui.ZipCode];
+                                if (myData.ContainsKey(dkui.Country))
+                                    myAccount.Address.Country = myData[dkui.Country];
+
+                                if (myData.ContainsKey(dkui.EmailAddress))
+                                {
+                                    myAccount.Email = myData[dkui.EmailAddress].ToLower();
+                                    myAccount.LoginName = myData[dkui.EmailAddress].ToLower();
+
+                                    if (myData.ContainsKey(dk.UserId))
+                                        myAccount.LoginName = myData[dk.UserId];
+                                }
+                                if (myData.ContainsKey(dkui.PhoneNumber))
+                                    myAccount.MobilePhone = myData[dkui.PhoneNumber];
+                            }
+                            else
+                            {
+                                return ReturnError(myResponse, "Request data missing first name or last name or email address!", myData);
+                            }
+                            // starting balance for PAN
+                            myAccount.Balance = 10000.00;
+                            InitPrepaidAccount(myAccount);
+                            break;
+                        case tc.Utility:
+                        case tc.Merchant:
+                        case tc.Bank:
+                            if (myData.ContainsKey(tc.MerchantName))
+                            {
+                                var mCurrentAccount = GetAccountByAccountHolderName(myData[tc.MerchantName]);
+                                if (mCurrentAccount != null)
+                                    return ReturnError(myResponse, myData[tc.MerchantName] + "already has an account!",
+                                        myData);
+
+                                myAccount.FirstName = myData[tc.MerchantName];
+                                myAccount.Name = myData[tc.MerchantName];
+                                if (myData.ContainsKey(dkui.Street))
+                                    myAccount.Address.Street1 = myData[dkui.Street];
+                                if (myData.ContainsKey(dkui.Unit)) myAccount.Address.Unit = myData[dkui.Unit];
+                                if (myData.ContainsKey(dkui.City)) myAccount.Address.City = myData[dkui.City];
+                                if (myData.ContainsKey(dkui.State))
+                                    myAccount.Address.State = myData[dkui.State];
+                                if (myData.ContainsKey(dkui.ZipCode))
+                                    myAccount.Address.Zipcode = myData[dkui.ZipCode];
+                                if (myData.ContainsKey(dkui.Country))
+                                    myAccount.Address.Country = myData[dkui.Country];
+                            }
+                            else
+                            {
+                                return ReturnError(myResponse, "Request data missing name!", myData);
+                            }
+                            break;
+                        default:
+                            return ReturnError(myResponse, "Invalid account type!", myData);
+                    }
+                    myAccount.Type = myData[tc.Type];
+                    myAccount.Assigned = true;
+                    myAccount.DateCreated = DateTime.UtcNow;
+                    var mlog = new AccountActivity
+                    {
+                        Details = "Assigned" + dk.ItemSep + myAccount.Type + dk.ItemSep + myAccount.FirstName + " " +
+                                  myAccount.LastName
+                    };
+                    myAccount.ActivityLog.Add(mlog);
+                    AccountUpdate(myAccount, myAccount._id.ToString());
+                    // don't register merchants or utilities
+                    if (myData[tc.Type] != tc.User)
+                        return ReturnSuccess(myResponse, "Account created, PAN: " + myAccount.PAN);
+                    // don't register if assign account only
+                    if (myData[dk.Request] == tc.AssignAccount)
+                        return ReturnSuccess(myResponse, "Account created, PAN: " + myAccount.PAN);
+                }
+                catch (Exception ex)
+                {
+                    var mDetails =  myData[dk.Request] + ".Assign:" + ex.ToString().Replace(dk.ItemSep, "!").Replace(dk.KVSep, ";");
+                    var exceptionEvent = new Event
+                    {
+                        EventTypeDesc = Constants.TokenKeys.ExceptionDetails + mDetails
+                    };
+                    exceptionEvent.Create(Constants.EventLog.Exceptions.General, null);
+
+                    return mUtils.FinalizeXmlResponseWithError(myData[dk.Request] + ".Assign:" + ex.Message, mLogId);
+                }
+                //================================================================================
+                // Register user, create request string and send to StsEndUserRegistration service
+                try
+                {
+                    // what UID should be used to create the userId
+                    var mUid = myData[dkui.EmailAddress];
+                    if (myData.ContainsKey(tc.AccountName))
+                    {
+                        if (myData[tc.AccountName] != cs.Email)
+                        {
+                            if (myData[tc.AccountName] == tc.PAN)
+                            {
+                                mUid = myAccount.PAN;
+                            }
+                            else
+                            {
+                                foreach (var bsa in myAccount.SubAccounts)
+                                {
+                                    if (bsa.Name == myData[tc.AccountName])
+                                    {
+                                        mUid = bsa.Number;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (!myData.ContainsKey(dk.ClientName))
+                    {
+                        var myClient = mUtils.GetClientUsingClientId(myData[dk.CID]);
+                        if (myClient == null)
+                        {
+                            var delrtn = DeleteAccount(myAccount);
+                            return ReturnError(myResponse, "Invalid client id " + delrtn, myData);
+                        }
+                        myData.Add(dk.ClientName, myClient.Name);
+                    }
+                    myAccount.UserId = MACSecurity.Security.GetHashString(myData[dkui.LastName].ToLower() + mUid.ToLower());
+                    AccountUpdate(myAccount, myAccount._id.ToString());
+                    
+                    myData.Remove(dk.UserId);
+                    myData.Add(dk.UserId, myAccount.UserId);
+
+                    // create the request string delete key/values pairs not used in STSRegistration service
+                    myData.Remove(dk.Request);
+                    myData.Remove(dk.ServiceName);
+                    //myData.Remove(dk.ClientName);
+                    //myData.Remove(tc.Type);
+                    myData.Add(dk.API, "MACBank");
+
+                    var mRequestData = dk.Request + dk.KVSep + dv.EndUserRegister;
+                    foreach (var kv in myData)
+                        mRequestData += dk.ItemSep + kv.Key + dk.KVSep + kv.Value;
+                   
+                    // send to StsEndUserRegistration service
+                    var dataStream =
+                        Encoding.UTF8.GetBytes("data=99" + cs.DefaultClientId.Length + cs.DefaultClientId.ToUpper() +
+                                               mUtils.StringToHex(mRequestData));
+                    var mRequestUrl = ConfigurationManager.AppSettings[cfg.MacServicesUrl] +
+                                   Constants.ServiceUrls.SecureTraidingRegisterUserWebService;
+                    var webRequest = WebRequest.Create(mRequestUrl);
+                    webRequest.Method = "POST";
+                    webRequest.ContentType = "application/x-www-form-urlencoded";
+                    webRequest.ContentLength = dataStream.Length;
+                    var newStream = webRequest.GetRequestStream();
+                    // Send the data.
+                    newStream.Write(dataStream, 0, dataStream.Length);
+                    newStream.Close();
+                    var res = webRequest.GetResponse();
+                    var response = res.GetResponseStream();
+                    var xmlDoc = new XmlDocument();
+                    if (response != null) xmlDoc.Load(response);
+                    var elemList = xmlDoc.GetElementsByTagName(sr.Error);
+                    if (elemList.Count != 0)
+                    {
+                        var delrtn = DeleteAccount(myAccount);
+                        return ReturnError(myResponse, "Failed to register use[" + elemList[0].InnerXml + ", " + delrtn, myData);
+                    }
+                    return ReturnSuccess(myResponse, "Account created, PAN: " + myAccount.PAN + ", " + myAccount.LastName);
+                }
+                catch (Exception ex)
+                {
+                    var mDetails = mSvcName + ".Register:" + ex.ToString().Replace(dk.ItemSep, "!").Replace(dk.KVSep, ";");
+                    var exceptionEvent = new Event
+                    {
+                        EventTypeDesc = Constants.TokenKeys.ExceptionDetails + mDetails
+                    };
+                    exceptionEvent.Create(Constants.EventLog.Exceptions.General, null);
+
+                    return mUtils.FinalizeXmlResponseWithError(mSvcName + ".Register:" + ex.Message, mLogId);
+                }
+            }
+
+            #endregion
+
+            #region Delete User Account
+
+            if (myData[dk.Request] == tc.DeleteUserAccount)
+            {
+                BankAccount mAccount;
+                if (myData.ContainsKey(tc.AccountNo) 
+                    || myData.ContainsKey(tc.AccountHolder))
+                    mAccount = GetBankAccount(myData);
+                else if (myData.ContainsKey(tc.LoginName))
+                    mAccount = GetAccountUsingLoginName(myData[tc.LoginName]);
+                else
+                {
+                    if (!myData.ContainsKey(dkui.FirstName))
+                        return ReturnError(myResponse, " First Name required!", myData);
+                    if (!myData.ContainsKey(dkui.LastName))
+                        return ReturnError(myResponse, " Last Name required!", myData);
+                    if (!myData.ContainsKey(dkui.EmailAddress))
+                        return ReturnError(myResponse, " Email address required!", myData);
+                    mAccount = GetAccountUsingLoginName(myData[dkui.EmailAddress]);
+                    if (mAccount != null)
+                    {
+                        if (mAccount.FirstName != myData[dkui.FirstName] || mAccount.LastName != myData[dkui.LastName])
+                            return ReturnError(myResponse, " Could not find account!", myData);
+                    }
+                }
+                if (mAccount == null)
+                    return ReturnError(myResponse, " Could not find account!", myData);
+                if (mAccount.UserId != null)
+                {
+                    // Construct request to end user management service
+                    var mReqData = dk.Request + dk.KVSep + dv.DeleteEndUser +              
+                            dk.ItemSep + dk.CID + dk.KVSep + myData[dk.CID] +
+                            dk.ItemSep + dk.UserId + dk.KVSep + mAccount.UserId;
+                        if (myData.ContainsKey(dk.GroupId))
+                            mReqData +=  dk.ItemSep + dk.GroupId + dk.KVSep + myData[dk.GroupId];
+
+                    // send to EndUserManagement service
+                    var dataStream =
+                        Encoding.UTF8.GetBytes("data=99" + 
+                        cs.DefaultClientId.Length + cs.DefaultClientId.ToUpper() +
+                            mUtils.StringToHex(mReqData));
+                    var mRequestUrl = ConfigurationManager.AppSettings[cfg.MacServicesUrl] +
+                                   Constants.ServiceUrls.EndUserManagementWebService;
+                    var webRequest = WebRequest.Create(mRequestUrl);
+                    webRequest.Method = "POST";
+                    webRequest.ContentType = "application/x-www-form-urlencoded";
+                    webRequest.ContentLength = dataStream.Length;
+                    var newStream = webRequest.GetRequestStream();
+                    // Send the data.
+                    newStream.Write(dataStream, 0, dataStream.Length);
+                    newStream.Close();
+                    var res = webRequest.GetResponse();
+                    var response = res.GetResponseStream();
+                    var xmlDoc = new XmlDocument();
+                    if (response != null) xmlDoc.Load(response);
+                    var elemList = xmlDoc.GetElementsByTagName(sr.Error);
+                    if (elemList.Count != 0)
+                    {
+                        return ReturnError(myResponse, elemList[0].InnerXml, myData);
+                    }
+                }
+                var AccountHolderInfo = mAccount.FirstName + " " + mAccount.LastName + ", " + mAccount.LoginName;
+                var rtn = DeleteAccount(mAccount);
+                if (rtn.Contains("Error"))
+                    return ReturnError(myResponse, rtn, myData);
+                return ReturnSuccess(myResponse, "Account deleted for " + AccountHolderInfo);
+            }
+
+            #endregion
+
+            #region Issue A Card
+
+            if (myData[dk.Request] == tc.IssueCard)
+            {
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, " Could not find account!", myData);
+
+                if (myData.ContainsKey(tc.CardName) == false)
+                    return ReturnError(myResponse, " Card Name required!", myData);
+
+                if (myData.ContainsKey(tc.Type) == false)
+                    return ReturnError(myResponse, " Type required!", myData);
+                
+                if (myData.ContainsKey(tc.Limit) == false)
+                    myData.Add(tc.Limit, "15000");
+
+                if (myData.ContainsKey(tc.ExpirationDate) == false)
+                    myData.Add(tc.ExpirationDate, DateTime.UtcNow.AddMonths(3).ToString());
+
+                if (myData.ContainsKey(tc.Usage) == false)
+                    myData.Add(tc.Usage, dv.Client);
+
+                // get the highest subaccount number
+                var highestNumber = Convert.ToInt64(mAccount.PAN);
+
+                foreach (var msa in mAccount.SubAccounts)
+                {
+                    var number = Convert.ToInt64(msa.Number);
+                    if (number > highestNumber)
+                    {
+                        highestNumber = number;
+                    }
+                    if (msa.Name == myData[tc.CardName])
+                        return ReturnError(myResponse, myData[tc.CardName] + " Card already issued!", myData);
+                }
+
+                // increment the subaccount number
+                var newnumber = highestNumber + Convert.ToInt64("0000" + "0100" + "0000" + "0000");
+                var newnumlessluhn = newnumber/10;
+                var newnumstr = newnumlessluhn.ToString();
+                var luhnCkDigit = ComputeLuhn(newnumstr);
+                var NewCardNumber = newnumstr + luhnCkDigit.ToString();
+
+                // issue a new card
+                var newCard = new BankSubAccount
+                {
+                    Institution = tc.MACBank_BIN,
+                    Name = myData[tc.CardName],
+                    Number = NewCardNumber,
+                    Limit = Convert.ToInt64(myData[tc.Limit]),
+                    SecurityCode = "123",
+                    Usage = myData[tc.Usage],
+                    Expires = DateTime.UtcNow.AddYears(1)
+                };
+                if (myData[tc.Type] == tc.Credit)
+                    newCard.Type = true;
+                else
+                    newCard.Type = false;
+                if (myData[tc.Type] != tc.Credit)
+                {
+                    newCard.Limit = 150000;
+                    newCard.Balance = 1500;
+                }
+                mAccount.SubAccounts.Add(newCard);
+                AccountUpdate(mAccount, mAccount._id.ToString());
+                var mLog = new AccountActivity
+                {
+                    Details =
+                        " Card Issued" + dk.ItemSep + myData[tc.CardName] + dk.ItemSep + newCard.Number +
+                        ":" + newCard.Number + ", Type:"
+                };
+                if (newCard.Type)
+                    mLog.Details += "Credit";
+                else
+                    mLog.Details += "Debit";
+
+                mAccount.ActivityLog.Add(mLog);
+                AccountUpdate(mAccount, mAccount._id.ToString());
+                return ReturnSuccess(myResponse, mLog.Details);
+            }
+
+            #endregion
+
+            #region Cancel card
+
+            if (myData[dk.Request] == tc.CancelCards)
+            {
+                //var rtn = ResetAssignedAccounts();
+                return ReturnError(myResponse, mSvcName + "." + myData[dk.Request] + ":not implemented", myData);
+            }
+
+            #endregion
+
+            #region Preauth Payment
+
+            if (myData[dk.Request] == tc.Preauth)
+            {
+                BankAccount mAccount = null;
+                if (myData.ContainsKey(tc.AccountNo))
+                { // get the PAN for account number
+                    var accnum = myData[tc.AccountNo].Substring(6, 8);
+                    mAccount = GetAccountByAccountNumber(accnum);
+                    if (mAccount == null)
+                        return ReturnError(myResponse, "Could not find account " + myData[tc.AccountNo], myData);
+                }
+                else if (myData.ContainsKey(tc.AccountHolder))
+                {
+                    return ReturnSuccess(myResponse, "Funds available");
+                    //mAccount = GetAccountByAccountHolderName(myData[tc.AccountHolder]);
+                    //if (mAccount == null)
+                    //    return ReturnError(myResponse, "Could not find account " + myData[tc.AccountHolder], myData);
+                    
+                    //if (!myData.ContainsKey(tc.AccountName))
+                    //    return ReturnError(myResponse, "Account name required!", myData);
+                    
+                    //if (myData[tc.AccountName] == tc.PAN)
+                    //{
+                    //    myData.Add(tc.AccountNo, mAccount.PAN);
+                    //}
+                    //else
+                    //{
+                    //    foreach (var mSubAccount in mAccount.SubAccounts)
+                    //    {
+                    //        if (mSubAccount.Name == myData[tc.AccountName])
+                    //        {
+                    //            myData.Add(tc.AccountNo, mSubAccount.Number);
+                    //            break;
+                    //        }
+                    //    }
+                    //}
+                }
+                if (mAccount == null)
+                    return ReturnError(myResponse, "Could not find account", myData);
+                
+                var amountToAuthorize = 0.01;
+                if (myData.ContainsKey(tc.Amount))
+                    amountToAuthorize = double.Parse(myData[tc.Amount]);
+
+                if (myData.ContainsKey(tc.AccountNo) == false)
+                    return ReturnError(myResponse, "Could not find account " + myData[tc.AccountHolder], myData);
+                
+                // test account
+                var mPreauth = new StringBuilder();
+                if (myData[tc.AccountNo] == mAccount.PAN)
+                {
+                    mPreauth.Append(mAccount.Balance < amountToAuthorize
+                        ? "Insufficient funds"
+                        : "Funds available"); 
+                    return ReturnSuccess(myResponse, mPreauth.ToString());
+                }
+                foreach (var mSubAccount in mAccount.SubAccounts)
+                {
+                    if (mSubAccount.Number == myData[tc.AccountNo])
+                    {
+                        if (mSubAccount.Name.ToLower().Contains("credit"))
+                        {
+                            var newBalance = mSubAccount.Balance - amountToAuthorize;
+                            var limit = mSubAccount.Limit*-1;
+                            if (newBalance > limit)
+                            {
+                                mPreauth.Append("Under limit");
+                                return ReturnSuccess(myResponse, mPreauth.ToString());
+                            }
+                            return ReturnError(myResponse, "Over credit limit!", myData);
+                        }
+                        mPreauth.Append(mSubAccount.Balance < amountToAuthorize
+                            ? "Insufficient funds"
+                            : "Funds available");
+                        return ReturnSuccess(myResponse, mPreauth.ToString());
+                    }
+                }
+                if (myData.ContainsKey(tc.AccountName))
+                    return ReturnError(myResponse, "Invalid account name: " + myData[tc.AccountName], myData);
+                return ReturnError(myResponse, "Invalid account number: " + myData[tc.AccountNo], myData);
+            }
+
+            #endregion
+
+            #region Move Funds
+
+            if (myData[dk.Request] == tc.MoveFunds)
+            {
+                BankAccount mFromAccount;
+                string mFromUsing;
+                if (myData.ContainsKey(tc.FromAccountHolder))
+                {
+                    mFromUsing = "Account Holder " + myData[tc.FromAccountHolder];
+                    mFromAccount = GetAccountByAccountHolderName(myData[tc.FromAccountHolder]);
+                    if (myData.ContainsKey(tc.FromAccountName) == false)
+                    {
+                        return ReturnError(myResponse, "No 'from' account name specificed", myData);
+                    }
+                }
+                else if (myData.ContainsKey(tc.FromAccountNo))
+                {
+                    mFromUsing = "Account Number " + myData[tc.FromAccountNo];
+                    var accountnumber = myData[tc.FromAccountNo].Substring(6);
+                    accountnumber = accountnumber.Substring(0, 8);
+                    mFromAccount = GetAccountByAccountNumber(accountnumber);
+                    if (mFromAccount == null)
+                        return ReturnError(myResponse, "Could not get account using " + mFromUsing, myData);
+                    myData.Remove(tc.FromAccountHolder);
+                    myData.Add(tc.FromAccountHolder, mFromAccount.Name);
+                    // get account name
+                    var mAccountName = GetAccountNameUsingNumber(mFromAccount, myData[tc.FromAccountNo]);
+                    if (String.IsNullOrEmpty(mAccountName))
+                        return ReturnError(myResponse, "Could not get 'from' account name using account number " + myData[tc.FromAccountNo], myData);
+                    myData.Remove(tc.FromAccountName);
+                    myData.Add(tc.FromAccountName, mAccountName);
+                }
+                else
+                {
+                    return ReturnError(myResponse, "No 'from' account specificed", myData);      
+                }
+                if (mFromAccount == null)
+                    return ReturnError(myResponse, "Could not get account using " + mFromUsing, myData);
+
+                BankAccount mToAccount;
+                string mToUsing;
+                if (myData.ContainsKey(tc.ToAccountHolder))
+                {
+                    if (myData.ContainsKey(tc.ToAccountName) == false)
+                        return ReturnError(myResponse, "No 'to' account name specificed", myData);
+   
+                    mToUsing = "Account Holder " + myData[tc.ToAccountHolder];
+                    mToAccount = GetAccountByAccountHolderName(myData[tc.ToAccountHolder]);
+                }
+                else if (myData.ContainsKey(tc.ToAccountNo))
+                {
+                    mToUsing = "Account Number " + myData[tc.ToAccountNo];
+                    var accountnumber = myData[tc.ToAccountNo].Substring(6);
+                    accountnumber = accountnumber.Substring(0, 8);
+                    mToAccount = GetAccountByAccountNumber(accountnumber);
+                    if (mToAccount == null)
+                        return ReturnError(myResponse, "Could not find 'To' account using " + mToUsing, myData);
+                    myData.Remove(tc.ToAccountHolder);
+                    myData.Add(tc.ToAccountHolder, mToAccount.Name);
+                    // get account name
+                    var mAccountName = GetAccountNameUsingNumber(mToAccount, myData[tc.ToAccountNo]);
+                    if (String.IsNullOrEmpty(mAccountName))
+                        return ReturnError(myResponse, "Could not get 'to' account name using account number " + myData[tc.ToAccountNo], myData);
+                    myData.Remove(tc.ToAccountName);
+                    myData.Add(tc.ToAccountName, mAccountName);
+                }
+                else
+                {
+                    return ReturnError(myResponse, "No 'to' account specifices", myData);
+                }
+                if (mToAccount == null)
+                    return ReturnError(myResponse, "Could not find 'To' account using " + mToUsing, myData);
+
+                var amountToMove = double.Parse(myData[tc.Amount]);
+
+                var rtn = CheckAvailableFunds(mFromAccount, myData[tc.FromAccountName], amountToMove);
+                if (rtn.Item1 == false)
+                    return ReturnError(myResponse, rtn.Item2, myData);
+
+                //rtn = CheckAccountLimit(mToAccount, myData["ToAccountName"], amountToMove);
+                //if (rtn.Item1 == false)
+                //    return ReturnError(myResponse, rtn.Item2, myData);
+
+                //amountToMove = CheckAccountMaxFunds(mToAccount, myData[tc.ToAccountName], amountToMove);
+                //if (amountToMove < 1)
+                //    return ReturnError(myResponse, mToUsing + "Account Limit!", myData);
+
+
+
+
+
+                var details = "Funds Movement" + dk.ItemSep + amountToMove.ToString("C") +
+                              dk.ItemSep + "from " + mFromAccount.PAN + "." + myData[tc.FromAccountName] +
+                              dk.ItemSep + "to " + mToAccount.PAN + "." + myData[tc.ToAccountName];
+
+                if (myData[tc.FromAccountName] == tc.PAN)
+                {
+                    mFromAccount.Balance -= amountToMove;
+                }
+                else
+                {
+                    foreach (var mFromSubAccount in mFromAccount.SubAccounts)
+                    {
+                        if (mFromSubAccount.Name == myData[tc.FromAccountName])
+                        {
+                            mFromSubAccount.Balance -= amountToMove;
+                            break;
+                        }
+                    }
+                }
+
+                var mFromLog = new AccountActivity {Details = details};
+                mFromAccount.ActivityLog.Add(mFromLog);
+                AccountUpdate(mFromAccount, mFromAccount._id.ToString());
+
+                //if (myData[tc.FromAccountHolder] == myData[tc.ToAccountHolder])
+                //    mToAccount = GetAccountByAccountHolderName(myData[tc.ToAccountHolder]);
+
+                if (myData[tc.ToAccountName] == tc.PAN)
+                {
+                    mToAccount.Balance += amountToMove;
+                }
+                else // move funds to a sub account
+                {
+                    foreach (var mToSubAccount in mToAccount.SubAccounts)
+                    {
+                        if (mToSubAccount.Name == myData[tc.ToAccountName])
+                        {
+                            mToSubAccount.Balance += amountToMove;
+                            break;
+                        }
+                    }
+                }
+
+                if (myData[tc.FromAccountHolder] == myData[tc.ToAccountHolder])
+                {
+                    var mToLog = new AccountActivity {Details = details};
+                    mToAccount.ActivityLog.Add(mToLog);
+                }
+                AccountUpdate(mToAccount, mToAccount._id.ToString());
+                return ReturnSuccess(myResponse, details);
+            }
+
+            #endregion
+
+            #region Account Status
+
+            if (myData[dk.Request] == tc.GetSubAccStatus)
+            {
+                var accnum = myData[tc.AccountNo].Substring(6, 8);
+                var mAccount = GetAccountByAccountNumber(accnum);
+                if (mAccount == null)
+                    return ReturnError(myResponse, "Could not find account " + myData[tc.AccountNo], myData);
+
+                var mStatus = new StringBuilder();
+                if (string.IsNullOrEmpty(mAccount.Name) == false)
+                    mStatus.Append("<" + tc.AccountHolder + ">" + mAccount.Name + "</" + tc.AccountHolder + ">");
+                mStatus.Append("<" + tc.PAN + ">" + mAccount.PAN + "</" + tc.PAN + ">");
+                if (myData[tc.AccountNo] == mAccount.PAN)
+                {
+                    mStatus.Append("<" + tc.Status + ">Assigned=" + mAccount.Assigned + "</" + tc.Status + ">");
+                    mStatus.Append("<" + tc.Balance + ">" + mAccount.Balance.ToString("C") + "</" + tc.Balance + ">");
+                }
+                else
+                {
+                    foreach (var mSubAccount in mAccount.SubAccounts)
+                    {
+                        if (mSubAccount.Number == myData[tc.AccountName])
+                        {
+                            mStatus.Append("<" + tc.SubAccount + ">" + mSubAccount.Name + "</" + tc.SubAccount + ">");
+                            mStatus.Append("<" + tc.Status + ">Enabled=" + mSubAccount.Enabled + "</" + tc.Status + ">");
+                            mStatus.Append("<" + tc.Balance + ">" + mSubAccount.Balance.ToString("C") + "</" + tc.Balance + ">");
+                            mStatus.Append("<" + tc.LastAccessed + ">" + mSubAccount.DateLastAccessed + "</" + tc.LastAccessed + ">");
+                            break;
+                        }
+                    }
+                }
+                return ReturnSuccess(myResponse, mStatus.ToString());
+            }
+
+            #endregion
+
+            #region Credit(Deposit to) an account
+
+            if (myData[dk.Request] == tc.CreditAccount)
+            {
+                // Add value to an accountor sub-account
+                if (myData.ContainsKey(tc.AccountName) == false)
+                    return ReturnError(myResponse, "Account name(type) required!", myData);
+
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, "Could not find account ", myData);
+
+                var amount = double.Parse(myData.ContainsKey(tc.Amount)
+                    ? myData[tc.Amount]
+                    : "0.00");
+                if (Math.Abs(amount) < 1)
+                    return ReturnError(myResponse, "Invalid amount!", myData);
+
+                var newbalance = 0.00;
+                if (myData[tc.AccountName] == tc.PAN)
+                {
+                    // no limit on PAN
+                    mAccount.Balance += amount;
+                    newbalance = mAccount.Balance;
+                }
+                else
+                {
+                    foreach (var mSubAccount in mAccount.SubAccounts)
+                    {
+                        if (mSubAccount.Name == myData[tc.AccountName])
+                        {
+                            if (mSubAccount.Name.ToLower().Contains("credit"))
+                            {
+                                // Credit accounts have a negitive limit and can't go positive
+                                if ((mSubAccount.Balance + amount) > 0)
+                                    return ReturnError(myResponse, "Can't credit account to positive value", myData);
+                            }
+                            else // debit card or prepaid account
+                            {
+                                if ((mSubAccount.Balance + amount) > mSubAccount.Limit)
+                                    return ReturnError(myResponse,
+                                        "Can't over fund account, limit is " + mSubAccount.Limit.ToString("C"),
+                                        myData);
+                            }
+                            mSubAccount.Balance += amount;
+                            newbalance = mSubAccount.Balance;
+                            break;
+                        }
+                    }
+                }
+                var mLog = new AccountActivity
+                {
+                    Details =
+                        " Credit(Deposit)" + dk.ItemSep + myData[tc.AccountName] + dk.ItemSep + amount.ToString("C") +
+                        ", new balance: " + newbalance.ToString("C")
+                };
+                mAccount.ActivityLog.Add(mLog);
+                AccountUpdate(mAccount, mAccount._id.ToString());
+                return ReturnSuccess(myResponse, mLog.Details);
+            }
+
+            #endregion
+
+            #region Debit(Withdrawal from) an account
+
+            if (myData[dk.Request] == tc.DebitAccount)
+            {
+                if (myData.ContainsKey(tc.AccountName) == false)
+                    return ReturnError(myResponse, "Account name(type) required!", myData);
+
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, "Could not find account ", myData);
+
+                var amount = double.Parse(myData.ContainsKey(tc.Amount)
+                    ? myData[tc.Amount]
+                    : "0.00");
+                if (Math.Abs(amount) < 1)
+                    return ReturnError(myResponse, "Invalid amount!", myData);
+
+                var newbalance = 0.00;
+                if (myData[tc.AccountName] == tc.PAN)
+                {
+
+                    if ((mAccount.Balance - amount) < 0)
+                        return ReturnError(myResponse, "Insufficient funds", myData);
+                    mAccount.Balance -= amount;
+                    newbalance = mAccount.Balance;
+                }
+                else
+                {
+                    foreach (var mSubAccount in mAccount.SubAccounts)
+                    {
+                        if (mSubAccount.Name == myData[tc.AccountName])
+                        {
+                            if (mSubAccount.Name.ToLower().Contains("credit"))
+                            {
+                                // Credit accounts have a negitive limit
+                                if ((mSubAccount.Balance - amount) > mSubAccount.Limit)
+                                    return ReturnError(myResponse, "Credit limit reached!", myData);
+                            }
+                            else // debit card or prepaid account
+                            {
+                                if ((mSubAccount.Balance - amount) < 1)
+                                    return ReturnError(myResponse, "Insufficient funds", myData);
+                            }
+                            mSubAccount.Balance -= amount;
+                            newbalance = mSubAccount.Balance;
+                            break;
+                        }
+                    }
+                }
+                var mLog = new AccountActivity
+                {
+                    Details =
+                        "Debit(Withdrawl)" + dk.ItemSep + myData[tc.AccountName] + dk.ItemSep + amount.ToString("C") +
+                        ", new balance: " + newbalance.ToString("C")
+                };
+                mAccount.ActivityLog.Add(mLog);
+                AccountUpdate(mAccount, mAccount._id.ToString());
+                return ReturnSuccess(myResponse, mLog.Details);
+            }
+
+            #endregion
+
+            #region Get Bills
+
+            if (myData[dk.Request] == tc.GetBills)
+            {
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, "Could not find account ", myData);
+                myResponse.Append("<" + sr.Reply + ">" + tc.Success + "</" +
+                                  sr.Reply + ">");
+                myResponse.Append("<" + tc.Account + ">");
+                myResponse.Append("<" + tc.PAN + ">" + mAccount.PAN + "</" + tc.PAN + ">");
+                myResponse.Append("<" + tc.Bills + ">");
+                var bills = false;
+                foreach (var mBill in mAccount.Bills)
+                {
+                    bills = true;
+                    myResponse.Append("<" + tc.Bill + ">");
+                    myResponse.Append("<" + tc.InvoiceNumber + ">" + mBill.InvoiceNumber.ToString() + "</" + tc.InvoiceNumber + ">");
+                    myResponse.Append("<" + tc.Status + ">" + mBill.Status + "</" + tc.Status + ">");
+                    myResponse.Append("<BusinessType>" + mBill.BusinessType + "</BusinessType>");
+                    myResponse.Append("<" + tc.Name + ">" + mBill.Name + "</" + tc.Name + ">");
+                    myResponse.Append("<BillingDate>" + mBill.DateOfIssue + "</BillingDate>");
+                    myResponse.Append("<AmountDue>" + mBill.Balance.ToString("C") + "</AmountDue>");
+                    if (mBill.DateOfPayment != DateTime.MinValue)
+                        myResponse.Append("<LastPayment>" + mBill.DateOfPayment + "</LastPayment>");
+                    myResponse.Append("<DueDate>" + mBill.DateDueDate + "</DueDate>");
+                    if (!String.IsNullOrEmpty(mBill.Description))
+                        myResponse.Append("<Description>" + mUtils.StringToHex(mBill.Description) +
+                                            "</Description>");
+                    myResponse.Append("</" + tc.Bill + ">");
+                }
+                foreach (var mCard in mAccount.SubAccounts)
+                {
+                    if (mCard.Type)
+                    {
+                        if (mCard.Balance < 0)
+                        {
+                            bills = true;
+                            myResponse.Append("<" + tc.Bill + ">");
+                            myResponse.Append("<" + tc.InvoiceNumber + ">" + mCard.Number + "</" + tc.InvoiceNumber + ">");
+                            myResponse.Append("<" + tc.Status + ">Due</" + tc.Status + ">");
+                            myResponse.Append("<BusinessType>Bank</BusinessType>");
+                            myResponse.Append("<" + tc.Name + ">" + mCard.Name + "</" + tc.Name + ">");
+                            myResponse.Append("<BillingDate>" + DateTime.Now + "</BillingDate>");
+                            myResponse.Append("<AmountDue>" + Math.Abs(mCard.Balance).ToString("C") + "</AmountDue>");
+                            if (mCard.DateLastAccessed != DateTime.MinValue)
+                                myResponse.Append("<LastPayment>" + mCard.DateLastAccessed + "</LastPayment>");
+                            myResponse.Append("<DueDate>" + DateTime.Now.AddDays(30) + "</DueDate>");
+                            myResponse.Append("<Description>Credit card payment</Description>");
+                            myResponse.Append("</" + tc.Bill + ">");
+                                
+                        }
+                    }
+                }
+                if (bills == false) 
+                    myResponse.Append("None");
+                myResponse.Append("</" + tc.Bills + ">");
+                myResponse.Append("</" + tc.Account + ">");
+                var rtn = mUtils.FinalizeXmlResponse(myResponse, mLogId);
+                return rtn;
+            }
+
+            #endregion
+
+            #region Pay a Bill
+
+            if (myData[dk.Request] == tc.PayBill)
+            {
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, "Could not find account!", myData);
+
+                // Check the amount to pay
+                if (!myData.ContainsKey(tc.Amount))
+                    return ReturnError(myResponse, "Amount to pay required!", myData);
+
+                // check the invoice number
+                if (!myData.ContainsKey("InvoiceNumber"))
+                    return ReturnError(myResponse, "Invoice number required!", myData);
+                if (myData["InvoiceNumber"].StartsWith(tc.MACBank_BIN))
+                {
+                    var rtn = PayCreditCard(mAccount, myData);
+                    if (rtn.Item1)
+                        return ReturnSuccess(myResponse, rtn.Item2);
+                    return ReturnError(myResponse, "Credit Card payment failed " + rtn.Item2, myData);
+                }
+                int mInvoiceNumberToPay;
+                try
+                {
+                    mInvoiceNumberToPay = Convert.ToInt32(myData["InvoiceNumber"]);
+                }
+                catch
+                {
+                    return ReturnError(myResponse, "Invalid invoice number!", myData);
+                }
+                // get the bill
+                var mBill = GetBillByInvoiceNumber(mAccount, mInvoiceNumberToPay);
+                if (mBill == null)
+                    return ReturnError(myResponse,
+                        "Could not find Bill with invoice number " + mInvoiceNumberToPay.ToString() + "!", myData);
+                if (mBill.Status == "Paid")
+                    return ReturnError(myResponse, "Bill is paid!", myData);
+
+                // Check the amount to pay
+                if (!myData.ContainsKey(tc.Amount))
+                    return ReturnError(myResponse, "Amount to pay required!", myData);
+                double mAmountToPay;
+                if (myData[tc.Amount] != tc.Full)
+                {
+                    try
+                    {
+                        mAmountToPay = Convert.ToDouble(myData[tc.Amount]);
+                        if (mAmountToPay > mBill.Balance) // don't pay more than what is due
+                            mAmountToPay = mBill.Balance;
+                    }
+                    catch
+                    {
+                        return ReturnError(myResponse, "Invalid amount!", myData);
+                    }
+                }
+                else
+                {
+                    mAmountToPay = mBill.Balance;
+                }
+                // check if account has the funds and deduct the funds from the account
+                var mAccountNumber = "";
+                if (myData[tc.AccountName] == tc.PAN)
+                {
+                    mAccountNumber = mAccount.PAN;
+                    if ((mAccount.Balance - mAmountToPay) < 0)
+                        return ReturnError(myResponse, "Insufficient funds", myData);
+                    mAccount.Balance -= mAmountToPay;
+                }
+                else
+                {
+                    foreach (var mSubAccount in mAccount.SubAccounts)
+                    {
+                        if (mSubAccount.Name == myData[tc.AccountName])
+                        {
+                            mAccountNumber = mSubAccount.Number;
+                            if (mSubAccount.Name.ToLower().Contains("credit"))
+                            {
+                                // Credit accounts have a negitive limit
+                                if ((mSubAccount.Balance - mAmountToPay) > mSubAccount.Limit)
+                                    return ReturnError(myResponse, "Credit limit reached!", myData);
+                            }
+                            else // debit card or prepaid account
+                            {
+                                if ((mSubAccount.Balance - mAmountToPay) < 1)
+                                    return ReturnError(myResponse, "Insufficient funds", myData);
+                            }
+                            mSubAccount.Balance -= mAmountToPay;
+                            break;
+                        }
+                    }
+                }
+                // Account has the funds, pay the bill
+                mBill.Balance -= mAmountToPay;
+                mBill.DateOfPayment = DateTime.UtcNow;
+                var mLog = new AccountActivity
+                {
+                    Details = "Bill Payment" + dk.ItemSep + mBill.Name + " paid from " + myData[tc.AccountName] +
+                              "[" +
+                              mAccountNumber +
+                              "] "
+                };
+                if (IsZero(mBill.Balance))
+                {
+                    mBill.Status = "Paid";
+                    mLog.Details += dk.ItemSep + "amount:" + mAmountToPay.ToString("C") +
+                                    " Paid in full";
+                }
+                else
+                {
+                    mLog.Details += dk.ItemSep + "amount:" + mAmountToPay.ToString("C") +
+                                    " remaining balance " + mBill.Balance.ToString("C");
+                }
+                mAccount.ActivityLog.Add(mLog);
+                AccountUpdate(mAccount, mAccount._id.ToString());
+                return ReturnSuccess(myResponse, mLog.Details);
+            }
+            #endregion
+
+            #region Add a Bill
+
+            if (myData[dk.Request] == tc.AddBill)
+            {
+                if (!myData.ContainsKey(tc.MerchantName))
+                    return ReturnError(myResponse, "Merchant or Utility name required!", myData);
+                var mMerchantAccount = GetAccountByAccountHolderName(myData[tc.MerchantName]);
+                if (mMerchantAccount == null)
+                    return ReturnError(myResponse, "Invalid merchant name!", myData);
+
+                if (!myData.ContainsKey("Amount"))
+                    return ReturnError(myResponse, "Amount to bill required!", myData);
+
+                var amount = double.Parse(myData.ContainsKey(tc.Amount)
+                    ? myData[tc.Amount]
+                    : "0.00");
+                if (Math.Abs(amount) < 1)
+                    return ReturnError(myResponse, "Invalid amount!", myData);
+
+                var mBill = new Bill
+                {
+                    InvoiceNumber = mBank.BillNumber,
+                    Name = myData[tc.MerchantName],
+                    BusinessType = mMerchantAccount.Type,
+                    Status = "Due",
+                    Balance = amount
+                };
+                IncrementBillNumber(mBank);
+                if (myData.ContainsKey("BillDescription"))
+                    mBill.Description = myData["BillDescription"];
+                if (myData.ContainsKey("BillDetails"))
+                    mBill.Details = myData["BillDetails"];
+                if (myData.ContainsKey("BillDate"))
+                    mBill.DateOfIssue = DateTime.Parse(myData["BillDate"]);
+                if (myData.ContainsKey("BillDueDate"))
+                    mBill.DateDueDate = DateTime.Parse(myData["BillDueDate"]);
+
+                var mAccount = GetBankAccount(myData);
+                if (mAccount == null)
+                    return ReturnError(myResponse, "Could not find account ", myData);
+                mAccount.Bills.Add(mBill);
+                var mLog = new AccountActivity
+                {
+                    Details =
+                        "Billing" + dk.ItemSep + mBill.Name + dk.ItemSep + "Amount:" + mBill.Balance.ToString("C")
+                };
+                mAccount.ActivityLog.Add(mLog);
+                AccountUpdate(mAccount, mAccount._id.ToString());
+                return ReturnSuccess(myResponse, mLog.Details);
+            }
+
+            if (myData[dk.Request] == tc.PayBill)
+            {
+                GetAccountByAccountHolderName(myData[tc.AccountHolder]);
+                //GetAccountByPAN(bin + type + accnum + user + cd);
+            }
+
+            #endregion
+
+            #region Purchase
+
+            if (myData[dk.Request] == tc.Purchase)
+            {
+                if (!myData.ContainsKey(tc.MerchantName))
+                    return ReturnError(myResponse, "Merchant name required!", myData);
+
+                var mMerchantAccount = GetAccountByAccountHolderName(myData[tc.MerchantName]);
+                if (mMerchantAccount == null)
+                    return ReturnError(myResponse, "Invalid merchant name[" + myData[tc.MerchantName] + "]", myData);
+
+                if (!myData.ContainsKey(tc.AccountHolder))
+                    return ReturnError(myResponse, "Account holder name required!", myData);
+
+                var mAccount = GetAccountByAccountHolderName(myData[tc.AccountHolder]);
+                if (mAccount == null)
+                    return ReturnError(myResponse, "Could not find account for [" + myData[tc.AccountHolder] + "]", myData);
+
+                if (!myData.ContainsKey(tc.CardNumber))
+                {
+                    if (!myData.ContainsKey(tc.AccountName))
+                        return ReturnError(myResponse, "Card Number(sub-account) or account name required!", myData);
+                }
+
+                if (!myData.ContainsKey(tc.Amount))
+                    return ReturnError(myResponse, "Amount of purchase required!", myData);
+
+                var amount = double.Parse(myData.ContainsKey(tc.Amount)
+                    ? myData[tc.Amount]
+                    : "0.00");
+                if (Math.Abs(amount) < 1)
+                    return ReturnError(myResponse, "Invalid amount[" + myData[tc.Amount] + "]", myData);
+
+                var mLogMerchant = new AccountActivity();
+                var mLogUser = new AccountActivity();
+
+                var rtn = new Tuple<bool, string>(false, "Could not complete the purchase!");
+                if (myData.ContainsKey(tc.CardNumber))
+                {
+                    if ((myData[tc.CardNumber] == mAccount.PAN))
+                    {
+                        mLogMerchant.Details = mLogUser.Details += dk.ItemSep + "Card:" + mAccount.PAN + " Debit ";
+                        rtn = MoveFunds(mAccount, null, mMerchantAccount, null, amount);
+                    }
+                    else
+                    {
+                        foreach (var mSubAcc in mAccount.SubAccounts)
+                        {
+                            if (mSubAcc.Number == myData[tc.CardNumber])
+                            {
+                                var mPaymentType = " Debit ";
+                                if (mSubAcc.Type) // true=Credit, false=debit(can't go negitive)
+                                    mPaymentType = " Credit ";
+                                mLogMerchant.Details = mLogUser.Details += dk.ItemSep + "Card:" + mSubAcc.Number + mPaymentType;
+                                rtn = MoveFunds(mAccount, mSubAcc, mMerchantAccount, null, amount);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if ((myData[tc.AccountName] == tc.PAN))
+                    {
+                        mLogMerchant.Details = mLogUser.Details += dk.ItemSep + "Account:" + mAccount.PAN + " Debit ";
+                        rtn = MoveFunds(mAccount, null, mMerchantAccount, null, amount);
+                    }
+                    else
+                    {
+                        foreach (var mSubAcc in mAccount.SubAccounts)
+                        {
+                            if (mSubAcc.Name == myData[tc.AccountName])
+                            {
+                                var mPaymentType = " Debit1 ";
+                                if (mSubAcc.Type) // true=Credit, false=debit(can't go negitive)
+                                    mPaymentType = " Credit ";
+
+                                mLogMerchant.Details =  mLogUser.Details += dk.ItemSep + "Account:" + mSubAcc.Number + mPaymentType;
+                                rtn = MoveFunds(mAccount, mSubAcc, mMerchantAccount, null, amount);
+                            }
+                        }
+                    }
+                }
+                // add amount of purchase to user's and Merchant's log entry
+                mLogMerchant.Details = mLogUser.Details += dk.ItemSep + "Amount:" + amount.ToString("C");
+                
+                // Add details to user's log entry
+                if (myData.ContainsKey(dk.TrxDetails))
+                    mLogUser.Details += ", Details:" + myData[dk.TrxDetails];
+                else
+                    mLogUser.Details += ", Details:" + "NA";
+
+                if (rtn.Item1 == false)
+                {
+                    mLogUser.Details = tc.Purchase + dk.ItemSep + myData[tc.MerchantName] +
+                        " Declined:" + rtn.Item2 + ", " + mLogUser.Details;
+                    mAccount.ActivityLog.Add(mLogUser);
+                    AccountUpdate(mAccount, mAccount._id.ToString());
+                    return ReturnError(myResponse, rtn.Item2, myData);
+                }
+                // log in user account
+                mLogUser.Details = tc.Purchase + dk.ItemSep + myData[tc.MerchantName] + ", " + mLogUser.Details;
+                mAccount.ActivityLog.Add(mLogUser);
+                AccountUpdate(mAccount, mAccount._id.ToString());
+
+                // log in merchant account
+                mLogMerchant.Details = tc.Purchase + dk.ItemSep + mAccount.Name + dk.ItemSep + mLogMerchant.Details;
+                mMerchantAccount.ActivityLog.Add(mLogMerchant);
+                AccountUpdate(mMerchantAccount, mMerchantAccount._id.ToString());
+
+                // return details
+                return ReturnSuccess(myResponse, GetTransactionDetails(mLogUser.Details));
+            }
+
+            #endregion
+
+            #region Get Client Id & Get Client Name
+
+            if (myData[dk.Request] == dv.GetClientId)
+            {
+                if (myData.ContainsKey(dk.ClientName))
+                {
+                    var mClientId = mUtils.GetClientIdUsingName(myData[dk.ClientName]);
+                    if (String.IsNullOrEmpty(mClientId))
+                        return ReturnError(myResponse, " No client named " + myData[dk.ClientName], myData);
+                    return ReturnSuccess(myResponse, mClientId);
+                }
+                return ReturnError(myResponse, " client name required!", myData);
+            }
+
+            if (myData[dk.Request] == dv.GetClientName)
+            {
+                if (myData.ContainsKey(dk.CID))
+                {
+                    var mClientName = mUtils.GetClientNameUsingId(myData[dk.CID]);
+                    if (String.IsNullOrEmpty(mClientName))
+                        return ReturnError(myResponse, " No client with id of " + myData[dk.CID] , myData);
+
+                    return ReturnSuccess(myResponse, mClientName);
+                }
+                return ReturnError(myResponse, " Client Id (CID) required!", myData);
+            }
+            #endregion
+
+            #region Purchase Reply
+            if (myData[dk.Request] == tc.PurchaseReply)
+            {
+                #region validate request
+                if (myData.ContainsKey(dk.CID) == false) 
+                    return ReturnError(myResponse, "Client Id required!", myData);
+                var mClientName = mUtils.GetClientNameUsingId(myData[dk.CID]);
+                #endregion
+
+                var macUrl = string.Empty;
+                var requestData = string.Empty;
+                /*------------------------------------------------------------------
+                // 1) request an otp with reply authorization using:
+                //  a) Registered user with an account using account holder name
+                //  b) client managed call request contains phone number and email address
+                // 2) if error sending return purchase denided because ....
+                // 3) Wait for reply using while loop with start thread and wait
+                // 4) return Approved or Denided based on the Reply Service
+                --------------------------------------------------------------------*/
+
+                // 1) request an otp with reply authorization
+                if (myData.ContainsKey(tc.AccountHolder))
+                {
+                    //  a) Registered user with an account using account holder name
+                    var mAccount = GetAccountByAccountHolderName(myData[tc.AccountHolder]);
+                    if (mAccount == null)
+                        return ReturnError(myResponse, "Could not find account for [" + myData[tc.AccountHolder] + "]",
+                            myData);
+
+                    requestData = dk.Request + dk.KVSep + dv.SendOtp +
+                            dk.ItemSep + dkui.EndUserIpAddress + dk.KVSep + GetUserIp() +
+                            dk.ItemSep + dk.TrxType + dk.KVSep + 6 +
+                            dk.ItemSep + dk.CID + dk.KVSep + myData[dk.CID] +
+                            dk.ItemSep + dk.UserId + dk.KVSep + mAccount.UserId;
+                    
+                    // Group Id if supplied
+                    if (myData.ContainsKey(dk.GroupId))
+                        requestData += dk.ItemSep + dk.GroupId + dk.KVSep + myData[dk.GroupId];
+
+                    // add transaction details if any
+                    if (myData.ContainsKey(dk.TrxDetails))
+                        requestData += dk.ItemSep + dk.TrxDetails + dk.KVSep + myData[dk.TrxDetails];
+
+                    //if (!String.IsNullOrEmpty(pAdSelectionDetails))
+                    //{
+                    //    if (pAdSelectionDetails.StartsWith(dk.ItemSep))
+                    //        requestData += pAdSelectionDetails;
+                    //    else
+                    //        requestData += dk.ItemSep + pAdSelectionDetails;
+                    //}
+
+                    // OTP send wait for reply
+                }
+                else
+                {
+                    //  b) client managed call request contains phone number and email address
+                    if (myData.ContainsKey(dkui.PhoneNumber) == false)
+                        return ReturnError(myResponse, "Phone number required!", myData);
+                    if (myData.ContainsKey(dkui.EmailAddress) == false)
+                        return ReturnError(myResponse, "Email Address required!", myData);
+
+                    // construct request 
+                    requestData = dk.Request + dk.KVSep + dv.SendOtp +
+                                      dk.ItemSep + dkui.EndUserIpAddress + dk.KVSep + GetUserIp() +
+                                      dk.ItemSep + dk.TrxType + dk.KVSep + 6 +
+                                      dk.ItemSep + dk.CID + dk.KVSep + myData[dk.CID] +
+                                      dk.ItemSep + dkui.PhoneNumber + dk.KVSep + myData[dkui.PhoneNumber] +
+                                      dk.ItemSep + dkui.EmailAddress + dk.KVSep + myData[dkui.EmailAddress];
+                    
+                    // add transaction details if any
+                    if (myData.ContainsKey(dk.TrxDetails))
+                        requestData += dk.ItemSep + dk.TrxDetails + dk.KVSep + myData[dk.TrxDetails];
+
+                     //if (!String.IsNullOrEmpty(pAdSelectionDetails))
+                     //{
+                     //    if (pAdSelectionDetails.StartsWith(dk.ItemSep))
+                     //        requestData += pAdSelectionDetails;
+                     //    else
+                     //        requestData += dk.ItemSep + pAdSelectionDetails;
+                     //}
+                }
+                // Send the OTP
+                var reply = SendRequestToMacOtpServer(macUrl + Constants.ServiceUrls.RequestOtpWebService,
+                    myData[dk.CID], requestData);
+                if (reply.Item1 == false)
+                    return ReturnError(myResponse, "Purchase Denided:" + reply.Item2, myData);
+                // OTP sent
+                var mRequestId = reply.Item2;
+
+                // 3) Wait for reply using while loop with start thread and wait
+                for (var x = 0; x<18; ++x)
+                {
+                    Thread.Sleep(10 + 1000);
+                    var mOtp = mUtils.GetOtpUsingRequestId(mRequestId);
+                    if (mOtp.Active) continue; //continue To wait
+                    if (mOtp.ProvidersReply == sr.Validated)
+                    {
+                        return ReturnSuccess(myResponse, "Purchase Approved");
+                    }
+                    return ReturnError(myResponse, "Purchase Denided: " + mOtp.ErrorMsg, myData);
+                }
+                return ReturnError(myResponse, "Purchase Denided: Timeout waiting for user's reply!" , myData);
+            }
+            #endregion
+
+            return ReturnError(myResponse, mSvcName + "." + myData[dk.Request] + ": Invalid Request", myData);
+        } // ------- End Process request ----------------------
+        catch (Exception ex)
+        {
+            return mUtils.FinalizeXmlResponseWithError(mSvcName + "." + myData[dk.Request] + ": Exception:" + ex.Message, mLogId);
+        }
+    }
+
+    #region Request OTP
+    protected Tuple<bool, string> SendRequestToMacOtpServer(string url, string id, string requestData)
+    {
+        var data = String.Format("data={0}{1}{2}", id.Length, id.ToUpper(), Security.EncryptAndEncode(requestData + dk.ItemSep + dk.API + dk.KVSep + dv.MSAPI, id.ToUpper()));
+        try
+        {
+            var dataStream = Encoding.UTF8.GetBytes(data);
+
+            // Reformat url protocol if running in SSL session
+            //url = url.Replace("http://", "https://");
+
+            var request = url;
+            var webRequest = WebRequest.Create(request);
+            webRequest.Method = "POST";
+            webRequest.ContentType = "application/x-www-form-urlencoded";
+            webRequest.ContentLength = dataStream.Length;
+            var newStream = webRequest.GetRequestStream();
+            // Send the data.
+            newStream.Write(dataStream, 0, dataStream.Length);
+            newStream.Close();
+            var res = webRequest.GetResponse();
+            var response = res.GetResponseStream();
+            var xmlDoc = new XmlDocument();
+            if (response != null)
+            {
+                xmlDoc.Load(response);
+                var elemList = xmlDoc.GetElementsByTagName(sr.Error);
+                if (elemList.Count != 0)
+                {
+                    return new Tuple<bool, string>(false, elemList[0].InnerXml);
+                }
+                elemList = xmlDoc.GetElementsByTagName(sr.RequestId);
+                if (elemList.Count != 0)
+                {
+                    return new Tuple<bool, string>(true, elemList[0].InnerXml);
+                }
+                elemList = xmlDoc.GetElementsByTagName(sr.Reply);
+                if (elemList.Count != 0)
+                {
+                    return new Tuple<bool, string>(false, "Error requesting OTP; " + elemList[0].InnerXml);
+                }
+            }
+            return new Tuple<bool, string>(false, "Error: requesting OTP!");
+        }
+        catch (Exception ex)
+        {
+            return new Tuple<bool, string>(false, "Error: " + ex.Message);
+        }
+    }
+
+    #endregion
+
+    #region PayCreditCard
+
+    protected Tuple<bool, string> PayCreditCard(BankAccount pAccount, Dictionary<string, string> pData)
+    {
+        foreach (var mCard in pAccount.SubAccounts)
+        {
+            if (mCard.Type)
+            {
+                if (mCard.Number == pData[tc.InvoiceNumber])
+                { // credit card to pay found
+                    if (mCard.Balance < 0)
+                    {  // credit card has a balance due
+                        if (mCard.Name == pData[tc.AccountName])
+                            return new Tuple<bool, string>(false, "Can't pay with same account");
+
+                        // have a balance due
+                        double mAmountToPay;
+                        var cardbalance = Math.Abs(mCard.Balance);
+                        if (pData[tc.Amount] != tc.Full)
+                        {
+                            try
+                            {
+                                mAmountToPay = Convert.ToDouble(pData[tc.Amount]);
+                                if (mAmountToPay > cardbalance) // don't pay more than what is due
+                                    mAmountToPay = cardbalance;
+                            }
+                            catch
+                            {
+                                return new Tuple<bool, string>(false, "Invalid amount!");
+                            }
+                        }
+                        else
+                        {
+                            mAmountToPay = cardbalance;
+                        }
+                        // check if from account has the funds and deduct the funds from the account
+                        var mAccountNumber = "";
+                        if (pData[tc.AccountName] == tc.PAN)
+                        {
+                            mAccountNumber = pAccount.PAN;
+                            if ((pAccount.Balance - mAmountToPay) < 0)
+                                return new Tuple<bool, string>(false, "Insufficient funds");
+                            // pay credit card with funds from PAN
+                            pAccount.Balance -= mAmountToPay;
+                        }
+                        else
+                        {
+                            // fine the account to pay with
+                            foreach (var mSubAccount in pAccount.SubAccounts)
+                            {
+                                if (mSubAccount.Name == pData[tc.AccountName])
+                                {
+                                    mAccountNumber = mSubAccount.Number;
+                                    if (mSubAccount.Type)
+                                    {
+                                        // Credit account have a negitive limit
+                                        if ((mSubAccount.Balance - mAmountToPay) > mSubAccount.Limit)
+                                            return new Tuple<bool, string>(false, "Credit limit reached!");
+                                    }
+                                    else // debit card or prepaid account
+                                    {
+                                        if ((mSubAccount.Balance - mAmountToPay) < 1)
+                                            return new Tuple<bool, string>(false, "Insufficient funds!");
+                                    }
+                                    mSubAccount.Balance -= mAmountToPay;
+                                    break;
+                                }
+                            }
+                        }
+                        // make the payment
+                        mCard.Balance = mCard.Balance + mAmountToPay;
+                        // log the payment
+                        var mLog = new AccountActivity
+                        {
+                            Details =
+                                "Credit Card payment" + dk.ItemSep + mCard.Name + " paid from " + pData[tc.AccountName] +
+                                "[" +
+                                mAccountNumber +
+                                "] "
+                        };
+                        if (IsZero(mCard.Balance))
+                        {
+                            mLog.Details += dk.ItemSep + "amount:" + mAmountToPay.ToString("C") +
+                                            " Paid in full";
+                        }
+                        else
+                        {
+                            mLog.Details += dk.ItemSep + "amount:" + mAmountToPay.ToString("C") +
+                                            " remaining balance " + mCard.Balance.ToString("C");
+                        }
+                        pAccount.ActivityLog.Add(mLog);
+                        AccountUpdate(pAccount, pAccount._id.ToString());
+                        return new Tuple<bool, string>(true, "Payment made");
+
+                    } // (mCard.Balance > 0)
+                } // (mCard.Number == pData[tc.InvoiceNumber]
+            } // (mCard.Type)
+        } //foreach (var mCard in pAccount.SubAccounts)
+        return new Tuple<bool, string>(false, "Could not find card to pay[" + pData[tc.InvoiceNumber] + "]");
+    }
+
+    #endregion
+
+    #region Database Methods
+
+    protected Bank IncrementBillNumber(Bank pBank)
+    {
+        pBank.BillNumber++;
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Bank);
+            //var query = Query.EQ("_id", pBank._id);
+            //var sortBy = SortBy.Descending("_id");
+            // first remove the outdated document
+            //mongoCollection.FindAndRemove(query, sortBy);
+            // then insert the updated document
+            //mongoCollection.Insert(pBank);
+            mongoCollection.Save(pBank);
+            return pBank;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    protected BankAccount GetUnusedAccount()
+    {
+        var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+        try
+        {
+            var query = Query.EQ("Assigned", false);
+            var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts);
+            return mongoCollection.FindOneAs<BankAccount>(query);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    protected BankAccount GetAccountByAccountNumber(string pAccountNumber)
+    {
+        const string quot = @"";
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var query = Query.EQ("AccountNumber", quot + pAccountNumber + quot);
+            var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts);
+            return mongoCollection.FindOneAs<BankAccount>(query);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    protected BankAccount GetAccountByAccountHolderName(string pAccountHolderName)
+    {
+        const string quot = @"";
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var query = Query.EQ("Name", quot + pAccountHolderName.Trim() + quot);
+            var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts);
+            return mongoCollection.FindOneAs<BankAccount>(query);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    protected BankAccount GetAccountUsingLoginName(string pLoginName)
+    {
+        const string quot = @"";
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var query = Query.EQ("LoginName", quot + pLoginName.Trim().ToLower() + quot);
+            var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts);
+            return mongoCollection.FindOneAs<BankAccount>(query);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    protected BankAccount xGetBankAccountUsingUserId(string pUserId)
+    {
+        const string quot = @"";
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var query = Query.EQ("UserId", quot + pUserId.Trim() + quot);
+            var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts);
+            return mongoCollection.FindOneAs<BankAccount>(query);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    protected void AccountUpdate(BankAccount pAccount, string pObjectId)
+    {
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts);
+            //var query = Query.EQ("_id", ObjectId.Parse(pObjectId));
+            //var sortBy = SortBy.Descending("_id");
+            // first remove the outdated document
+            //mongoCollection.FindAndRemove(query, sortBy);
+            // then insert the updated document
+            //mongoCollection.Insert(pAccount);
+            mongoCollection.Save(pAccount);
+        }
+        // ReSharper disable once EmptyGeneralCatchClause
+        catch
+        { /* Ignore */}
+    }
+    /// <summary> Get the number of accounts assigned </summary>
+    protected int GetNumberOfAccountAssigned()
+    {
+        var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+        var query = Query.EQ("Assigned", true);
+        var count = Convert.ToInt32(mongoDBConnectionPool.GetCollection(tc.Accounts).Find(query).Count());
+        return count;
+    }
+    /// <summary> Get the number of accounts </summary>
+    protected int GetNumberOfAccount()
+    {
+        var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+        int count = (int)mongoDBConnectionPool.GetCollection(tc.Accounts).Count();
+        return count;
+    }
+    /// <summary> Get List Of Account Numbers </summary>
+    protected string GetListOfAccountNumbers()
+    {
+        var pans = "";
+        var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+        var query = Query.EQ("_t", "Account");
+        var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts).Find(query).SetFields(Fields.Include("_id", tc.PAN));
+        var AccountList = mongoCollection.ToList();
+        foreach (var vAcc in AccountList)
+        {
+            pans += dk.ItemSep + vAcc[tc.PAN];
+        }
+        return pans.Trim(char.Parse(dk.ItemSep));
+    }
+    /// <summary> Get List Of Account Holders </summary>
+    protected string xGetListOfAccountHolders()
+    {
+        var AccountHolderNames = "";
+        var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+        Query.EQ("Assigned", true);
+        var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts).Distinct("UserInfo.Name");
+        var AccountList = mongoCollection.ToList();
+        foreach (var vAcc in AccountList)
+        {
+            var name = vAcc.ToString();
+            if (!string.IsNullOrEmpty(name))
+                AccountHolderNames += dk.ItemSep + name;
+        }
+        return AccountHolderNames.Trim(char.Parse(dk.ItemSep));
+    }
+    /// <summary> Get List Of Login Names </summary>
+    protected string GetListOfLoginNames()
+    {
+        var loginname = "";
+        var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+        var query = Query.EQ("_t", "Account");
+        var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts).Find(query).SetFields(Fields.Include("_id", "LoginName"));
+        var AccountList = mongoCollection.ToList();
+        foreach (var vAcc in AccountList)
+        {
+            var ln = vAcc["LoginName"].ToString();
+            if (!String.IsNullOrEmpty(ln))
+                loginname += dk.ItemSep + ln;
+        }
+        return loginname.Trim(char.Parse(dk.ItemSep));
+    }
+    /// <summary> Get List Of Merchant Names and types </summary>
+    protected string GetListOfAccountHolders()
+    {
+        var thelist = "";
+        var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+        var query = Query.EQ("_t", "Account");
+        var mongoCollection =
+            mongoDBConnectionPool.GetCollection(tc.Accounts).Find(query).SetFields(Fields.Include("_id", "Type", "Name"));
+        foreach (var doc in mongoCollection)
+        {
+            var mType = "";
+            var mName = "";
+            foreach (var element in doc.Elements)
+            {
+                if (element.Name == "Type")
+                    mType = element.Value.ToString();
+                if (element.Name == "Name")
+                    mName = element.Value.ToString();
+            }
+            thelist += dk.ItemSep + mName + dk.KVSep + mType;
+        }
+        return thelist.Trim(char.Parse(dk.ItemSep));
+    }
+    /// <summary> Get MAC test bank document </summary> 
+    protected Bank GetBankUsingBIN(String pBIN)
+    {
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var query = Query.EQ("BIN", pBIN);
+            var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Bank);
+            var mBank = mongoCollection.FindOneAs<Bank>(query);
+            if (mBank == null)
+            {
+                mBank = new Bank
+                {
+                    BIN = pBIN, BillNumber = 1, 
+                    _id = ObjectId.GenerateNewId(),
+                    Name = "MAC Test Bank " + pBIN
+                };
+                mongoCollection.Insert(mBank);
+            }
+            return mBank;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+    /// <summary> Create an account and insert into database </summary>
+    protected bool CreateAccount(BankAccount pBankAccount)
+    {
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var dbCollection = mongoDBConnectionPool.GetCollection(tc.Accounts);
+            dbCollection.Insert(pBankAccount);
+        }
+        catch
+        {
+            return false;
+        }
+        return true;
+    }
+    /// <summary> Delete account using PAN  </summary>
+    protected static string DeleteAccount(BankAccount pAccount)
+    {
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var query = Query.EQ("_id", pAccount._id);
+            var mongoCollection = mongoDBConnectionPool.GetCollection("Accounts");
+            mongoCollection.Remove(query);
+            return "Account deleted";
+        }
+        catch (Exception ex)
+        {
+            return "Error: Delete failed because " + ex.Message;
+        }
+    }
+    /// <summary> Get account using PAN (primary Account Number) </summary>
+    protected BankAccount GetAccountObject(String pPAN)
+    {
+        try
+        {
+            var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+            var query = Query.EQ(tc.PAN, pPAN);
+            var mongoCollection = mongoDBConnectionPool.GetCollection(tc.Accounts);
+            return mongoCollection.FindOneAs<BankAccount>(query);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+    #endregion
+
+    #region Helper Methods
+
+    protected void InitPrepaidAccount(BankAccount pAccount)
+    {
+        foreach (var mSubAccount in pAccount.SubAccounts)
+        {
+            if (mSubAccount.Name == "Prepaid Account")
+            {
+                mSubAccount.Balance = 5000.00;
+            }
+            if (mSubAccount.Name == "Credit Card")
+            {
+                mSubAccount.Balance = -500.00;
+            }
+        }
+    }
+
+    /// <summary> Checks if the funding account has the funds available </summary>
+    protected Tuple<bool, string> CheckSourceAccountForFunds(BankAccount pFundingAccount, BankSubAccount pFundingSubAccount, double pAmount)
+    {
+        // check if from account has the funds and debit the funds from the account
+        if (pFundingSubAccount == null)
+        {
+            if ((pFundingAccount.Balance - pAmount) < 0)
+                return new Tuple<bool, string>(false, "Insufficient funds, Account " + pFundingAccount.PAN);
+        }
+        else
+        {
+            if (pFundingSubAccount.Type) // true=Credit, false=debit(can't go negitive)
+            {   // Credit accounts have a negitive limit
+                if ((pFundingSubAccount.Balance - pAmount) < (pFundingSubAccount.Limit * -1))
+                    return new Tuple<bool, string>(false, "Credit limit excceded account " + pFundingSubAccount.Number);
+            }
+            else // debit card or prepaid account
+            {
+                if ((pFundingSubAccount.Balance - pAmount) < 1)
+                    return new Tuple<bool, string>(false, "Insufficient funds account " + pFundingSubAccount.Number);
+            }
+        }
+        return new Tuple<bool, string>(true, "");
+    }
+
+    // move funds from one account to another
+    protected Tuple<bool, string> MoveFunds(BankAccount pFromAccount, BankSubAccount pFromBankSubAccount,
+        BankAccount pToAccount, BankSubAccount pToBankSubAccount, double pAmount)
+    {
+        var rtn = CheckSourceAccountForFunds(pFromAccount, pFromBankSubAccount, pAmount);
+        if (rtn.Item1 == false) return rtn;
+
+        // check if to account can be credited with amount
+        if (pToBankSubAccount != null)
+        {
+            if (pToBankSubAccount.Type) // true=Credit, false=debit
+            {
+                // credit
+                if ((pToBankSubAccount.Balance - pAmount) < 0)
+                {
+                    var v1 = pAmount - pToBankSubAccount.Balance;
+                    pToBankSubAccount.Balance = 0;
+                    pToAccount.PAN += v1;
+                }
+                else
+                {
+                    pToBankSubAccount.Balance = pToBankSubAccount.Balance - pAmount;
+                }
+            }
+            else  // debit account
+            {
+                pToBankSubAccount.Balance = pToBankSubAccount.Balance + pAmount;
+            }
+        }
+
+        // Debit the from account
+        if (pFromBankSubAccount == null)
+        {
+            pFromAccount.Balance = pFromAccount.Balance - pAmount;
+        }
+        else
+        {
+            if (pFromBankSubAccount.Type) // true=Credit, false=debit(can't go negitive)
+            { // Credit accounts have a negitive limit
+                pFromBankSubAccount.Balance = pFromBankSubAccount.Balance - pAmount;
+            }
+            else // debit card or prepaid account
+            {
+                if (pFromBankSubAccount.Balance < pAmount)
+                    return new Tuple<bool, string>(false, ""); 
+                pFromBankSubAccount.Balance = pFromBankSubAccount.Balance - pAmount;
+            }
+        }
+        return new Tuple<bool, string>(true, "");
+    }
+
+    /// <summary> Return true if double value is zero </summary>
+    protected bool IsZero(double pValue)
+    {
+        return Math.Abs(pValue) < double.Epsilon;
+    }
+    /// <summary>  Return bill object using primary account number and invoice number </summary>
+    protected Bill GetBillByInvoiceNumber(BankAccount pAccount, int pInvoiceNumber)
+    {
+        foreach (var mBill in pAccount.Bills)
+        {
+            if (mBill.InvoiceNumber == pInvoiceNumber) return mBill;
+        }
+        return null;
+    }
+    /// <summary>Check if deposit excedes account max, using PAN, account name, amount </summary>
+    //private double CheckAccountMaxFunds(BankAccount pAccount, string pAccountName, double pAmount)
+    //{
+    //    if (pAccountName != tc.PAN)
+    //    {
+    //        foreach (var mSubAccount in pAccount.SubAccounts)
+    //        {
+    //            if (mSubAccount.Name == pAccountName)
+    //            {
+    //                if (pAccountName.ToLower().Contains("credit"))
+    //                {
+    //                    if ((mSubAccount.Balance + pAmount) > 0)
+    //                        return mSubAccount.Balance;
+    //                }
+    //                else
+    //                {
+    //                    if ((mSubAccount.Balance + pAmount) > mSubAccount.Limit)
+    //                        return mSubAccount.Limit - mSubAccount.Balance;
+    //                }
+    //                break;
+    //            }
+    //        }
+    //    }
+    //    return pAmount;
+    //}
+    /// <summary> Check if account has enought funds to cover amount, using PAN, Account Name, Amount </summary>
+    protected Tuple<bool, string> CheckAvailableFunds(BankAccount pAccount, string pAccountName, double pAmount)
+    {
+        if (pAccountName == tc.PAN)
+        {
+            if (pAccount.Balance < pAmount)
+                return new Tuple<bool, string>(false, "Insufficient funds");
+            return new Tuple<bool, string>(true, "Funds available");
+        }
+        foreach (var mSubAccount in pAccount.SubAccounts)
+        {
+            if (mSubAccount.Name == pAccountName)
+            {
+                if (mSubAccount.Balance < pAmount)
+                    return new Tuple<bool, string>(false, "Insufficient funds!");
+                return new Tuple<bool, string>(true, "Funds available");
+            }
+        }
+        return new Tuple<bool, string>(false, "Invalid account name!");
+    }
+
+    protected string GetAccountLog(BankAccount pAccount, bool pAddAccount)
+    {
+        var accDetails = new StringBuilder();
+        if (pAddAccount)
+        {
+            accDetails.Append("<" + tc.Account + ">");
+            accDetails.Append("<" + tc.PAN + ">" + pAccount.PAN + "</" + tc.PAN + ">");
+        }
+        // -- Account Activity ---------------
+        accDetails.Append("<" + tc.ActivityLog + ">");
+        if (pAccount.ActivityLog.Count > 0)
+        {
+            foreach (var mLogEntry in pAccount.ActivityLog)
+            {
+                accDetails.Append("<" + tc.LogEntry + ">");
+                var details = mLogEntry.Details;
+                accDetails.Append("<Date>" + mLogEntry.Date + "</Date>");
+
+                if (details.Contains("Details"))
+                {
+                    if (details.StartsWith(tc.Purchase))
+                    {
+                        accDetails.Append(GetTransactionDetails(details));
+                    }
+                    else
+                    {
+                        accDetails.Append("<Transaction>" + details.Trim() + "</Transaction>");
+                    }
+                }
+                else
+                {
+                    accDetails.Append("<Transaction>" + details.Trim() + "</Transaction>");
+                }
+                accDetails.Append("</" + tc.LogEntry + ">");
+            }
+        }
+        else
+        {
+            accDetails.Append("None");
+        }
+        accDetails.Append("</" + tc.ActivityLog + ">");
+        accDetails.Append("</" + tc.Account + ">");
+        return accDetails.ToString();
+    }
+    /// <summary> Parse Log entry details</summary>
+    protected string GetTransactionDetails(string pLogEntry)
+    {
+        var mUtils = new Utils();
+
+        var sd = pLogEntry.IndexOf("Details", StringComparison.Ordinal);
+        var trx = pLogEntry.Substring(0, sd);
+        var items = pLogEntry.Replace(trx + "Details:", "");
+        if (items != "NA")
+        {
+            items = mUtils.HexToString(items.Trim()).Trim();
+        }
+        return "<Transaction>" + trx.Trim() + "</Transaction>" +
+                          "<Items>" + items + "</Items>";
+    }
+    /// <summary> </summary>
+    protected string GetAccountDetails(BankAccount pAccount)
+    {
+        var accDetails = new StringBuilder();
+        accDetails.Append("<" + tc.Account + ">");
+        accDetails.Append("<" + tc.PAN + ">" + pAccount.PAN + "</" + tc.PAN + ">");
+        accDetails.Append("<" + tc.Balance + ">" + pAccount.Balance.ToString("C") + "</" + tc.Balance + ">");
+        accDetails.Append("<Created>" + pAccount.DateCreated + "</Created>");
+        accDetails.Append("<Updated>" + pAccount.DateUpdated + "</Updated>");
+        // -- Account Holder ---------------
+        if (pAccount.Assigned)
+        {
+            accDetails.Append("<" + tc.AccountHolder + ">" + pAccount.Name + "</" + tc.AccountHolder + ">");
+            accDetails.Append("<" + tc.LoginName + ">" + pAccount.LoginName + "</" + tc.LoginName + ">");
+        }
+        // -- Sub Accounts ---------------
+        accDetails.Append("<SubAccounts>");
+        foreach (var mySub in pAccount.SubAccounts)
+        {
+            accDetails.Append("<SubAccount>");
+            accDetails.Append("<Name>" + mySub.Name + "</Name>");
+            accDetails.Append("<Number>" + mySub.Number + "</Number>");
+            accDetails.Append("<Enabled>" + mySub.Enabled + "</Enabled>");
+            accDetails.Append("<LastAccessed>" + mySub.DateLastAccessed + "</LastAccessed>");
+            accDetails.Append("<Balance>" + mySub.Balance.ToString("C") + "</Balance>");
+            accDetails.Append("<Limit>" + mySub.Limit.ToString("C") + "</Limit>");
+            accDetails.Append("</SubAccount>");
+        }
+        accDetails.Append("</SubAccounts>");
+        // -- Account Activity Log ---------------
+        accDetails.Append(GetAccountLog(pAccount, false));
+
+        return accDetails.ToString();
+    }
+    /// <summary> Create Accounts </summary>
+    protected Tuple<bool, string> CreateAccounts(Bank pBank, int pNumberOfAccountsToCreate)
+    {
+        var pCurrentNumberOfAccounts = GetNumberOfAccount();
+        for (var i = 0; i < pNumberOfAccountsToCreate; ++i)
+        {
+            var num = pCurrentNumberOfAccounts + 1 + i;
+            var accno = num.ToString("D8");
+            var mLuhn = ComputeLuhn(pBank.BIN + "0" + accno + "00");
+            var mAccount = new BankAccount(accno, pBank.BIN + "0" + accno + "0" + mLuhn);
+            // add sub account for credit card
+            for (var y = 1; y < mAccountNames.Count(); ++y)
+            {
+                mLuhn = ComputeLuhn(pBank.BIN + y + accno + "00");
+                var mSubAccount = new BankSubAccount
+                {
+                    Institution = pBank.BIN,
+                    Enabled = true,
+                    DateLastAccessed = DateTime.Now,
+                    Number = pBank.BIN + y + accno + "0" + mLuhn,
+                    Name = mAccountNames[y],
+                    Usage = mAccountUsages[y]
+                };
+                if (mSubAccount.Name.Contains("Credit"))
+                {
+                    mSubAccount.Type = true;
+                    mSubAccount.Limit = 5000.00;
+                }
+                else
+                {
+                    mSubAccount.Type = false; // debit (account cannot go negitive)
+                    mSubAccount.Limit = 10000.00;
+                }
+                mAccount.SubAccounts.Add(mSubAccount);
+            }
+            CreateAccount(mAccount);
+        }
+        return new Tuple<bool, string>(true, "Accounts Created");
+    }
+
+    protected string GetListOfAccountNames()
+    {
+        var accountNames = "";
+        foreach (string accountname in mAccountNames)
+        {
+            accountNames += dk.ItemSep + accountname;
+        }
+        return accountNames.Trim(char.Parse(dk.ItemSep));
+    }
+
+    protected string GetAccountNameUsingNumber(BankAccount pAccount, String pNum)
+    {
+        if (pNum == pAccount.PAN) return "PAN";
+        foreach (BankSubAccount bsa in pAccount.SubAccounts)
+        {
+            if (bsa.Number == pNum) return bsa.Name;
+        }
+        return null;
+    }
+
+    protected BankAccount GetBankAccount(Dictionary<string, string> pData)
+    {
+        if (pData.ContainsKey(tc.AccountNo))
+        {
+            if ((pData[tc.AccountNo].Length == 16) && CheckLuhn(pData[tc.AccountNo]))
+            {
+                var accnum = pData[tc.AccountNo].Substring(6, 8);
+                return GetAccountByAccountNumber(accnum);
+            }
+            return null;
+        }
+        if (pData.ContainsKey(tc.AccountHolder))
+        {
+            return GetAccountByAccountHolderName(pData[tc.AccountHolder]);
+        }
+        return null;
+    }
+    /// <summary> Check the account or sub account (card) number using the Luhn algorithm </summary>
+    protected bool CheckLuhn(string pNum)
+    {
+        var mNum = pNum.Replace(" ", "");
+        var cd = ComputeLuhn(mNum);
+        var checkDigit = Convert.ToInt32(mNum.Substring(mNum.Length - 1, 1));
+        if (cd == checkDigit)
+            return true;
+        return false;
+        // Console.WriteLine("sum of digits of the number " + checkDigit);
+    }
+    /// <summary> Compute the Luhn algorithm check character </summary>
+    protected int ComputeLuhn(string pNum)
+    {
+        var mNum = pNum.Replace(" ", "");
+        var sum = 0;
+        var a = 0;
+        for (var i = 0; i < mNum.Length; i++)
+        {
+            var d = Convert.ToInt32(mNum.Substring(mNum.Length - 1 - i, 1));
+            if (i != 0)
+            {
+                //Console.WriteLine("{0}) {1}", i, d);
+                if (a % 2 == 0)
+                    d = d * 2;
+                if (d > 9)
+                    d -= 9;
+                sum += d;
+                a++;
+            }
+        }
+        var cd = 10 - (sum % 10);
+        if (cd == 10) cd = 0;
+        return cd;
+    }
+    /// <summary> Successfull Reply </summary>
+    protected XmlDocument ReturnSuccess(StringBuilder sbResponse, string pDetails)
+    {
+        var mUtils = new Utils();
+        sbResponse.Append("<" + sr.Reply + ">" + tc.Success + "</" + sr.Reply + ">");
+        sbResponse.Append("<" + sr.Details + ">" + pDetails.Replace("'", "&apos;") + "</" + sr.Details + ">");
+        var mRtn = mUtils.FinalizeXmlResponse(sbResponse, mLogId);
+        return mRtn;
+    }
+    /// <summary> Error Reply </summary>
+    protected XmlDocument ReturnError(StringBuilder sbResponse, string pErrorText, Dictionary<string, string> pData)
+    {
+        var mUtils = new Utils();
+        if (!pData.ContainsKey(dk.Request))
+            pData.Add(dk.Request, "N/A");
+        sbResponse.Append("<" + sr.Reply + ">" + sr.Error + "</" + sr.Reply + ">");
+        sbResponse.Append("<" + sr.Details + ">" + mSvcName + "." + pData[dk.Request] + ": Failed," + pErrorText.Replace("'", "&apos;") + "</" + sr.Details + ">");
+        var mRtn = mUtils.FinalizeXmlResponse(sbResponse, mLogId);
+        return mRtn;
+    }
+
+    protected static string GetUserIp()
+    {
+        var uip = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+        if (String.IsNullOrEmpty(uip))
+            uip = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+        return uip;
+    }
+
+    #endregion
+}

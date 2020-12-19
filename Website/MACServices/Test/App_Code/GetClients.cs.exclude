@@ -1,0 +1,99 @@
+﻿using System;
+using System.Linq;
+using System.Text;
+using System.Web.Services;
+using System.Xml;
+using System.Web;
+
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
+
+using MACServices;
+using dk = MACServices.Constants.Dictionary.Keys;
+using cs = MACServices.Constants.Strings;
+
+[WebService(Namespace = "http://mobileauthcorp.com/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+
+public class GetClients : WebService
+{
+    [WebMethod]
+    public XmlDocument WsGetClients()
+    {
+        var mUtils = new Utils();
+
+        var myResponse = new StringBuilder();
+        mUtils.InitializeXmlResponse(myResponse);
+
+        var mongoDBConnectionPool = (MongoDatabase)HttpContext.Current.Application[cs.MongoDB];
+        try
+        {
+            // Get available Clients
+            var query = Query.EQ("_t", "Client");
+            var mongoCollection = mongoDBConnectionPool.GetCollection("Client").Find(query).SetFields(Fields.Include("_id"));
+
+            var sortOrder = new[] { "Name" };
+            mongoCollection.SetSortOrder(sortOrder);
+
+            var clientIdList = mongoCollection.ToList();
+
+            myResponse.Append("<Clients>");
+            myResponse.Append("<Count>" + clientIdList.Count() + "</Count>");
+
+            foreach (var vClientId in clientIdList)
+            {
+                var client = vClientId.ToString();
+                var strt = client.IndexOf("(", StringComparison.Ordinal) + 2;
+                var end = client.IndexOf(")", StringComparison.Ordinal) - strt - 1;
+                var cid = client.Substring(strt, end);
+
+                var myClient = new Client(cid);
+                {
+                    var cname = myClient.Name;
+                    if (cname.Contains("&"))
+                    {
+                        if (cname.Contains(" & "))
+                            cname = cname.Replace(" & ", "&");
+                        cname = cname.Replace("&", " & ");
+                    }
+                    if (myClient.OpenAccessServicesEnabled)
+                        myResponse.Append("<Client><Name>" + cname + " (Open)</Name><ID>" + myClient.ClientId.ToString() + "</ID>");
+                    else
+                        myResponse.Append("<Client><Name>" + cname + "</Name><ID>" + myClient.ClientId.ToString() + "</ID>");            
+                    myResponse.Append("<Groups>");
+                    foreach (var myRelationship in myClient.Relationships.Where(myRelationship => myRelationship.MemberType == "Group"))
+                    {
+                        try
+                        { // Get group
+                            var myGroup = (Group)mUtils.ObjectRead(myRelationship.MemberId.ToString(), "Group", "");
+                            if (myGroup != null)
+                            {
+                                myResponse.Append("<Group>" + myGroup.Name.Trim() + "=" + myGroup._id + "</Group>");
+                            }
+                        }
+                        catch
+                        {
+                            break;
+                        }
+                    }
+                    myResponse.Append("</Groups></Client>");
+                }
+            }
+            myResponse.Append("</Clients>");
+            var mXml = mUtils.FinalizeXmlResponse(myResponse, "GC");
+            return mXml;
+        }
+        catch (Exception ex)
+        {
+            var mDetails = ex.ToString().Replace(dk.ItemSep, "!").Replace(dk.KVSep, ";") + Constants.TokenKeys.ClientName + "NA";
+            var exceptionEvent = new Event
+            {
+                EventTypeDesc = Constants.TokenKeys.ExceptionDetails + mDetails
+            };
+            exceptionEvent.Create(Constants.EventLog.Exceptions.General, null);
+
+            return mUtils.FinalizeXmlResponseWithError(ex.Message, "GC");
+        }
+    }
+
+}

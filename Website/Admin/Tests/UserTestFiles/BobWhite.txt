@@ -1,0 +1,4 @@
+﻿MACBank|Type:User|FirstName:Bob|LastName:White|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|Flie:BobWhite.txt
+RequestOTP|UserId:480268407612345678901234567891|FirstName:Bob|LastName:White|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|Flie:BobWhite.txt
+STSRegister|UserId:480268407612345678901234567891|FirstName:v|LastName:White|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|Flie:BobWhite.txt
+Register:EndUser|FirstName:v|LastName:White|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|Flie:BobWhite.txt

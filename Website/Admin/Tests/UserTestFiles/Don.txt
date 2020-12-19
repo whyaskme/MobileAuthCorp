@@ -1,0 +1,4 @@
+﻿MACBank|Type:User|FirstName:Don|LastName:Gleason|PhoneNumber:4803304246|EmailAddress:dgleason@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Don.txt
+RequestOTP|UserId:480330424612345678901234567890|FirstName:Don|LastName:Gleason|PhoneNumber:4803304246|EmailAddress:dgleason@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Don.txt
+STSRegister|UserId:480330424612345678901234567890|FirstName:Don|LastName:Gleason|PhoneNumber:4803304246|EmailAddress:dgleason@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Don.txt
+Register:EndUser|FirstName:Don|LastName:Gleason|PhoneNumber:4803304246|EmailAddress:dgleason@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:Don.txt

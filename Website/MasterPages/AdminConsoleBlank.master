@@ -1,0 +1,184 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" EnableViewState="true" CodeFile="AdminConsoleBlank.master.cs" ClientIDMode="Static" Inherits="MasterPages.AdminConsoleBlank" %>
+
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+
+<html lang="en"> <!--<![endif]-->
+
+<head runat="server">
+        
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+
+    <title>MAC Otp System Administration</title>
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+
+    <link href="/App_Themes/CSS/jquery-ui-smoothness.css" rel="stylesheet" />
+    
+    <script src="/Javascript/jquery-1.10.2.js"></script>
+    <script src="/JavaScript/jquery-ui-1-11-0.js"></script>
+    <script src="/JavaScript/jquery.validate.js"></script>
+    <script src="/Javascript/jquery.printElement.js"></script>
+
+    <link href="/App_Themes/CSS/Admin.css" rel="stylesheet" />
+    <link href="/App_Themes/CSS/table-style.css" rel="stylesheet" />    
+
+    <link rel="stylesheet" href="/App_Themes/CSS/style.css" />
+    <link rel="stylesheet" href="/App_Themes/CSS/prism.css" />
+    <link rel="stylesheet" href="/App_Themes/CSS/chosen.css" />
+
+    <link rel="shortcut icon" href="/Images/favicon.ico" />
+    <link rel="stylesheet" href="/App_Themes/CSS/foundation_menu.css" />
+
+    <script type="text/javascript" src="/Javascript/Constants.js"></script>
+    <script type="text/javascript" src="/Javascript/MACSystemAdmin-Responsive.js"></script>
+
+    <asp:ContentPlaceHolder id="ScriptContainer" runat="server">
+        
+        <script type="text/javascript">
+            $().ready(function () {
+            });
+        </script>
+
+    </asp:ContentPlaceHolder>
+</head>
+
+<%--<body id="pageBody" onload="javascript: checkIfClientManagementWindow(); setSelectedItemFocus();">--%>
+    <%--<body id="pageBody" onload="javascript: setSelectedItemFocus();">--%>
+    <body id="pageBody">
+
+    <%--<form id="formMain" runat="server" method="post" onsubmit="javascript: callParentDocShowProcessingDialog();">--%>
+        <form id="formMain" runat="server" autocomplete="on" method="post">
+
+        <div style="display:none;"><asp:TextBox ID="divServiceResponseMessage" runat="server" Text="" Height="25" BackColor="Transparent" /></div>
+
+        <div id="divTopMenu_Desktop" runat="server" class="row hide-for-small">
+          <div class="large-5 medium-5 small-5 columns">
+            <div style="padding:5px 0;"><asp:ImageButton ID="SiteLogo" runat="server" ImageUrl="~/Images/mac-logo_80.png" PostBackUrl="~/Admin/" /></div>
+          </div>
+          <div class="large-7 medium-7 small-7 columns">
+            &nbsp;
+          </div>
+        </div>
+
+        <!-- Body Content -->
+        <asp:Panel ID="PageContent" runat="server">
+            <asp:Panel ID="BodyContainer" runat="server">
+                <asp:ContentPlaceHolder id="BodyContent" runat="server"></asp:ContentPlaceHolder>
+            </asp:Panel>
+        </asp:Panel>
+        <!-- Body Content -->
+
+        <asp:HiddenField ID="hiddenAE" runat="server" Value="" />
+
+        <asp:HiddenField ID="hiddenA" runat="server" Value="false" />
+        <asp:HiddenField ID="hiddenB" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenC" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenD" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenE" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenG" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenH" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenI" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenJ" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenK" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenL" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenM" runat="server" Value="" />
+
+        <!-- For end user registration process -->
+        <asp:HiddenField ID="hiddenN" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenO" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenP" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenQ" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenR" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenS" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenT" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenU" runat="server" Value="DeskTop" />
+
+        <!-- For pass through billing login -->
+        <asp:HiddenField ID="hiddenV" runat="server" Value="" />
+
+        <asp:HiddenField ID="hiddenW" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenX" runat="server" Value="" />
+
+    </form>
+
+    <script src="/JavaScript/foundation.min.js"></script>
+
+    <script src="/JavaScript/chosen.jquery.js" type="text/javascript"></script>
+    <script src="/JavaScript/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $('.chosen-select').chosen({ disable_search_threshold: 10 });
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+    </script>
+    <script>
+        $(window).scroll(function () {
+            var position = $('#divMenuBar').position();
+            if (position.top === 0) {
+                $('#mobileMacLogo').show();
+            }
+            else {
+                $('#mobileMacLogo').hide();
+            }
+        });
+        $(window).resize(function () {
+            var position = $('#divMenuBar').position();
+            if (position.top === 0) {
+                $('#mobileMacLogo').show();
+            }
+            else {
+                $('#mobileMacLogo').hide();
+            }
+        });
+    </script>
+
+    <script>
+        $(document).foundation();
+        $("#Requestor").click(function () {
+            $("#myOTP").show();
+            $("#Requestor").hide();
+            $("#userName").hide();
+        });
+        $().ready(function () {
+            var y1 = $('#myCol1').height();
+            var y2 = $('#myCol2').height();
+            var y3 = $('#myCol3').height();
+            var ym = Math.max(y1, y2, y3);
+            var ympx = ym + 'px';
+            $('#myCol1').height(ympx);
+            $('#myCol2').height(ympx);
+            $('#myCol3').height(ympx);
+
+            $(window).resize(function () {
+                $('#myCol1').css('height', '');
+                $('#myCol2').css('height', '');
+                $('#myCol3').css('height', '');
+                y1 = $('#myCol1').height();
+                y2 = $('#myCol2').height();
+                y3 = $('#myCol3').height();
+                ym = Math.max(y1, y2, y3);
+                ympx = ym + 'px';
+                $('#myCol1').height(ympx);
+                $('#myCol2').height(ympx);
+                $('#myCol3').height(ympx);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+﻿RequestOTP|UserId:480268407612345678901234567890|FirstName:Terry|LastName:Davis|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:STSTerry.txt
+STSRegister|UserId:480268407612345678901234567890|FirstName:Terry|LastName:Davis|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Store|File:STSTerry.txt

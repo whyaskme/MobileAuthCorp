@@ -1,0 +1,1 @@
+MACBank|Type:Merchant|ShortName:Target|MerchantName:Target|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|File:DemoMerchants.txt

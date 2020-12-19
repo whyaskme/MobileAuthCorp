@@ -1,0 +1,89 @@
+﻿using System;
+using System.Text;
+using System.Web.Services;
+using System.Xml;
+
+using MACServices;
+using dk = MACServices.Constants.Dictionary.Keys;
+
+/// <summary>
+/// Summary description for RegisterClients
+/// </summary>
+[WebService(Namespace = "http://tempuri.org/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+[System.Web.Script.Services.ScriptService]
+public class RegisterClients : WebService {
+
+    public XmlDocument XmlResponse = new XmlDocument();
+    public StringBuilder SbResponse = new StringBuilder();
+
+    [WebMethod]
+    public XmlDocument WsRegisterClients(string numberToRegister)
+    {
+        var mUtils = new Utils();
+
+        // debug values
+        if (numberToRegister == "")
+            numberToRegister = "1";
+
+        mUtils.InitializeXmlResponse(SbResponse);
+
+        try
+        {
+            for (var i = 1; i <= Convert.ToInt16(numberToRegister); i++)
+            {
+                var newClient = new Client("")
+                {
+                    Name = "Client (" + i + ")",
+                    Organization =
+                    {
+                        TaxId = "123-45-6789",
+                        Email = "jbaranauskas@mobileauthcorp.com",
+                        Phone = "480-939-2980",
+                        Extension = "213",
+                        Country = "USA",
+                        Street1 = "8777 E. Via De Ventura",
+                        Unit = "",
+                        City = "Scottsdale",
+                        Zipcode = "85258"
+                    }
+                };
+
+                var newAdmin = new Administrator("")
+                {
+                    UserInfo = {FirstName = "FirstName-" + i, MiddleName = "WhyAsk", LastName = "LastName-" + i}
+                };
+
+                newAdmin.Name = newAdmin.UserInfo.FirstName + " " + newAdmin.UserInfo.LastName;
+                newAdmin.ClientId = newClient.ClientId;
+
+                newAdmin.Create();
+
+                newClient.Organization.PrimaryAdminId = newAdmin._id;
+
+                newClient.Create();
+            }
+        }
+        catch (Exception ex)
+        {
+            var mDetails = ex.ToString().Replace(dk.ItemSep, "!").Replace(dk.KVSep, ";") + Constants.TokenKeys.ClientName + "NA";
+            var exceptionEvent = new Event
+            {
+                EventTypeDesc = Constants.TokenKeys.ExceptionDetails + mDetails
+            };
+            exceptionEvent.Create(Constants.EventLog.Exceptions.General, null);
+
+            SbResponse.Append(ex.Message);
+        }
+        finally
+        {
+            mUtils.FinalizeXmlResponse(SbResponse, "RC");
+        }
+
+        XmlResponse.LoadXml(SbResponse.ToString());
+
+        return XmlResponse;
+    }
+    
+}

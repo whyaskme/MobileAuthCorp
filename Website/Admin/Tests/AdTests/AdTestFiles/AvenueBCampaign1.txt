@@ -1,0 +1,12 @@
+﻿<Client>
+	<ClientName>Avenue B Consulting</ClientName>
+	<ClientId>32cbfb8f-4f3b-5dce-9853-08d1f986e556</ClientId>
+	<Url>api.authenticationads.com/Ad.svc</Url>
+	<UserName>Terry</UserName>
+	<UserPassword>mac123!</UserPassword>
+	<APIKey>1106fdc1-1b91-71c4-296e-08d1b88891e5</APIKey>
+	<APIUserName>macapi</APIUserName>
+	<APIPassword>mac123!</APIPassword>
+	<CampaignName>Avenue B 1</CampaignName>
+	<CampaignId>535dc457-a16c-c8c9-71f0-08d203c35b91</CampaignId>
+</Client>

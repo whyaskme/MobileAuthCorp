@@ -1,0 +1,12 @@
+﻿<Client>
+	<ClientName>MAC Test Bank</ClientName>
+	<ClientId>96443ebf-7c86-39c2-8277-08d1b8889bb5</ClientId>
+	<Url>api.authenticationads.com/Ad.svc</Url>
+	<UserName>Terry</UserName>
+	<UserPassword>mac123!</UserPassword>
+	<APIKey>1106fdc1-1b91-71c4-296e-08d1b88891e5</APIKey>
+	<APIUserName>macapi</APIUserName>
+	<APIPassword>mac123!</APIPassword>
+	<CampaignName>Test Bank 1</CampaignName>
+	<CampaignId>c0a454da-c7e5-a5c0-1b37-08d1ba867121</CampaignId>
+</Client>

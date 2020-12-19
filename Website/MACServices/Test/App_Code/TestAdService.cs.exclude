@@ -1,0 +1,379 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Web.Services;
+using System.Text;
+using System.Xml;
+
+using MACServices;
+using dk = MACServices.Constants.Dictionary.Keys;
+using dv = MACServices.Constants.Dictionary.Values;
+using dkui = MACServices.Constants.Dictionary.Userinfo;
+using cfg = MACServices.Constants.WebConfig.AppSettingsKeys;
+using str = MACServices.Constants.Strings;
+using ta = TestLib.TestConstants.TestAds.Ads;
+using sr = MACServices.Constants.ServiceResponse;
+
+[WebService(Namespace = "http://mobileauthcorp.com/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+
+[System.Web.Script.Services.ScriptService]
+public class TestAdService : WebService
+{
+    private const string mSvcName = "TestAdService";
+    private const string mLogId = "TA";
+
+    [WebMethod]
+    public XmlDocument WsTestAdService(string data)
+    {
+        var mUtils = new Utils();
+        var mRequestData = new Dictionary<string, string> { { dk.ServiceName, mSvcName } };
+        var myResponse = new StringBuilder();
+        mUtils.InitializeXmlResponse(myResponse);
+
+        #region debug
+
+        if (data.Length < 10)
+        {
+            var mTestData = dk.Request + dk.KVSep + "GetAd";
+            if (data.StartsWith("B"))
+                mTestData += dk.ItemSep + dk.ClientName + dk.KVSep + "Test Bank";
+            else if (data.StartsWith("G"))
+                mTestData += dk.ItemSep + dk.ClientName + dk.KVSep + "Golf Shop";
+            else if (data.StartsWith("T"))
+                mTestData += dk.ItemSep + dk.ClientName + dk.KVSep + "Test";
+            else
+                return mUtils.FinalizeXmlResponseWithError(mRequestData[dk.ServiceName] + " invalid request !", "TA");
+
+            if (data.Contains("1"))
+                mTestData += dk.ItemSep + str.AdType + dk.KVSep + "1";
+            else
+                mTestData += dk.ItemSep + str.AdType + dk.KVSep + "2";
+            data = "99" + Constants.Strings.DefaultClientId.Length + Constants.Strings.DefaultClientId +
+                   mUtils.StringToHex(mTestData);
+        }
+
+        #endregion
+
+        #region Decode/Decrypt the request
+
+        try
+        {
+            if (data.StartsWith("99"))
+            {
+
+                // test and development data is not encrypted
+                var requestData = data.Substring(2, data.Length - 2); // dump the 99 from front
+
+                // isloate key from data
+                var request = mUtils.GetIdDataFromRequest(requestData);
+
+                // parse string(data) and add to the dictionary
+                if (
+                    mUtils.ParseIntoDictionary(mUtils.HexToString(request.Item2), mRequestData, char.Parse(dk.KVSep)) ==
+                    false)
+                    return mUtils.FinalizeXmlResponseWithError("TestAdService.Decode currupt data", "TA");
+            }
+            else
+            {
+                // isloate key from data
+                var request = mUtils.GetIdDataFromRequest(data);
+                if (String.IsNullOrEmpty(request.Item1))
+                    return mUtils.FinalizeXmlResponseWithError("TestAdService.currupt data", "TA");
+
+                // decrypt, parse string and add to the dictionary
+                if (
+                    mUtils.DecryptAndParseRequestData(request.Item1, request.Item2, mRequestData,
+                        char.Parse(dk.KVSep)) == false)
+                    return mUtils.FinalizeXmlResponseWithError("TestAdService.Decrypt request data error!", "TA");
+            }
+        }
+        catch (Exception ex)
+        {
+            return mUtils.FinalizeXmlResponseWithError("TestAdService.request data error: " + ex.Message, "TA");
+        }
+
+        #endregion
+
+        // set the domain where the ad server is running
+        var mHost = ConfigurationManager.AppSettings[cfg.AdServerDomain].ToString();
+        mRequestData.Remove("AdDomain");
+        mRequestData.Add("AdDomain", mHost);
+
+        // log request if debug set in web.config
+        mUtils.LogRequest(mRequestData, data, mLogId);
+
+        #region Operational Test Ping
+
+        if (mRequestData.ContainsKey(dk.Request))
+        {
+            if (mRequestData[dk.Request] == dv.Ping)
+            {
+                if (mRequestData.ContainsKey(dk.CID) == false)
+                    return mUtils.EventLogError_FinalizeXmlResponse(mSvcName, null, " Request Data (no CID)", "4");
+                var myClient = mUtils.GetClientUsingClientId(mRequestData[dk.CID]);
+                if (myClient == null)
+                    return mUtils.EventLogError_FinalizeXmlResponse(mSvcName, null, " Invalid Client Id", "4");
+                myResponse.Append("<" + sr.Reply + ">" + sr.Success + "</" + sr.Reply + ">");
+                return mUtils.FinalizeXmlResponse(myResponse, mLogId);
+            }
+        }
+        #endregion
+
+
+        if (!mRequestData.ContainsKey(dk.ClientName)) // no client name error
+            return mUtils.FinalizeXmlResponseWithError(
+                mSvcName + " invalid request, no client name!", mLogId);
+        
+        //var mClientName = mRequestData[dk.ClientName].ToLower();
+        var adid = String.Empty;
+        var adtext = String.Empty;
+        string adimg;
+        var adNo = String.Empty;
+        var mClientKey = ta.MACClientKey;
+        var landingpage = ta.HostName + "/" + ta.ClientKey + "_";
+        var adSpecificKeywords = String.Empty;
+        var rnd = new Random();
+
+        if (mRequestData.ContainsKey(dk.Ads.AdNumber))
+            adNo = mRequestData[dk.Ads.AdNumber];
+        else
+            adNo = rnd.Next(1, 6).ToString();
+
+
+        if (mRequestData.ContainsKey(dk.Ads.SpecificKeywords))
+            adSpecificKeywords = mUtils.HexToString(mRequestData[dk.Ads.SpecificKeywords]);
+
+        if (mRequestData[dk.ClientName].ToLower().Contains(ta.GolfClientWord))
+        {
+            #region Golf Clients
+            var mAdClient = ta.GolfShopAdClient;
+
+            if (mRequestData[dk.ClientName].ToLower().Contains("store"))
+            {
+                mClientKey = ta.GolfStoreClientKey;
+                mAdClient = ta.GolfStoreAdClient;
+            }
+            else if (mRequestData[dk.ClientName].ToLower().Contains("shop"))
+            {
+                mClientKey = ta.GolfShopClientKey;
+                mAdClient = ta.GolfShopAdClient;
+            }
+
+            if (!String.IsNullOrEmpty(adSpecificKeywords))
+            {
+                if (adSpecificKeywords.Contains(ta.GolfAdSpecificKeywordSpecials))
+                {               
+                    adtext = ta.GolfSpecialAdText;
+                    adid = ta.AdId_GS;
+                    landingpage += "GLS";
+                }
+                else if (adSpecificKeywords.Contains(ta.GolfAdSpecificKeywordTeeTimes))
+                { 
+                    adtext = ta.GolfTeeTimeAdText;
+                    adid = ta.AdId_TT;
+                    landingpage += "GTT";
+                }
+            }
+            if (String.IsNullOrEmpty(adid))
+            {
+                landingpage += "GL";
+                switch (adNo)
+                {
+                    case "1":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_G1;
+                        break;
+                    case "2":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_G2;
+                        break;
+                    case "3":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_G3;
+                        break;
+                    case "4":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_G4;
+                        break;
+                    default:
+                        adNo = "5";
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_G5;
+                        break;
+                }
+            }
+            adimg = ta.GolfTestAdsFolder + adid + "_" + mAdClient + ta.TestAdsImageFileType;
+            #endregion
+        }
+        else if (mRequestData[dk.ClientName].ToLower().Contains(ta.BankAdClientKey))
+        {
+            #region Bank Clients
+            var mAdClient = ta.FirstBankAdClient;
+            if (mRequestData[dk.ClientName].ToLower().Contains("test"))
+            {
+                mClientKey = ta.FirstBankClientKey;
+                mAdClient = ta.FirstBankAdClient;
+            }
+            else if (mRequestData[dk.ClientName].ToLower().Contains("test"))
+            {
+                mClientKey = ta.SecondBankClientKey;
+                mAdClient = ta.SecondBankAdClient;
+            }
+
+
+            if (!String.IsNullOrEmpty(adSpecificKeywords))
+            {
+                if (adSpecificKeywords.Contains(ta.BankAdSpecificKeywordAutoLoans))
+                {
+                    adtext = ta.BankAutoLoansAdText;
+                    adid = ta.AdId_AL;
+                    landingpage += "BCL";
+                }
+                else if (adSpecificKeywords.Contains(ta.BankAdSpecificKeywordCreditCards))
+                {
+                    adtext = ta.BankCardAdText;
+                    adid = ta.AdId_CC;
+                    landingpage += "BCC";
+                }
+            }
+            if (String.IsNullOrEmpty(adid))
+            {
+                // common bank landing page
+                landingpage += "BL";
+                switch (adNo)
+                {
+                    case "1":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_B1;
+                        break;
+                    case "2":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_B2;
+                        break;
+                    case "3":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_B3;
+                        break;
+                    case "4":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_B4;
+                        break;
+                    default:
+                        adNo = "5";
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_B5;
+                        break;
+                }
+            }
+            adimg = ta.BankTestAdsFolder + adid + "_" + mAdClient + ta.TestAdsImageFileType;
+            #endregion
+        }
+        else // use test ads (1-5)
+        {
+            #region Test Clients
+            var mAdClient = ta.DefaultAdClient;
+            landingpage += "TL";
+            mClientKey = ta.MACClientKey;
+
+            if (mRequestData[dk.ClientName].ToLower().Contains("avenue b"))
+            {
+                mClientKey = ta.AvenueBClientKey;
+                mAdClient = ta.AvenueBAdClient;
+            }
+            else if (mRequestData[dk.ClientName].ToLower().Contains("sts"))
+            {
+                mClientKey = ta.STSClientKey;
+                mAdClient = ta.STSAdClient;
+            }
+            else if (mRequestData[dk.ClientName].ToLower().Contains("tns"))
+            {
+                mClientKey = ta.TNSClientKey;
+                mAdClient = ta.TNSAdClient;
+            }
+            else if (mRequestData[dk.ClientName].ToLower().Contains("mac"))
+            {
+                mClientKey = ta.MACClientKey;
+                mAdClient = ta.MACAdClient;
+            }
+
+            if (!String.IsNullOrEmpty(adSpecificKeywords))
+            {
+                if (adSpecificKeywords.Contains(ta.TestAdSpecificKeywordDiscount))
+                {
+                    adtext = ta.TestDiscountAdText;
+                    adid = ta.AdId_TD;
+                }
+                else if (adSpecificKeywords.Contains(ta.TestAdSpecificKeywordSpecials))
+                {
+                    adtext = ta.TestSpecialAdText;
+                    adid = ta.AdId_TS;
+                }
+            }
+            if (String.IsNullOrEmpty(adid))
+            {
+                switch (adNo)
+                {
+                    case "1":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_T1;
+
+                        break;
+                    case "2":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_T2;
+                        break;
+                    case "3":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_T3;
+                        break;
+                    case "4":
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_T4;
+                        break;
+                    default:
+                        adNo = "5";
+                        adtext = ta.DefaultAdText;
+                        adid = ta.AdId_T5;
+                        break;
+                }
+            }
+            adimg = ta.TestTestAdsFolder + adid + "_" + mAdClient + ta.TestAdsImageFileType;
+            #endregion
+        }
+
+        // did an adid get computed, no error
+        if (String.IsNullOrEmpty(adid))
+            return mUtils.FinalizeXmlResponseWithError(mSvcName + 
+                    " invalid request, no ad id, adSpecificKeywords[" +
+                    adSpecificKeywords + "]", mLogId);
+
+        // construct the landing page
+        landingpage = landingpage.Replace(ta.HostName, mHost).Replace(ta.ClientKey, mClientKey) + "_" + adid +".aspx";
+        var adDiv = ta.adDiv;
+        adDiv = adDiv.Replace(ta.AdId, adid);
+        adDiv = adDiv.Replace(ta.AdLink, landingpage);
+        adDiv = adDiv.Replace(ta.AdImage, adimg);
+        adDiv = adDiv.Replace(ta.HostName, mHost);
+        var admsg = adtext + landingpage;
+
+        myResponse.Append("<" + str.AdMessage + ">" +
+                          mUtils.StringToHex(admsg) +
+                          "</" + str.AdMessage + ">");
+
+        myResponse.Append("<" + str.AdEnterOtp + ">" +
+                          mUtils.StringToHex(adDiv.Replace(ta.AdId, "EnterOTP_" + adid)) +
+                          "</" + str.AdEnterOtp + ">");
+
+        //myResponse.Append("<" + str.AdVerification + ">" +
+        //                  mUtils.StringToHex(adDiv.Replace(ta.AdId, "Verification_" + adid)) +
+        //                  "</" + str.AdVerification + ">");
+
+        myResponse.Append("<" + sr.Details + ">" +
+                          mRequestData[dk.ClientName] + "(" + adNo + ")" +
+                          "</" + sr.Details + ">");
+
+        return mUtils.FinalizeXmlResponse(myResponse, mLogId);
+
+    }
+}

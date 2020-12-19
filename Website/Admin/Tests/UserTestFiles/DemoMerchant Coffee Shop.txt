@@ -1,0 +1,1 @@
+MACBank|Type:Merchant|ShortName:CS|MerchantName:Coffee Shop|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|File:DM Coffee Shop.txt

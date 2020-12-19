@@ -1,0 +1,12 @@
+﻿<Client>
+	<ClientName>MAC Test</ClientName>
+	<ClientId>30507c7a-f8e9-74cb-0dbf-08d1d18c6bb4</ClientId>
+	<Url>api.authenticationads.com/Ad.svc</Url>
+	<UserName>Terry</UserName>
+	<UserPassword>mac123!</UserPassword>
+	<APIKey>1106fdc1-1b91-71c4-296e-08d1b88891e5</APIKey>
+	<APIUserName>macapi</APIUserName>
+	<APIPassword>mactest123</APIPassword>
+	<Name>MAC Test 1</Name>
+	<Id>e2ce3357-af65-4dcc-e580-08d1d18dbfb9</Id>
+</Client>

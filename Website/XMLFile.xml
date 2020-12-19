@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<documents>
+  <documenttemplates messageclass='Email-5' messagedesc='Admin Login'>
+    <messageformat><![CDATA[Login~OTP:[OTP]||]]></messageformat>
+    <messagefromaddress>admin@[ClientName]</messagefromaddress>
+    <messagefromname>[ClientName]</messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Email-1' messagedesc='Authentication'>
+    <messageformat><![CDATA[[ClientName] Authentication~[FirstName],||Your Authentication code is:[OTP]||[AD]]]></messageformat>
+    <messagefromaddress>admin@[ClientName]</messagefromaddress>
+    <messagefromname>[ClientName]</messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Email-0' messagedesc='Generic'>
+    <messageformat><![CDATA[[ClientName]'s Generic subject~[FirstName],||[DETAILS]||[AD]]]></messageformat>
+    <messagefromaddress>admin@[ClientName]</messagefromaddress>
+    <messagefromname>[ClientName]</messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Email-4' messagedesc='Notification'>
+    <messageformat><![CDATA[[ClientName] Notification~Hello [FirstName],||[DETAILS]|Thank you,|[ClientName]||[AD]]]></messageformat>
+    <messagefromaddress>admin@[ClientName]</messagefromaddress>
+    <messagefromname>[ClientName]</messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Email-3' messagedesc='Registration OTP'>
+    <messageformat><![CDATA[[ClientName] Registration Completion~Hello [FirstName],||To complete your registration enter the verification code[OTP]|Thank you,|[ClientName]||[AD]]]></messageformat>
+    <messagefromaddress>admin@[ClientName]</messagefromaddress>
+    <messagefromname>[ClientName]</messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Email-2' messagedesc='Transaction Verification'>
+    <messageformat><![CDATA[[ClientName] Transaction Verification~[FirstName],||Your Transaction Verification code is:[OTP]|[DETAILS]||[AD]]]></messageformat>
+    <messagefromaddress>admin@[ClientName]</messagefromaddress>
+    <messagefromname>[ClientName]</messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-5' messagedesc='Admin Login'>
+    <messageformat><![CDATA[Kohl's,|Your code for login is:[OTP]|Login OTP|[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-1' messagedesc='Authentication'>
+    <messageformat><![CDATA[Kohl's,|Your Authentication code is [OTP]|[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-0' messagedesc='Generic'>
+    <messageformat><![CDATA[Kohl's,|[DETAILS]|[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-4' messagedesc='Notification'>
+    <messageformat><![CDATA[Kohl's,|[DETAILS]|[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-3' messagedesc='Registration OTP'>
+    <messageformat><![CDATA[Kohl's,|Your Registration code is:[OTP]|[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-2' messagedesc='Transaction Verification'>
+    <messageformat><![CDATA[Kohl's,|Your Transaction Verification code is:[OTP]|[DETAILS]|[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Voice-5' messagedesc='Admin Login'>
+    <messageformat><![CDATA[To login enter [OTP]||again enter [OTP]||[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Voice-1' messagedesc='Authentication'>
+    <messageformat><![CDATA[Hello [FirstName],||please enter the one time password into the log in form||The one time password is[OTP],again the password is [OTP]||[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Voice-0' messagedesc='Generic'>
+    <messageformat><![CDATA[[FirstName],|[DETAILS]||[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Voice-4' messagedesc='Notification'>
+    <messageformat><![CDATA[Hello [FirstName],||[ClientName]would like you to know[DETAILS]||Thank you||[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Voice-3' messagedesc='Registration OTP'>
+    <messageformat><![CDATA[Hello [FirstName],||To complete your registration enter the verification code [OTP]||again the code is [OTP]||[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Voice-2' messagedesc='Transaction Verification'>
+    <messageformat><![CDATA[Hello [FirstName],||the transaction Details are [DETAILS] if correct enter the verification code,[OTP]||again the code is [OTP]||[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Email-6' messagedesc='Transaction Verification - Reply'>
+    <messageformat><![CDATA[[ClientName] Transaction Verification~[FirstName],||Please reply with your Transaction Verification code [OTP]|[DETAILS]||[AD]]]></messageformat>
+    <messagefromaddress>admin@[ClientName].com</messagefromaddress>
+    <messagefromname>[ClientName]</messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-6' messagedesc='OptIn'>
+    <messageformat><![CDATA[[ClientName],|Login code:[OTP]|[DETAILS]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-7' messagedesc='OptOut'>
+    <messageformat><![CDATA[[ClientName],|Login code:[OTP]|[DETAILS]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-8' messagedesc='Help'>
+    <messageformat><![CDATA[[ClientName],|Login code:[OTP]|[DETAILS]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Sms-9' messagedesc='Transaction Verification - Reply'>
+    <messageformat><![CDATA[[ClientName],|Reply with [OTP] to authorize|[DETAILS]|[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+  <documenttemplates messageclass='Voice-6' messagedesc='Transaction Verification - Reply'>
+    <messageformat><![CDATA[Hello [FirstName],||the transaction Details are [DETAILS] if correct enter on your phone the verification code,[OTP]||again the code is [OTP]||[AD]]]></messageformat>
+    <messagefromaddress></messagefromaddress>
+    <messagefromname></messagefromname>
+  </documenttemplates>
+</documents>

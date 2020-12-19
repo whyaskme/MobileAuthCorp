@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<EndUsers>
+  <EndUser Title='Mr.' FirstName='Bob' MiddleName='E.' LastName='White' Suffix='Jr.' PhoneNumber='4802684076' EmailAddress='bwhite@mobileauthcorp.com' UID='bwhite@mobileauthcorp.com' DOB='01/31/1987' />
+  <EndUser LastName='Shoes' PhoneNumber='4802684076' EmailAddress='jshoes@mobileauthcorp.com' UID='jshoes@mobileauthcorp.com' DOB='02/02/1990' />
+  <EndUser FirstName='John' LastName='Doe' PhoneNumber='4802684076' EmailAddress='jdoe@mobileauthcorp.com' UID='jdoe@mobileauthcorp.com' DOB='03/03/1990' />
+  <EndUser FirstName='Don' LastName='Gleason' PhoneNumber='4803304246' EmailAddress='dgleason@mobileauthcorp.com' UID='dgleason@mobileauthcorp.com' DOB='02/14/1947' />
+</EndUsers>

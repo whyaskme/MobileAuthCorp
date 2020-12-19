@@ -1,0 +1,1 @@
+MACBank|Type:Merchant|ShortName:SGS1|MerchantName:Scottsdale Golf Store|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|File:DemoMerchant1.txt

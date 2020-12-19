@@ -1,0 +1,115 @@
+﻿using System;
+using System.Text;
+using System.Web.Services;
+using System.Xml;
+
+using MACServices;
+using dk = MACServices.Constants.Dictionary.Keys;
+
+/// <summary>
+/// Summary description for RegisterClients
+/// </summary>
+[WebService(Namespace = "http://tempuri.org/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+[System.Web.Script.Services.ScriptService]
+public class RegisterProviders : WebService {
+
+    public XmlDocument XmlResponse = new XmlDocument();
+    public StringBuilder SbResponse = new StringBuilder();
+
+
+    [WebMethod]
+    public XmlDocument WsRegisterProviders()
+    {
+        var mUtils = new Utils();
+
+        mUtils.InitializeXmlResponse(SbResponse);
+
+        try
+        {
+            for (var i = 0; i < 3; i++)
+            {
+                var newSmsProvider = new ProviderSms
+                {
+                    Name = "SMS #" + i,
+                    ApiVersion = "2010-04-01",
+                    AuthToken = "6660bc2741bd4e2be42960e14815bd8b",
+                    NewlineReplacement = "\r\n",
+                    ClientCharge = 0.015,
+                    Enabled = true,
+                    Key = String.Empty,
+                    LoginPassword = String.Empty,
+                    LoginUsername = String.Empty,
+                    Port = String.Empty,
+                    Protocol = String.Empty,
+                    ProviderCharge = 0.003,
+                    RequiresSsl = false,
+                    Server = String.Empty,
+                    ShortCodeFromNumber = "(949) 891-0981",
+                    Sid = "ACb095f77308ab428fb502973df7b0e085",
+                    Url = "https://api.twilio.com",
+                    VoiceToken = String.Empty
+                };
+                mUtils.ObjectCreate(newSmsProvider);
+
+                var newEmailProvider = new ProviderEmail
+                {
+                    Name = "Emmail #" + i,
+                    NewlineReplacement = "<br />",
+                    Enabled = true,
+                    OtpSubject = "MAC Services(To be set in client config)",
+                    NotficationSubject = "MAC Notification(To be set in client config)",
+                    FromEmail = "service@mobileauthcorp.com",
+                    LoginUserName = "service@mobileauthcorp.com",
+                    LoginPassword = "MACotp!",
+                    Server = "smtp.gmail.com",
+                    Port = "521",
+                    RequiresSsl = true,
+                    CredentialsRequired = true,
+                    IsBodyHtml = true,
+                    ProviderCharge = 0,
+                    ClientCharge = .5
+                };
+                mUtils.ObjectCreate(newEmailProvider);
+
+                var newVoiceProvider = new ProviderVoice
+                {
+                    Name = "Voice #" + i,
+                    ApiVersion = "2.01.37",
+                    FromPhoneNumber = "480-268-4076",
+                    Key = String.Empty,
+                    LoginUsername = "whyaskme",
+                    LoginPassword = "whatsmypassword?",
+                    Port = "8010",
+                    Protocol = "REST",
+                    RequiresSsl = true,
+                    Server = "api.messagebroadcast.com",
+                    Sid = String.Empty,
+                    VoiceToken = String.Empty
+                };
+                mUtils.ObjectCreate(newVoiceProvider);
+            }
+        }
+        catch (Exception ex)
+        {
+            var mDetails = ex.ToString().Replace(dk.ItemSep, "!").Replace(dk.KVSep, ";") + Constants.TokenKeys.ClientName + "NA";
+            var exceptionEvent = new Event
+            {
+                EventTypeDesc = Constants.TokenKeys.ExceptionDetails + mDetails
+            };
+            exceptionEvent.Create(Constants.EventLog.Exceptions.General, null);
+
+            SbResponse.Append(ex.Message);
+        }
+        finally
+        {
+            mUtils.FinalizeXmlResponse(SbResponse, "RP");
+        }
+
+        XmlResponse.LoadXml(SbResponse.ToString());
+
+        return XmlResponse;
+    }
+    
+}

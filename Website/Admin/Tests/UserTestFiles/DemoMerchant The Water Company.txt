@@ -1,0 +1,1 @@
+MACBank|Type:Utility|ShortName:TWCo|MerchantName:The Water Company|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|File:DemoMerchants.txt

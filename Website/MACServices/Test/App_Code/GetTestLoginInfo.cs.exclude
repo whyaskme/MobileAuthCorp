@@ -1,0 +1,267 @@
+﻿using System;
+using System.Collections.Generic;
+
+using System.Net;
+
+using System.Web;
+using System.Web.Services;
+using System.Configuration;
+
+using System.Text;
+using System.Xml;
+using System.IO;
+
+using MACServices;
+using dk = MACServices.Constants.Dictionary.Keys;
+using dv = MACServices.Constants.Dictionary.Values;
+using dkui = MACServices.Constants.Dictionary.Userinfo;
+using cfg = MACServices.Constants.WebConfig.AppSettingsKeys;
+
+[WebService(Namespace = "http://mobileauthcorp.com/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+
+[System.Web.Script.Services.ScriptService]
+public class GetTestLoginInfo : WebService
+{
+    [WebMethod]
+    public XmlDocument WsGetTestLoginInfo(string data)
+    {
+        var mUtils = new Utils();
+
+        const string lc_TestEndUserList = "TestEndUserList";
+        const string lc_DefaultTestFile = "MACTestBankUsers.txt";
+
+        var mRequestData = new Dictionary<string, string> {{dk.ServiceName, "GetTestLoginInfo"}};
+        var myResponse = new StringBuilder();
+        mUtils.InitializeXmlResponse(myResponse);
+
+        if (data.Length < 4)
+        {
+            #region Test
+
+            string temp;
+            switch (data.Replace("1", "").Replace("2", ""))
+            {
+                case "rt":
+                    temp = dk.Register + dk.KVSep + "terry" +
+                    dk.ItemSep + dkui.FirstName + dk.KVSep + "Terry" +
+                    dk.ItemSep + dkui.LastName + dk.KVSep + "Davis" +
+                    dk.ItemSep + dkui.PhoneNumber + dk.KVSep + "4802684076" +
+                    dk.ItemSep + dkui.EmailAddress + dk.KVSep + "tdavis@mobileauthcorp.com";
+                    break;
+                case "rd":
+                    temp = dk.Register + dk.KVSep + "don" +
+                           dk.ItemSep + dkui.FirstName + dk.KVSep + "Don" +
+                           dk.ItemSep + dkui.LastName + dk.KVSep + "Gleason" +
+                           dk.ItemSep + dkui.PhoneNumber + dk.KVSep + "4802684076" +
+                           dk.ItemSep + dkui.EmailAddress + dk.KVSep + "dgleason@mobileauthcorp.com";
+                    break;
+
+                case "ut":
+                    temp = dk.User + dk.KVSep + "terry";
+                    break;
+                case "ud":
+                    temp = dk.User + dk.KVSep + "don";
+                    break;
+
+                case "lt":
+                    temp = dk.Login + dk.KVSep + "tdavis@mobileauthcorp.com";
+                    break;
+                case "ld":
+                    temp = dk.Login + dk.KVSep + "dgleason@mobileauthcorp.com";
+                    break;
+
+                case "l":
+                    temp = lc_TestEndUserList + dk.KVSep + "All";
+                    break;
+                default:
+                    return mUtils.FinalizeXmlResponseWithError("?", "TA");
+            }
+            // fixed test file
+            if (data.StartsWith("1"))
+            {
+                temp += dk.ItemSep + dk.FileName + dk.KVSep + "MACTestBankUsers.txt";
+            }else if (data.StartsWith("2"))
+            {
+                temp += dk.ItemSep + dk.FileName + dk.KVSep + "TerryOnly.txt";
+            }
+            temp += dk.ItemSep + dk.ClientName + dk.KVSep + "Kohl's";
+            temp += dk.ItemSep + dk.RegistrationType + dk.KVSep + dv.ClientRegister;
+            data = mUtils.StringToHex(temp);
+            #endregion
+        }
+
+        #region decode request
+        // parse string(data) and add to the dictionary
+        var mData = mUtils.HexToString(data);
+        if (mUtils.ParseIntoDictionary(mData, mRequestData, char.Parse(dk.KVSep)) == false)
+            return mUtils.EventLogError_FinalizeXmlResponse(mRequestData[dk.ServiceName],
+                null, "Corrupt request!" + Environment.NewLine + data, "99");
+        #endregion
+
+        string mKey;
+        string myValue;
+
+        if (mRequestData.ContainsKey(dk.Register))
+        {
+            mKey = dk.Register;
+            myValue = mRequestData[mKey];
+        }
+        else if (mRequestData.ContainsKey(dk.User))
+        {
+            mKey = dk.User;
+            myValue = mRequestData[mKey];
+        }
+        else if (mRequestData.ContainsKey(dk.Login))
+        {
+            mKey = dk.Login;
+            myValue = mRequestData[mKey];
+        }
+        else if (mRequestData.ContainsKey(lc_TestEndUserList))
+        {
+            mKey = dk.User;
+            myValue = "All";
+
+        }
+        else
+            return mUtils.EventLogError_FinalizeXmlResponse(mRequestData[dk.ServiceName],
+                null, " Invalid request[" + mRequestData[dk.Request] + "]", null);
+
+        var filename = lc_DefaultTestFile; // assume file name was not in request data
+        if (mRequestData.ContainsKey(dk.FileName))
+            filename = mRequestData[dk.FileName]; // Request data contained file name
+
+        var path = HttpContext.Current.Server.MapPath("../../");
+        var filePath = Path.Combine(path, "MACUserApps/Web/Tests/UserTestFiles", filename);
+        if (File.Exists(filePath) == false)
+            return mUtils.FinalizeXmlResponseWithError(mRequestData[dk.ServiceName] + " No file @ " + filePath, "LI");
+        string line;
+        var mEndUserList = "";
+        // Read the file and display it line by line.
+        var mFile = new StreamReader(filePath);
+        while ((line = mFile.ReadLine()) != null)
+        {
+            if (String.IsNullOrWhiteSpace(line)) continue;
+            if (!line.StartsWith(mKey)) continue;
+
+            var myData = new Dictionary<string, string> { { dk.ServiceName, "GetTestLoginInfo" } };
+            if (mUtils.ParseIntoDictionary(line, myData, char.Parse(dk.KVSep)) == false)
+                return mUtils.FinalizeXmlResponseWithError(myData[dk.ServiceName] + "No line for " + mKey + " !", "LI");
+
+            if (!myData.ContainsKey(mKey)) continue;
+            if (mRequestData.ContainsKey(dk.Register))
+            {
+                myResponse.Append("<Register>" + RegisterClients(line, myData) + "</Register>");
+                continue;
+            }
+            if (mRequestData.ContainsKey(lc_TestEndUserList))
+            {
+                mEndUserList += dk.ItemSep + myData[dkui.FirstName];
+                continue;
+            }
+
+            if (myData[mKey] != myValue) continue;
+            mFile.Close();
+            myResponse.Append("<User>");
+            myResponse.Append("<" + dkui.FirstName + ">" + myData[dkui.FirstName] + "</" + dkui.FirstName + ">");
+            myResponse.Append("<" + dkui.LastName + ">" + myData[dkui.LastName] + "</" + dkui.LastName + ">");
+            myResponse.Append("<" + dkui.PhoneNumber + ">" + myData[dkui.PhoneNumber] + "</" + dkui.PhoneNumber + ">");
+            myResponse.Append("<" + dkui.EmailAddress + ">" + myData[dkui.EmailAddress] + "</" + dkui.EmailAddress + ">");
+            if (myData.ContainsKey(dkui.UID))
+                myResponse.Append("<" + dkui.UID + ">" + myData[dkui.UID] + "</" + dkui.UID + ">");
+            else
+                myResponse.Append("<" + dkui.UID + ">" + myData[dkui.EmailAddress] + "</" + dkui.UID + ">");
+            
+            myResponse.Append("<Type>" + mKey + "</Type>");
+            if (myData.ContainsKey(dk.RegistrationType))
+            {
+                myResponse.Append("<" + dk.RegistrationType + ">" + myData[dk.RegistrationType] + "</" + dk.RegistrationType + ">");
+                if (myData.ContainsKey(dk.GroupName))
+                {
+                    var mGroup = mUtils.GetGroupUsingGroupName(myData[dk.GroupName]);
+                    if (mGroup != null)
+                        myResponse.Append("<" + dk.GroupId + ">" + mGroup._id.ToString() + "</" + dk.GroupId + ">");
+                }
+            }
+            myResponse.Append("</User>");
+                    mFile.Close();
+                    return mUtils.FinalizeXmlResponse(myResponse, "LI");
+        }
+
+        if (mRequestData.ContainsKey(lc_TestEndUserList))
+        {
+            if (String.IsNullOrEmpty(mEndUserList))
+                return mUtils.FinalizeXmlResponseWithError(mRequestData[dk.ServiceName] + " no users !", "LI");
+
+            myResponse.Append("<EndUserList>" + mEndUserList.Trim(char.Parse(dk.ItemSep)) + "</EndUserList>");
+            return mUtils.FinalizeXmlResponse(myResponse, "LI");
+        }
+        return mUtils.FinalizeXmlResponseWithError(mRequestData[dk.ServiceName] + " user not found using !", "LI");
+    }
+
+    private string RegisterClients(string pLine, Dictionary<string, string> pData)
+    {
+        var mUtils = new Utils();
+
+        if (pData.ContainsKey(dk.ClientName) == false)
+            return "No client name on line " + pLine;
+        // id must be valid client
+        var myClient = mUtils.GetClientUsingClientName(pData[dk.ClientName]);
+        if (myClient == null) return "Invalid client on line " + pLine;
+
+        string url;
+
+        try
+        {
+            url = ConfigurationManager.AppSettings[cfg.MacServicesUrl];
+            if (String.IsNullOrEmpty(url)) throw new Exception(cfg.MacServicesUrl);
+            url += "/" + Constants.ServiceUrls.SecureTraidingRegisterUserWebService;
+        }
+        catch (Exception ex)
+        {
+            return "Configuration error, missing key web.config: " + ex.Message;
+        }
+
+        try
+        {
+            // use string builder to be thread safe
+            var data = String.Format("data=99{0}{1}{2}",
+                /*0*/myClient.ClientId.ToString().Length,
+                /*1*/myClient.ClientId,
+                /*2*/mUtils.StringToHex(pLine));
+
+            // make web service call
+            var dataStream = Encoding.UTF8.GetBytes(data);
+            var webRequest = WebRequest.Create(url);
+            webRequest.Method = "POST";
+            webRequest.ContentType = "application/x-www-form-urlencoded";
+            webRequest.ContentLength = dataStream.Length;
+            var newStream = webRequest.GetRequestStream();
+            // Send the data.
+            newStream.Write(dataStream, 0, dataStream.Length);
+            newStream.Close();
+            var res = webRequest.GetResponse();
+            var response = res.GetResponseStream();
+            var xmlDoc = new XmlDocument();
+            if (response != null) xmlDoc.Load(response);
+            var elemList = xmlDoc.GetElementsByTagName("Error");
+            if (elemList.Count != 0)
+                return elemList[0].InnerXml;
+            elemList = xmlDoc.GetElementsByTagName("Reply");
+            if (elemList.Count != 0)
+                return elemList[0].InnerXml;
+            return @"STSEndUserRequest invalid response" + xmlDoc.ToString();
+        }
+        catch (Exception ex)
+        {
+            var mDetails = ex.ToString().Replace(dk.ItemSep, "!").Replace(dk.KVSep, ";") + Constants.TokenKeys.ClientName + "NA";
+            var exceptionEvent = new Event
+            {
+                EventTypeDesc = Constants.TokenKeys.ExceptionDetails + mDetails
+            };
+            exceptionEvent.Create(Constants.EventLog.Exceptions.General, null);
+
+            return "ServiceRequest(" + url + "):" + ex.Message;
+        }
+    }
+}

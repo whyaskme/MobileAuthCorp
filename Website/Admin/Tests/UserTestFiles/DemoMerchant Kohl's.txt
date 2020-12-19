@@ -1,0 +1,1 @@
+MACBank|Type:Merchant|ShortName:Kohl's|MerchantName:Kohl's|PhoneNumber:4802684076|EmailAddress:tdavis@mobileauthcorp.com|File:DemoMerchants.txt

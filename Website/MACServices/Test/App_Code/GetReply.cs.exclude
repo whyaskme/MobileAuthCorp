@@ -1,0 +1,113 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Web;
+using System.Web.Services;
+using System.Xml;
+using System.Threading;
+
+using MACServices;
+using dk = MACServices.Constants.Dictionary.Keys;
+using dv = MACServices.Constants.Dictionary.Values;
+using cs = MACServices.Constants.Strings;
+using cr = MACServices.Constants.ReplyServiceRequest;
+using sr = MACServices.Constants.ServiceResponse;
+
+[WebService(Namespace = "http://mobileauthcorp.com/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+
+public class GetReply : WebService
+{
+    private const string mSvcName = "GetReply";
+    private const string mLogId = "GR";
+
+    [WebMethod]
+    public XmlDocument WsGetReply()
+    {
+        var mUtils = new Utils();
+        var data = HttpContext.Current.Request.QueryString.ToString();
+
+        // request data Dictionary
+        var myData = new Dictionary<string, string> {{dk.ServiceName, mSvcName}};
+        // start the XML response
+        var myResponse = new StringBuilder();
+        mUtils.InitializeXmlResponse(myResponse);
+
+        // log request if debug set in web.config
+        var eid = mUtils.LogRequest(myData, data, mLogId);
+
+        // parse command from query string
+        var mCmd = HttpContext.Current.Request.QueryString[cr.Request];
+        if (String.IsNullOrEmpty(mCmd))
+            return mUtils.EventLogError_FinalizeXmlResponse(mSvcName, null,
+                "Invalid request, no command [" + cr.Request + "] in QueryString." + Environment.NewLine + data, null);
+        
+        var mCid = HttpContext.Current.Request.QueryString[cr.cid];
+        if (String.IsNullOrEmpty(mCid))
+            return mUtils.EventLogError_FinalizeXmlResponse(mSvcName, null,
+                "Invalid request, no ClientId [" + cr.cid + "] in QueryString." + Environment.NewLine + data, null);
+        myData.Add(dk.CID, mCid);
+
+        var mClient = mUtils.GetClientUsingClientId(mCid);
+        if (mClient == null)            
+            return mUtils.EventLogError_FinalizeXmlResponse(mSvcName, null,
+                "Invalid Client Id in QueryString." + Environment.NewLine + data, null);
+        myData.Add(dk.ClientName, mClient.Name);
+
+        var mRequestId = HttpContext.Current.Request.QueryString[cr.RequestId];
+        if (String.IsNullOrEmpty(mRequestId))
+            return mUtils.EventLogError_FinalizeXmlResponse(mSvcName, null,
+                "Invalid request, no RequestId  [" + cr.RequestId + "] in QueryString." + Environment.NewLine + data, null);
+
+        var mOtp = mUtils.GetOtpUsingRequestId(mRequestId);
+        if (mOtp == null)            
+            return mUtils.EventLogError_FinalizeXmlResponse(mSvcName, null,
+                "Invalid Request Id in QueryString." + Environment.NewLine + data, null);
+
+        switch (mCmd)
+        {
+            case cr.SetResponseOTP:
+                myResponse.Append("<" + sr.Reply + ">Done</" + sr.Reply + ">");
+                return mUtils.FinalizeXmlResponse(myResponse, mLogId);
+
+            case cr.GetReplyCompletion:
+            {
+                try
+                {
+                    var mLoopCount = 0;
+                    while (true)
+                    {
+                        if (mOtp.ClientId.ToString() != myData[dk.CID])
+                            return
+                                mUtils.FinalizeXmlResponseWithError(mSvcName + "." + myData[dk.Request] + "Invalid CID",
+                                    mLogId);
+                        if (mOtp.Active)
+                        {
+                            if (++mLoopCount < 5)
+                            {
+                                Thread.Sleep(2000); //2 seconds
+                                continue; // check again
+                            }
+                            myResponse.Append("<" + sr.Reply + ">Wait</" + sr.Reply + ">");
+                            return mUtils.FinalizeXmlResponse(myResponse, mLogId);
+                        }
+                        if (mOtp.ProvidersReply == sr.Validated)
+                        {
+                            myResponse.Append("<" + sr.Reply + ">Approved</" + sr.Reply + ">");
+                            return mUtils.FinalizeXmlResponse(myResponse, mLogId);
+                        }
+                        myResponse.Append("<" + sr.Error + ">" + mOtp.ErrorMsg + "</" + sr.Error + ">");
+                        return mUtils.FinalizeXmlResponse(myResponse, mLogId);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return
+                        mUtils.FinalizeXmlResponseWithError(
+                            mSvcName + "." + myData[dk.CID] + "[" + eid + "]" + ex.Message, mLogId);
+                }
+            }
+        }
+        return mUtils.FinalizeXmlResponseWithError(mSvcName + "." + myData[dk.CID] + "unsuppored request [" + eid + "]", mLogId);
+    }
+}

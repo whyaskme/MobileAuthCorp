@@ -1,0 +1,345 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" EnableViewState="true" CodeFile="AdminConsole.master.cs" ClientIDMode="Static" Inherits="MasterPages.AdminConsole" %>
+
+<%@ Register Src="~/UserControls/NavBreadCrumb.ascx" TagPrefix="uc1" TagName="NavBreadCrumb" %>
+
+
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+
+<html lang="en"> <!--<![endif]-->
+<head runat="server">
+        
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+
+    <!-- Use Internet Explorer 9 Standards mode -->
+    <%--<meta http-equiv="x-ua-compatible" content="IE=9">--%>
+
+    <%--<meta http-equiv="x-ua-compatible" content="IE=10" >--%>
+
+    <title>MAC Otp System Administration</title>
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+
+    <link href="/App_Themes/CSS/jquery-ui-smoothness.css" rel="stylesheet" />
+    
+    <script src="/JavaScript/jquery-1.10.2.js"></script>
+    <script src="/JavaScript/jquery-ui-1-11-0.js"></script>
+    <script src="/JavaScript/jquery.timer.js"></script>
+    <script src="/JavaScript/jquery.validate.js"></script>
+    <script src="/Javascript/jquery.printElement.js"></script>
+
+    <%--<link href="/App_Themes/CSS/Admin.css" rel="stylesheet" />--%>
+    <link href="/App_Themes/CSS/table-style.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/App_Themes/CSS/style.css" />
+    <link rel="stylesheet" href="/App_Themes/CSS/prism.css" />
+    <link rel="stylesheet" href="/App_Themes/CSS/chosen.css" />
+
+    <link rel="shortcut icon" href="/Images/favicon.ico" />
+    <link rel="stylesheet" href="/App_Themes/CSS/foundation_menu.css" />
+
+    <link href="/App_Themes/CSS/Admin.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/Javascript/Constants.js"></script>
+    <script type="text/javascript" src="/Javascript/MACSystemAdmin-Responsive.js"></script>
+    <script type="text/javascript" src="/Javascript/jquery.cookie.js"></script>
+
+    <asp:ContentPlaceHolder id="ScriptContainer" runat="server">
+        <script type="text/javascript">
+            $().ready(function () {
+
+                var processMoveTop = (window.innerHeight / 2) - 25;
+                var processMoveLeft = (window.innerWidth / 2) - 200;
+
+                $('#divDialogContainer2').css('top', processMoveTop);
+                $('#divDialogContainer2').css('left', processMoveLeft);
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $("#popupDatepickerStartDate").datepicker();
+                $("#popupDatepickerEndDate").datepicker();
+            });
+           
+        </script>
+
+    </asp:ContentPlaceHolder>
+</head>
+
+<body id="pageBody" onload="javascript: setSelectedItemFocus();">
+
+    <div id="divPleaseWaitProcessing2" class="lightbox_background" style="text-align: right;"></div>
+    <div id="divDialogContainer2" class="lightbox_content">
+        <img id="imgPleaseWaitImage" runat="server" alt="" src="~/Images/Please-Wait-2.gif" />
+    </div>
+
+    <%--loading lightbox--%>
+    <div id="divPleaseWaitProcessing" class="lightbox_background">
+        <div id="divDialogContainer" class="lightbox_content">
+            <div id="circularG">
+                <div id="circularG_1" class="circularG"></div>
+                <div id="circularG_2" class="circularG"></div>
+                <div id="circularG_3" class="circularG"></div>
+                <div id="circularG_4" class="circularG"></div>
+                <div id="circularG_5" class="circularG"></div>
+                <div id="circularG_6" class="circularG"></div>
+                <div id="circularG_7" class="circularG"></div>
+                <div id="circularG_8" class="circularG"></div>
+            </div>
+        </div>
+    </div>
+
+    <%--iframe popup lightbox--%>
+    <div id="divPleaseWaitProcessing_popup" class="lightbox_background_popup"></div>
+    <div id="divDialogContainer_popup" class="lightbox_content_popup"></div>
+
+    <div id="DebugInfo" runat="server" class="panel" style="padding:0;margin-bottom:0.125rem;">
+        <div class="row" style="text-align:right;margin-top:0 !important; padding: 5px;">
+            <a href="#" id="debugToggle">[x]</a>
+        </div>
+        <div class="row" id="debugInfoContent" style="padding-top: 10px; padding-bottom: 15px;">
+            <div class="large-12 medium-12 small-12 columns" style=" position: relative; top: -10px; border: solid 0px #ff0000; margin-bottom: 0px;">
+                <div id="ServerInfo" runat="server" class="large-6 medium-6 small-12 columns DebugInfoLeft">
+                    Debugging info here...
+                </div>
+                <div class="show-for-small">&nbsp;</div>
+                <div id="PerformanceInfo" runat="server" class="large-6 medium-6 small-12 columns DebugInfoRight small-only-text-left">                
+                    Timer info here...
+                </div>
+            </div>
+            <div class="large-12 medium-12 small-12 columns" style="border: solid 0px #ff0000;">
+                <div id="divMemberName" runat="server" class="large-6 medium-6 small-12 columns DebugInfoLeft" style="font-weight: bold; color: #0362a6;">
+                    Member Name
+                </div>
+                <div class="show-for-small">&nbsp;</div>
+                <div id="divMemberRole" runat="server" class="large-6 medium-6 small-12 columns DebugInfoRight small-only-text-left" style="font-weight: bold; color: #0362a6;">                
+                    Member Role
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form id="formMain" runat="server" autocomplete="on" method="post" onsubmit="javascript: ShowProcessingMessage();">
+
+    <div id="divReadOnlyStatus" runat="server" class="panel" style="padding:0.625rem 0;margin-bottom:0.125rem; background-color: #fcc;">
+        <div class="row">
+            <div id="Div2" runat="server" class="large-12 columns text-center">
+                Read Only Mode
+            </div>
+        </div>
+    </div>
+
+        <!--Logo area-->
+        <!--Create new IDs for the following below: 'SiteLogo_Mobile', 'lnkMyAccountMobile', and 'lnkLogoffMobile'.-->
+
+        <div id="divTopMenu_Desktop" runat="server" class="row hide-for-small">
+          <div class="large-5 medium-5 small-5 columns">
+            <div style="padding:5px 0;"><asp:ImageButton ID="SiteLogo" runat="server" ImageUrl="~/Images/mac-logo_80.png" PostBackUrl="~/Admin/" /></div>
+          </div>
+          <div class="large-7 medium-7 small-7 columns">
+            <div style="padding:10px 0 0;text-align:right;" class="clearfix">
+                <div id="divLoginMyAccountControlsContainer_Desktop" runat="server" class="panel radius" style="padding:.375rem .5rem .5rem;margin:0 0 13px;display:block;width: 10.625rem;text-align:center;float:right;">
+                    <span id="spanMyAccountContainer1" runat="server">
+                        <asp:LinkButton ID="lnkMyAccount" runat="server" PostBackUrl="~/Admin/Users/MyAccount/"><span id="myAccountId1" runat="server" style="font-size:.75rem;">My Account</span></asp:LinkButton>
+                        <span style="padding:0 0.625rem;font-size:.688rem;color:#999;">|</span>
+                    </span>
+                    <asp:LinkButton ID="lnkLogoff" runat="server" PostBackUrl="~/Admin/Security/Logoff.aspx"><span style="font-size:.75rem;">Logout</span></asp:LinkButton>
+                </div>
+                <div style="clear:both"></div>
+                <div id="divRunningEnvironment_Desktop" runat="server" style="white-space: nowrap;display:block;width: 10.625rem;float:right; font-size: 12px; font-weight: bold; color: #0362a6;">
+                    Running Environment
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div runat="server" class="row show-for-small">
+          <div class="large-5 medium-5 small-12 columns">
+            <div style="padding:5px 0;text-align:center;"><asp:ImageButton ID="SiteLogo_Mobile" runat="server" ImageUrl="~/Images/mac-logo_80.png" PostBackUrl="~/Admin/" /></div>
+          </div>
+          <div class="large-7 medium-7 small-12 columns">
+            <div style="padding:10px 0 15px;text-align:center;">
+                <div id="divLoginMyAccountControlsContainer_Mobile" runat="server" class="panel radius" style="margin:0 auto;padding:.375rem .5rem .5rem;display:block;width: 10.625rem;text-align:center;">
+                    <span id="spanMyAccountContainer2" runat="server">
+                        <asp:LinkButton ID="LinkButton2" runat="server" PostBackUrl="~/Admin/Users/MyAccount/"><span id="myAccountId2" runat="server" style="font-size:.75rem;">My Account</span></asp:LinkButton>
+                        <span style="padding:0 0.625rem;font-size:.688rem;color:#999;">|</span>
+                    </span>
+                    <asp:LinkButton ID="LinkButton3" runat="server" PostBackUrl="~/Admin/Security/Logoff.aspx"><span style="font-size:.75rem;">Logout</span></asp:LinkButton>
+                </div>
+            </div>
+            <div id="divRunningEnvironment_Mobile" runat="server" style="white-space: nowrap;margin:0 0 15px;text-align:center; font-size: 12px; font-weight: bold; color: #0362a6;">
+                Running Environment
+            </div>
+          </div>
+        </div>
+        <!--End Logo area-->
+
+        <div style="display:none;"><asp:TextBox ID="divServiceResponseMessage" runat="server" Text="" Height="25" BackColor="Transparent" /></div>
+
+        <%--<div id="divMenuBar" onclick="javascript: mobileLogo();" runat="server" class="contain-to-grid sticky">--%>
+        <div id="divMenuBar" runat="server" class="contain-to-grid sticky">
+          <nav class="top-bar" data-topbar="">
+            <ul class="title-area">
+              <li class="name"><a href="/Admin/" id="link_MacLogoHomePage"><img id="mobileMacLogo" runat="server" src="~/Images/mac-logo-mobile.png" style="margin: 4px 0 0 15px;" /></a></li>
+              <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+              <li class="toggle-topbar menu-icon"><a href="#" id="link_mobile_menu_icon"><img alt="Menu Icon" id="mobile-menu-icon" src="/Images/menu-icon1.png" title="Menu" /></a></li>
+            </ul>
+
+            <section class="top-bar-section">
+              <!-- Right Nav Section -->
+              <ul class="right">
+                <li id="menuGroups" runat="server"><asp:LinkButton ID="lnkGroups" runat="server" OnClientClick="javascript: MenuNavigation('/Admin/Groups/Default.aspx');">Groups</asp:LinkButton></li>
+                <li id="menuClients" runat="server"><asp:LinkButton ID="lnkClients" runat="server" OnClientClick="javascript: MenuNavigation('/Admin/Clients/Default.aspx');">Clients</asp:LinkButton></li>
+                <li id="menuUsers" runat="server"><asp:LinkButton ID="lnkAdminUsers" runat="server" OnClientClick="javascript: MenuNavigation('/Admin/Users/Default.aspx');">Users</asp:LinkButton></li>
+                <li id="menuReports" runat="server"><asp:LinkButton ID="lnkEventHistory" runat="server" OnClientClick="javascript: MenuNavigation('/Admin/Reports/Default.aspx');">Reports</asp:LinkButton></li>
+                <li id="menuBilling" runat="server"><asp:LinkButton ID="lnkBilling" runat="server" OnClientClick="javascript: MenuNavigation('/Admin/Billing/Default.aspx');">Billing</asp:LinkButton></li>
+                <li id="menuTests" runat="server"><asp:LinkButton ID="lnkTests" runat="server" OnClientClick="javascript: MenuNavigation('/Admin/Tests/TestsDefault.aspx');">Tests</asp:LinkButton></li>
+                <li id="menuHelp" runat="server"><asp:LinkButton ID="lnkHelp" runat="server" OnClientClick="javascript: MenuNavigation('/Admin/Help/Default.aspx');">Help</asp:LinkButton></li>
+              </ul>
+            </section>
+        
+          </nav>
+        </div>
+
+        <uc1:NavBreadCrumb runat="server" ID="NavBreadCrumb" /> <span id="clientCount"></span>
+
+        <!-- Body Content -->
+        <asp:Panel ID="PageContent" runat="server">
+            <asp:Panel ID="BodyContainer" runat="server">
+                <asp:ContentPlaceHolder id="BodyContent" runat="server"></asp:ContentPlaceHolder>
+            </asp:Panel>
+        </asp:Panel>
+        <!-- Body Content -->
+
+        <asp:HiddenField ID="hiddenAE" runat="server" Value="" />
+        
+        <asp:HiddenField ID="hiddenA" runat="server" Value="false" />
+        <asp:HiddenField ID="hiddenB" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenC" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenD" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenE" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenF" runat="server" Value="true" />
+        <asp:HiddenField ID="hiddenG" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenH" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenI" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenJ" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenK" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenL" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenM" runat="server" Value="" />
+
+        <!-- For end user registration process -->
+        <asp:HiddenField ID="hiddenN" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenO" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenP" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenQ" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenR" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenS" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenT" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenU" runat="server" Value="DeskTop" />
+
+        <!-- For pass through billing login -->
+        <asp:HiddenField ID="hiddenV" runat="server" Value="" />
+
+        <asp:HiddenField ID="hiddenW" runat="server" Value="" />
+        <asp:HiddenField ID="hiddenX" runat="server" Value="" />
+
+    </form>
+    <%-- Copyright begin --%>
+    <div id="copyrightContainer" style="position: relative; top: 50px;z-index:-100 !important;">
+        <div style="padding:1.00rem;"></div>
+        <div class="row hide-for-small">
+            <div id="divFooterCopyright_Desktop" runat="server"></div>
+        </div>
+        <div class="row show-for-small">
+            <div id="divFooterCopyright_Mobile" runat="server"></div>
+        </div>
+    </div>
+    <%-- Copyright end --%>
+
+    <script src="/JavaScript/foundation.min.js"></script>
+    <script src="/JavaScript/chosen.jquery.js" type="text/javascript"></script>
+    <script src="/JavaScript/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $('.chosen-select').chosen({ disable_search_threshold: 1 });
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+    </script>
+    <script>
+        $(window).scroll(function () {
+            var position = $('#divMenuBar').position();
+            if (position.top === 0) {
+                $('#mobileMacLogo').show();
+            }
+            else {
+                $('#mobileMacLogo').hide();
+            }
+        });
+        $(window).resize(function () {
+            var position = $('#divMenuBar').position();
+            if (position.top === 0) {
+                $('#mobileMacLogo').show();
+            }
+            else {
+                $('#mobileMacLogo').hide();
+            }
+        });
+        
+    </script>
+
+    <script>
+        $(document).foundation();
+        $("#Requestor").click(function () {
+            $("#myOTP").show();
+            $("#Requestor").hide();
+            $("#userName").hide();
+        });
+        $().ready(function () {
+            // toggle debug 
+            $("#debugToggle").click(function () {
+                $("#debugInfoContent").toggle();
+            });
+
+            var y1 = $('#myCol1').height();
+            var y2 = $('#myCol2').height();
+            var y3 = $('#myCol3').height();
+            var ym = Math.max(y1, y2, y3);
+            var ympx = ym + 'px';
+            $('#myCol1').height(ympx);
+            $('#myCol2').height(ympx);
+            $('#myCol3').height(ympx);
+
+            $(window).resize(function () {
+                $('#myCol1').css('height', '');
+                $('#myCol2').css('height', '');
+                $('#myCol3').css('height', '');
+                y1 = $('#myCol1').height();
+                y2 = $('#myCol2').height();
+                y3 = $('#myCol3').height();
+                ym = Math.max(y1, y2, y3);
+                ympx = ym + 'px';
+                $('#myCol1').height(ympx);
+                $('#myCol2').height(ympx);
+                $('#myCol3').height(ympx);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

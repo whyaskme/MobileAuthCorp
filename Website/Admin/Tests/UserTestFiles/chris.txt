@@ -1,0 +1,4 @@
+﻿MACBank|Type:User|FirstName:Chris|LastName:Miller|PhoneNumber:6027999450|EmailAddress:cmiller@mobileauthcorp.com|RegType:OpenRegister|ClientName:Scottsdale Golf Shop|File:Chris.txt
+RequestOTP|FirstName:Chris|LastName:Miller|PhoneNumber:6027999450|EmailAddress:cmiller@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|File:Chris.txt
+STSRegister|FirstName:Chris|LastName:Miller|PhoneNumber:6027999450|EmailAddress:cmiller@mobileauthcorp.com|RegType:OpenRegister|ClientName:Kohl's|File:Chris.txt
+Register:EndUser|FirstName:Chris|LastName:Miller|PhoneNumber:6027999450|EmailAddress:cmiller@mobileauthcorp.com|RegType:OpenRegister|File:Chris.txt

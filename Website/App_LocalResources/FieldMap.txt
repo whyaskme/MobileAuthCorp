@@ -1,0 +1,38 @@
+﻿       
+hiddenDebug = hiddenA
+hiddenGroupId = hiddenB
+hiddenGroupName = hiddenC
+hiddenClientId = hiddenD
+hiddenUserId = hiddenE
+hiddenUserIsReadOnly = hiddenF
+hiddenUserName = hiddenG
+hiddenUserFirstName = hiddenH
+hiddenUserLastName = hiddenI
+hiddenUserEmail = hiddenJ
+hiddenUserPhone = hiddenK
+hiddenUserRoles = hiddenL
+hiddenEndUserIp = hiddenM
+
+hiddenRegType = hiddenN
+hiddenClientName = hiddenO
+hiddenEndUserId = hiddenP
+hiddenEndUserFirstName = hiddenQ
+hiddenEndUserLastName = hiddenR
+hiddenOtpRequestId = hiddenS
+hiddenAction = hiddenT
+hiddenDisplayMode = hiddenU
+
+hiddenBillId = hiddenV
+
+hiddenSelectedHelpTopicId = hiddenW
+hiddenHelpTopicInitialized = hiddenX
+
+hiddenSelectedGroupId = hiddenY
+hiddenLoginProgress = hiddenZ
+hiddenPageAction = hiddenAA
+
+hiddenUserLoginName = hiddenAB
+hiddenUserPassword = hiddenAC
+hiddenOTPValue = hiddenAD
+
+hiddenPageParams = hiddenAE

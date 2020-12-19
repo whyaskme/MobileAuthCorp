@@ -1,0 +1,31 @@
+﻿using System.Text;
+using System.Web.Services;
+using System.Xml;
+
+using MACServices;
+using dk = MACServices.Constants.Dictionary.Keys;
+using cfg = MACServices.Constants.WebConfig.AppSettingsKeys;
+using cfgcs = MACServices.Constants.WebConfig.ConnectionStringKeys;
+
+[WebService(Namespace = "http://mobileauthcorp.com/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+
+public class EmailServiceLog : WebService {
+
+    [WebMethod]
+    public XmlDocument WsGetClients()
+    {
+        var mUtils = new Utils();
+
+        var myResponse = new StringBuilder();
+        mUtils.InitializeXmlResponse(myResponse);
+
+
+
+
+
+        var mXml = mUtils.FinalizeXmlResponse(myResponse, "EL");
+        return mXml;
+    }
+
+}

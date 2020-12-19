@@ -1,0 +1,81 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Web.Services;
+using System.Xml;
+
+using MACServices;
+using dk = MACServices.Constants.Dictionary.Keys;
+using dv = MACServices.Constants.Dictionary.Values;
+using dkui = MACServices.Constants.Dictionary.Userinfo;
+using sr = MACServices.Constants.ServiceResponse;
+
+[WebService(Namespace = "http://mobileauthcorp.com/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+
+[System.Web.Script.Services.ScriptService]
+public class EventLogTests : WebService
+{
+    [WebMethod]
+    public XmlDocument WsEventLogTests(string data)
+    {
+        var mUtils = new Utils();
+
+        var myResponse = new StringBuilder();
+        mUtils.InitializeXmlResponse(myResponse);
+        var myData = new Dictionary<string, string> {{dk.ServiceName, "EventLogTests"}};
+        var test = "";
+        var clientname = @"ABC Test Client";
+        try
+        {
+            switch (data)
+            {
+                case "NullReference":
+                    Client myClient = null;
+// ReSharper disable once PossibleNullReferenceException
+                    test = myClient.ClientAppUrl;
+                    break;
+                case "SocketException":
+                    break;
+                case "IOException":
+                    break;
+                case "WebException":
+                    break;
+                case "IndexOutOfRangeException":
+                    const string test1 = "1,2";
+                    var parts = test1.Split(',');
+                    test = parts[9];
+                    break;
+                case "KeyNotFoundException":
+                    test = myData["bad"];
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            var mDetails = ex.ToString().Replace(dk.ItemSep, "!").Replace(dk.KVSep, ";");
+            var exceptionEvent = new Event
+            {
+                EventTypeDesc = Constants.TokenKeys.ExceptionDetails + mDetails
+                                + Constants.TokenKeys.ClientName + clientname
+            };
+            exceptionEvent.Create(Constants.EventLog.Exceptions.General, null);
+
+            myResponse.Append("<" + sr.Reply + ">" + "Exception logged" + "</" + sr.Reply + ">");
+            var eXml = mUtils.FinalizeXmlResponse(myResponse, "ET");
+            return eXml;
+        }
+        if (data == "Unhandled")
+        {
+            test = myData["Unhandled"];
+
+        }
+
+
+        myResponse.Append("<" + sr.Reply + ">" + "Failed to create an event log " + test + "</" + sr.Reply + ">");
+        var mXml = mUtils.FinalizeXmlResponse(myResponse, "ET");
+        return mXml;
+     
+    }
+
+}
