@@ -1,0 +1,505 @@
+ 
+
+ 
+
+From: Jeff Peterson [mailto:jpeterson@messagebroadcast.com]
+Sent: Friday, March 7, 2014 5:11 PM
+To: Joe Baranauskas
+Cc: Bill Potter
+Subject: Re: Sandbox status
+
+ 
+
+Joe,
+
+ 
+
+I have set you up an account for real time rest services. I pre-charged the account for 10,000 messages. The account has four PDC (Pre-Defined Campaign) Batch Ids setup. Two for voice and two for SMS. We can adjust as your program will dictate. The schedules are 9AM to 8PM by default. Once contracts and programs are in place I can open up to 24 hours.
+
+ 
+
+BatchId=1134 is pure whatever you send SMS
+
+BatchId=1135 is pure whatever you send TTS Voice
+
+BatchId=1136 is a Dynamic Script Voice library (sound MUCH better than TTS) where you just pass in code.
+
+BatchId=1137 is Dynamic Text SMS where you just pass in a code. 
+
+ 
+
+ 
+
+Your current account resources will allow/handle about 10,000 a day. If/When you need more we can expand, but we will need a capacity plan agreed upon between us.
+
+ 
+
+You can access the REST API call for Real Time Alerts at 
+
+ 
+
+POST only
+
+http://ebm.messagebroadcast.com/webservice/ebm/pdc/addtorealtime
+
+ 
+
+ 
+
+Security is Public key / Private key
+
+Your Public Key is B32EB51E57CC116F4BF7
+
+Your Private Key is {I will send in follow up email}
+
+ 
+
+You encrypt a date with your private key - Note do NOT expose your private key in source code. Make sure your private key is only in server side code. You are responsible for messages if you get hacked.
+
+Generate a signature based on a changing value - we recommend datetime.
+
+ 
+
+ 
+
+Pass your unencrypted date as "datetime"
+
+Pass your publickey:signature as "authorization" {Note authorization is a colon delimited mix of public key and then signature}
+
+ 
+
+ 
+
+I have attached 4 samples of how to call this in Coldfusion - The idea is the same accross server side tools, and you can post from any language.
+
+ 
+
+Call me when your ready, I can walk you through it.
+
+ 
+
+ 
+
+Jeffery Lee Peterson
+
+Description: Description: cid:image001.jpg@01C97BDC.B32381C0
+Intelligent, Adaptable, Customizable Messaging and Notification 
+MessageBroadcast
+4685 MacArthur Ct., Ste 250, Newport Beach CA  92660
+www.messagebroadcast.com
+
+Office: 949-428-4899
+
+Mobile: 949-400-0553
+
+email: jpeterson@messagebroadcast.com
+
+ 
+
+ 
+
+From: Joe Baranauskas <jbaranauskas@mobileauthcorp.com>
+Date: Friday, February 21, 2014 at 2:22 PM
+To: Jeff Peterson <jpeterson@messagebroadcast.com>
+Subject: RE: Sandbox status
+
+ 
+
+Understandable.
+
+Thanks for the update and have a great weekend!
+
+From: Jeff Peterson
+Sent: ?2/?21/?2014 2:16 PM
+To: Joseph J. Baranauskas
+Subject: Re: Sandbox status
+
+Fat fingers. Got stuck on a customer project. Early next week at latest. I'll work on it over weekend.
+
+Sent from my iPhone
+
+
+On Feb 21, 2014, at 1:03 PM, "Jeff Peterson" <jpeterson@messagebroadcast.com> wrote:
+
+    Joe,
+
+     
+
+    I got stuck on a custom
+
+    Sent from my iPhone
+
+
+    On Feb 21, 2014, at 9:00 AM, "Joseph J. Baranauskas" <jbaranauskas@mobileauthcorp.com> wrote:
+
+        Good morning Jeff,
+
+         
+
+        I hope everyone is doing well there.
+
+         
+
+        Just wanted to follow up on our conversation earlier this week regarding a sandbox account for us to develop against.
+
+         
+
+        Have you guys had a chance to set it up yet? Or if not, could we possibly trouble you for an ETA next week please?
+
+         
+
+        Thank you.
+
+         
+
+         
+
+        Warm regards,
+
+         
+
+        Joseph J. Baranauskas
+
+        Senior Developer
+
+         
+
+        Office: 1.480.939.2980
+
+        Cell: 1.480.634.0702
+
+         
+
+        <image001.png>
+
+        8777 East Via De Ventura
+        Suite 280
+        Scottsdale, AZ 85258
+
+         
+
+4 Attachments
+[Binary File]
+[Binary File]
+[Binary File]
+[Binary File]
+Joseph J. Baranauskas	
+Subject: Re: Sandbox status Private key 5E1/1BD3A4805cE3c223e6AB3Ca7414+02089F86
+	Mar 7 (5 days ago)
+Joseph J. Baranauskas	
+Sent: Friday, March 7, 2014 5:16 PM Joe, … and your temporary shared short co...
+	Mar 7 (5 days ago)
+Joseph J. Baranauskas	
+Sorry. Had it composed with you CC’d, but Outlook crashed and when I restarte...
+	Mar 7 (5 days ago)
+Terry Davis tdavis@mobileauthcorp.com
+	
+12:25 PM (8 minutes ago)
+		
+to Joe
+
+
+---------- Forwarded message ----------
+From: Joseph J. Baranauskas <jbaranauskas@mobileauthcorp.com>
+Date: Fri, Mar 7, 2014 at 6:45 PM
+Subject: FW: Sandbox status
+To: Terry Davis <tdavis@mobileauthcorp.com>
+
+
+Sorry. Had it composed with you CC’d, but Outlook crashed and when I restarted, I forgot cc…
+
+ 
+
+From: Joseph J. Baranauskas [mailto:jbaranauskas@mobileauthcorp.com]
+Sent: Friday, March 7, 2014 6:44 PM
+To: 'Jeff Peterson'
+Cc: 'Bill Potter'
+Subject: RE: Sandbox status
+
+ 
+
+Hi Jeff and Bill,
+
+ 
+
+Thank you very much for all your work…it’s really appreciated.
+
+ 
+
+I’ve forwarded Jeff’s emails to Terry and we will coordinate our development efforts over the weekend.
+
+ 
+
+Jeff, if we run into any issues, may I call you over the weekend for support if needed? I’d like us to have MB integrated and ready for testing by Monday if possible.
+
+ 
+
+The calls we make to you will be minimal until we start fault tolerance and load testing with our system on AWS hopefully by late next week.
+
+ 
+
+Regarding the short-code, will we need to notify anyone of our load tests using those codes?
+
+ 
+
+We’ll likely only need a few scaled volume runs for the purposes of developing system metrics for capacity planning once in production.
+
+ 
+
+Given the way our MongoDB system ran at ContestFactory, we might burn through those 10,000 messages quite easily at a rate of 1k per second.
+
+ 
+
+However, we can tune that down in our testing system.
+
+ 
+
+I’ve never tested SMS and Voice at this scale. Is there some SMS inbox and inbound phone box somewhere that we can direct the test messages to? I can’t image testing to our own cell phones would be very wise.
+
+ 
+
+Any recommendations on how we might best do this without a negative impact on services?
+
+ 
+
+ 
+
+Warm regards,
+
+ 
+
+Joe Baranauskas
+
+Cell: (480) 634-0702
+
+ 
+
+ 
+
+From: Jeff Peterson [mailto:jpeterson@messagebroadcast.com]
+Sent: Friday, March 7, 2014 5:16 PM
+To: Joe Baranauskas
+Cc: Bill Potter
+Subject: Re: Sandbox status
+
+ 
+
+Joe,
+
+ 
+
+ 
+
+… and your temporary shared short code is 244687. Please don’t abuse it. Carriers will shut it off if they get any complaints.
+
+ 
+
+Temporary Shared Short Code
+
+Shared Short Code 244687
+
+ 
+
+ 
+
+We will need to get you a more permanent one when you are ready to go live. WARNING - 5-6 weeks lead time on new dedicated short codes. WE can be up in a day but different carriers have their own way of approving new messages on new short codes.
+
+ 
+
+ 
+
+ 
+
+Jeffery Lee Peterson
+
+Description: Description: cid:image001.jpg@01C97BDC.B32381C0
+Intelligent, Adaptable, Customizable Messaging and Notification 
+MessageBroadcast
+4685 MacArthur Ct., Ste 250, Newport Beach CA  92660
+www.messagebroadcast.com
+
+Office: 949-428-4899
+
+Mobile: 949-400-0553
+
+email: jpeterson@messagebroadcast.com
+
+ 
+
+ 
+
+From: Jeff Peterson <jpeterson@messagebroadcast.com>
+Date: Friday, March 7, 2014 at 4:10 PM
+To: Joe Baranauskas <jbaranauskas@mobileauthcorp.com>
+Cc: Bill Potter <bpotter@messagebroadcast.com>
+Subject: Re: Sandbox status
+
+ 
+
+Joe,
+
+ 
+
+I have set you up an account for real time rest services. I pre-charged the account for 10,000 messages. The account has four PDC (Pre-Defined Campaign) Batch Ids setup. Two for voice and two for SMS. We can adjust as your program will dictate. The schedules are 9AM to 8PM by default. Once contracts and programs are in place I can open up to 24 hours.
+
+ 
+
+BatchId=1134 is pure whatever you send SMS
+
+BatchId=1135 is pure whatever you send TTS Voice
+
+BatchId=1136 is a Dynamic Script Voice library (sound MUCH better than TTS) where you just pass in code.
+
+BatchId=1137 is Dynamic Text SMS where you just pass in a code. 
+
+ 
+
+ 
+
+Your current account resources will allow/handle about 10,000 a day. If/When you need more we can expand, but we will need a capacity plan agreed upon between us.
+
+ 
+
+You can access the REST API call for Real Time Alerts at 
+
+ 
+
+POST only
+
+http://ebm.messagebroadcast.com/webservice/ebm/pdc/addtorealtime
+
+ 
+
+ 
+
+Security is Public key / Private key
+
+Your Public Key is B32EB51E57CC116F4BF7
+
+Your Private Key is {I will send in follow up email}
+
+ 
+
+You encrypt a date with your private key - Note do NOT expose your private key in source code. Make sure your private key is only in server side code. You are responsible for messages if you get hacked.
+
+Generate a signature based on a changing value - we recommend datetime.
+
+ 
+
+ 
+
+Pass your unencrypted date as "datetime"
+
+Pass your publickey:signature as "authorization" {Note authorization is a colon delimited mix of public key and then signature}
+
+ 
+
+ 
+
+I have attached 4 samples of how to call this in Coldfusion - The idea is the same accross server side tools, and you can post from any language.
+
+ 
+
+Call me when your ready, I can walk you through it.
+
+ 
+
+ 
+
+Jeffery Lee Peterson
+
+Description: Description: cid:image001.jpg@01C97BDC.B32381C0
+Intelligent, Adaptable, Customizable Messaging and Notification 
+MessageBroadcast
+4685 MacArthur Ct., Ste 250, Newport Beach CA  92660
+www.messagebroadcast.com
+
+Office: 949-428-4899
+
+Mobile: 949-400-0553
+
+email: jpeterson@messagebroadcast.com
+
+ 
+
+ 
+
+From: Joe Baranauskas <jbaranauskas@mobileauthcorp.com>
+Date: Friday, February 21, 2014 at 2:22 PM
+To: Jeff Peterson <jpeterson@messagebroadcast.com>
+Subject: RE: Sandbox status
+
+ 
+
+Understandable.
+
+Thanks for the update and have a great weekend!
+
+From: Jeff Peterson
+Sent: ?2/?21/?2014 2:16 PM
+To: Joseph J. Baranauskas
+Subject: Re: Sandbox status
+
+Fat fingers. Got stuck on a customer project. Early next week at latest. I'll work on it over weekend.
+
+Sent from my iPhone
+
+
+On Feb 21, 2014, at 1:03 PM, "Jeff Peterson" <jpeterson@messagebroadcast.com> wrote:
+
+    Joe,
+
+     
+
+    I got stuck on a custom
+
+    Sent from my iPhone
+
+
+    On Feb 21, 2014, at 9:00 AM, "Joseph J. Baranauskas" <jbaranauskas@mobileauthcorp.com> wrote:
+
+        Good morning Jeff,
+
+         
+
+        I hope everyone is doing well there.
+
+         
+
+        Just wanted to follow up on our conversation earlier this week regarding a sandbox account for us to develop against.
+
+         
+
+        Have you guys had a chance to set it up yet? Or if not, could we possibly trouble you for an ETA next week please?
+
+         
+
+        Thank you.
+
+         
+
+         
+
+        Warm regards,
+
+         
+
+        Joseph J. Baranauskas
+
+        Senior Developer
+
+         
+
+        Office: 1.480.939.2980
+
+        Cell: 1.480.634.0702
+
+         
+
+        <image001.png>
+
+        8777 East Via De Ventura
+        Suite 280
+        Scottsdale, AZ 85258
+
+         

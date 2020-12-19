@@ -1,0 +1,4 @@
+﻿
+copy Administration.Config to servers @ C:\Windows\System32\inetsrv\config
+
+you must also set the default provbiders in IIS and for each, give them a name attribute.

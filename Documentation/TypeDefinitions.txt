@@ -1,0 +1,37 @@
+﻿{
+	"Event":
+	[
+		{ "Registration - System Administrator" : 0 }, 
+		{ "Registration - Client Administrator" : 1 }, 
+		{ "Registration - End User" : 2 },
+		{ "Registration - Vendor" : 3 },
+		{ "Login - System Administrator" : 0 }, 
+		{ "Login - Client Administrator" : 1 }, 
+		{ "Login - End User" : 2 },
+		{ "Login - Vendor" : 3 },
+		{ "Otp - Requested" : 4 },
+		{ "Otp - Polled" : 5 },
+		{ "Otp - Validated" : 6 },
+	],
+	"Organization":
+	[
+		{ "MACRoot" : 0 }, 
+		{ "Client" : 1 }, 
+		{ "Vendor" : 2 }
+	],
+	"Provider":
+	[
+		{ "Message" : [ 
+		{ "IVR" : 0 }, 
+		{ "SMSP" : 1 }, 
+		{ "SMTP" : 2 } 
+		] }, 
+	],
+	"User":
+	[
+		{ "System Administrator" : 0 }, 
+		{ "Client Administrator" : 1 }, 
+		{ "End User" : 2 },
+		{ "Vendor" : 3 }
+	]
+}

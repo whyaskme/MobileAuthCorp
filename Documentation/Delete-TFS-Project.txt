@@ -1,0 +1,1 @@
+TfsDeleteProject /collection:http://corp.mobileauthcorp.com:8080/tfs/DefaultCollection MAC_R1_Demo_Branch

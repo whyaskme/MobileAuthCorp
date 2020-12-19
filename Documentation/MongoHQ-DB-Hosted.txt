@@ -1,0 +1,7 @@
+macservices
+!macservices
+
+mongo paulo.mongohq.com:10020/MAC_R1 -u macservices -p!macservices
+
+URI:
+mongodb://macservices:!macservices@paulo.mongohq.com:10020/MAC_R1
