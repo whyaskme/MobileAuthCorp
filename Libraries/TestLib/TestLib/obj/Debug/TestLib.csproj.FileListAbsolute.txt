@@ -1,0 +1,33 @@
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\TestLib\TestLib\bin\Debug\TestLib.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\TestLib\TestLib\bin\Debug\TestLib.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\TestLib\TestLib\bin\Debug\MongoDB.Bson.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\TestLib\TestLib\bin\Debug\MongoDB.Driver.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\TestLib\TestLib\bin\Debug\MongoDB.Web.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\TestLib\TestLib\bin\Debug\MongoDB.Web.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\TestLib\TestLib\obj\Debug\TestLib.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\TestLib\TestLib\obj\Debug\TestLib.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\TestLib\TestLib\obj\Debug\TestLib.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\TestLib\TestLib\bin\Debug\TestLib.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\TestLib\TestLib\bin\Debug\TestLib.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\TestLib\TestLib\obj\Debug\TestLib.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\TestLib\TestLib\obj\Debug\TestLib.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\TestLib\TestLib\obj\Debug\TestLib.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\bin\Debug\TestLib.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\bin\Debug\TestLib.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.csprojResolveAssemblyReference.cache
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\bin\Debug\TestLib.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\bin\Debug\TestLib.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.csprojResolveAssemblyReference.cache
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\bin\Debug\TestLib.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\bin\Debug\TestLib.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\bin\Debug\TestLib.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\bin\Debug\TestLib.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\TestLib\TestLib\obj\Debug\TestLib.pdb

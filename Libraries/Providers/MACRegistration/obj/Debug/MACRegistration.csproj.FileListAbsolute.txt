@@ -1,0 +1,90 @@
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll.config
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\MacRegistration.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\MACServices.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\MongoDB.Bson.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\MongoDB.Driver.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\MACServices.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\MACSecurity.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\KellermanSoftware.Compare-Net-Objects.xml
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.xml
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\obj\Debug\MACRegistration.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\obj\Debug\MacRegistration.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACRegistration\obj\Debug\MacRegistration.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll.config
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\bin\Debug\MacRegistration.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\bin\Debug\MACConstants.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\bin\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\bin\Debug\MACConstants.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\bin\Debug\MACSecurity.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\obj\Debug\MACRegistration.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\obj\Debug\MacRegistration.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACRegistration\obj\Debug\MacRegistration.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll.config
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MacRegistration.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACConstants.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACSecurity.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACServices.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Web.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Bson.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Driver.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACServices.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACConstants.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACSecurity.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Web.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.xml
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MacRegistration.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MacRegistration.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MACRegistration.csprojResolveAssemblyReference.cache
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll.config
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MacRegistration.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACConstants.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACSecurity.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACServices.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Web.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Bson.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Driver.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACServices.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACConstants.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACSecurity.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Web.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.xml
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MACRegistration.csprojResolveAssemblyReference.cache
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MacRegistration.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MacRegistration.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MACRegistration.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll.config
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MacRegistration.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MacRegistration.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACConstants.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACSecurity.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACServices.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Web.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Bson.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Driver.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\Microsoft.Web.Administration.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACServices.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACConstants.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MACSecurity.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Web.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Bson.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\MongoDB.Driver.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\bin\Debug\Newtonsoft.Json.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MACRegistration.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MacRegistration.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACRegistration\obj\Debug\MacRegistration.pdb

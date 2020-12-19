@@ -1,0 +1,91 @@
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\MACServices.dll.config
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\MACServices.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\MACServices.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\KellermanSoftware.Compare-NET-Objects.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\MongoDB.Bson.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\MongoDB.Driver.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\MongoDB.Web.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\Newtonsoft.Json.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\Twilio.Api.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\RestSharp.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\MACSecurity.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\MongoDB.Web.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\KellermanSoftware.Compare-NET-Objects.xml
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\Newtonsoft.Json.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\bin\Debug\Newtonsoft.Json.xml
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\obj\Debug\MACServices.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\obj\Debug\MACServices.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\CoreDomain\obj\Debug\MACServices.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MACServices.dll.config
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MACServices.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MACServices.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\KellermanSoftware.Compare-NET-Objects.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MACConstants.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MongoDB.Bson.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MongoDB.Driver.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MongoDB.Web.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\Newtonsoft.Json.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\Twilio.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MACConstants.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MACSecurity.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\MongoDB.Web.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\Newtonsoft.Json.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\Newtonsoft.Json.xml
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\bin\Debug\Twilio.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\obj\Debug\MACServices.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\obj\Debug\MACServices.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\CoreDomain\obj\Debug\MACServices.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACServices.dll.config
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACServices.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACServices.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\KellermanSoftware.Compare-NET-Objects.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACConstants.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACSecurity.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Bson.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Driver.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Web.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\Newtonsoft.Json.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACConstants.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACSecurity.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Web.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.csprojResolveAssemblyReference.cache
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACServices.dll.config
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACServices.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACServices.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\KellermanSoftware.Compare-NET-Objects.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACConstants.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACSecurity.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Bson.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Driver.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Web.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\Newtonsoft.Json.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACConstants.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACSecurity.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Web.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.csprojResolveAssemblyReference.cache
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACServices.dll.config
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACServices.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACServices.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\KellermanSoftware.Compare-NET-Objects.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACConstants.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACSecurity.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\Microsoft.Web.Administration.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Bson.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Driver.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Web.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\Newtonsoft.Json.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACConstants.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MACSecurity.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Web.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Bson.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\bin\Debug\MongoDB.Driver.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\CoreDomain\obj\Debug\MACServices.pdb

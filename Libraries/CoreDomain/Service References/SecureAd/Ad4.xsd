@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" />
+  <xs:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" />
+  <xs:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.OTP" />
+  <xs:element name="GetAd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q1:ApiAuthen" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q2:GetAdRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetAdResult" nillable="true" type="q3:GetAdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdWithShortUrl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q4:ApiAuthen" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q5:GetAdRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdWithShortUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetAdWithShortUrlResult" nillable="true" type="q6:GetAdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOTPAd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q7:ApiAuthen" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q8:GetAdRequest" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.OTP" minOccurs="0" name="requestOTP" nillable="true" type="q9:GetOTPRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOTPAdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetOTPAdResult" nillable="true" type="q10:GetOTPAdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOTPAdWithShortUrl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q11:ApiAuthen" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q12:GetAdRequest" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.OTP" minOccurs="0" name="requestOTP" nillable="true" type="q13:GetOTPRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOTPAdWithShortUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetOTPAdWithShortUrlResult" nillable="true" type="q14:GetOTPAdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOTPAdByConsumer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q15:ApiAuthen" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q16:GetAdRequest" />
+        <xs:element minOccurs="0" name="otpConsumer" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOTPAdByConsumerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetOTPAdByConsumerResult" nillable="true" type="q17:GetOTPAdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOTPAdByConsumerWithShortUrl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q18:ApiAuthen" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q19:GetAdRequest" />
+        <xs:element minOccurs="0" name="otpConsumer" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOTPAdByConsumerWithShortUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetOTPAdByConsumerWithShortUrlResult" nillable="true" type="q20:GetOTPAdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdsByGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q21:ApiAuthen" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q22:GetAdsByGroupRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdsByGroupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetAdsByGroupResult" nillable="true" type="q23:GetAdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdsByGroupWithShortUrl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q24:ApiAuthen" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q25:GetAdsByGroupRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdsByGroupWithShortUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetAdsByGroupWithShortUrlResult" nillable="true" type="q26:GetAdResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdByPassThroughService">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q27:ApiAuthen" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q28:GetAdByPassThroughServiceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdByPassThroughServiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetAdByPassThroughServiceResult" nillable="true" type="q29:GetAdByPassThroughServiceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdByPassThroughServiceWithShortUrl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q30:ApiAuthen" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q31:GetAdByPassThroughServiceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdByPassThroughServiceWithShortUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetAdByPassThroughServiceWithShortUrlResult" nillable="true" type="q32:GetAdByPassThroughServiceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q33:ApiAuthen" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q34:GetAdRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetAdFormResult" nillable="true" type="q35:GetAdFormResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdFormWithShortUrl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" minOccurs="0" name="authen" nillable="true" type="q36:ApiAuthen" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="request" nillable="true" type="q37:GetAdRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdFormWithShortUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" minOccurs="0" name="GetAdFormWithShortUrlResult" nillable="true" type="q38:GetAdFormResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

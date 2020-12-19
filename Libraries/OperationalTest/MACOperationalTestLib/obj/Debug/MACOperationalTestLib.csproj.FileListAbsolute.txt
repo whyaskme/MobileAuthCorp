@@ -1,0 +1,25 @@
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\obj\Debug\MACOperationalTestLib.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MACOperationalTestLib.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MACOperationalTestLib.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MACConstants.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MACSecurity.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MACServices.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MongoDB.Bson.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MongoDB.Driver.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MongoDB.Web.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\Microsoft.Web.Administration.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\Newtonsoft.Json.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MACServices.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MACServices.dll.config
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MACConstants.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MACSecurity.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MongoDB.Bson.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MongoDB.Driver.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MongoDB.Web.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\MongoDB.Web.dll.config
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\Newtonsoft.Json.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\bin\Debug\Newtonsoft.Json.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\obj\Debug\MACOperationalTestLib.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\obj\Debug\MACOperationalTestLib.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\OperationalTest\MACOperationalTestLib\obj\Debug\MACOperationalTestLib.pdb

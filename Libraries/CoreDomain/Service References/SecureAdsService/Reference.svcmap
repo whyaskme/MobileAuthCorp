@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4ae2fbe8-9a1f-4fc8-8f64-cb26fcb88a8c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://api.authenticationads.com/Ad.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Ad.xsd" MetadataType="Schema" ID="a9f432b8-5643-434a-bca3-edceded589fc" SourceId="1" SourceUrl="http://api.authenticationads.com/Ad.svc?xsd=xsd1" />
+    <MetadataFile FileName="Ad1.xsd" MetadataType="Schema" ID="3c5cf9e1-b184-4529-a43f-395cec29795e" SourceId="1" SourceUrl="http://api.authenticationads.com/Ad.svc?xsd=xsd3" />
+    <MetadataFile FileName="Ad2.xsd" MetadataType="Schema" ID="706f4a4b-2123-4d34-802b-b54f87f2d973" SourceId="1" SourceUrl="http://api.authenticationads.com/Ad.svc?xsd=xsd5" />
+    <MetadataFile FileName="Ad.wsdl" MetadataType="Wsdl" ID="01914a7f-1146-4fdd-9a33-8a33689151c0" SourceId="1" SourceUrl="http://api.authenticationads.com/Ad.svc?wsdl" />
+    <MetadataFile FileName="Ad3.xsd" MetadataType="Schema" ID="43824e42-5981-4c5b-af34-53a10597a82a" SourceId="1" SourceUrl="http://api.authenticationads.com/Ad.svc?xsd=xsd0" />
+    <MetadataFile FileName="Ad6.xsd" MetadataType="Schema" ID="43df71fb-e561-4194-baf1-175dc014ddab" SourceId="1" SourceUrl="http://api.authenticationads.com/Ad.svc?xsd=xsd6" />
+    <MetadataFile FileName="Ad4.xsd" MetadataType="Schema" ID="361ae425-db63-41ea-b498-fb986e796a26" SourceId="1" SourceUrl="http://api.authenticationads.com/Ad.svc?xsd=xsd2" />
+    <MetadataFile FileName="Ad.disco" MetadataType="Disco" ID="6cff0893-44c1-454d-b6d1-1a26dbf92dc7" SourceId="1" SourceUrl="http://api.authenticationads.com/Ad.svc?disco" />
+    <MetadataFile FileName="Ad5.xsd" MetadataType="Schema" ID="6257d854-6724-4657-bcce-816d04bd8d23" SourceId="1" SourceUrl="http://api.authenticationads.com/Ad.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,56 @@
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.dll.config
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Bson.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Driver.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\bin\Debug\Newtonsoft.Json.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\bin\Debug\Newtonsoft.Json.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\bin\Debug\Newtonsoft.Json.xml
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.dll.config
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.dll.config
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MACConstants.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\Newtonsoft.Json.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MACConstants.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.csprojResolveAssemblyReference.cache
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.dll.config
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MACConstants.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Bson.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Driver.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\Newtonsoft.Json.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MACConstants.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.csprojResolveAssemblyReference.cache
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.dll.config
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MACConstants.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Bson.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Driver.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\Newtonsoft.Json.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MACConstants.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.csprojResolveAssemblyReference.cache
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.dll.config
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Web.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MACConstants.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Bson.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Driver.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MACConstants.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Bson.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\bin\Debug\MongoDB.Driver.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\Data\MongoDB\obj\Debug\MongoDB.Web.pdb

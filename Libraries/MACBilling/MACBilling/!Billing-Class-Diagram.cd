@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MACBilling.BillBase" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAABSAwIAaIQAACEAGLAgGABiiAAQQAAAACUAhoIhAQ=</HashCode>
+      <FileName>BillBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillAddendum" Collapsed="true">
+    <Position X="0.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIACAAAACMAABAAECAAgAAgAAAAAAEAAAAACA=</HashCode>
+      <FileName>BillAddendum.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillArchive" Collapsed="true">
+    <Position X="3.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIACIAAAAEAAJAgACAAgAAAQAAIAAkAAIAAAA=</HashCode>
+      <FileName>BillArchive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillClient" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAgAAAAAAAAAACAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>BillClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillConfig" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAIICDgCAACEgCxEAQAJggABAAAAAIAECAIAIAA=</HashCode>
+      <FileName>BillConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillGroup" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQEAEAAQgAAAAAAAAAAQAAAAiCAQoAAAAAAgAAAA=</HashCode>
+      <FileName>BillGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillPaymentACH" Collapsed="true">
+    <Position X="5.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BillPaymentACH.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillPaymentCreditCard" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BillPaymentCreditCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillPaymentGateway" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAgABAAAEAAAAACAAAAAAMEAA=</HashCode>
+      <FileName>BillPaymentGateway.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillPaymentManualCheck" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BillPaymentManualCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillPaymentMethod" Collapsed="true">
+    <Position X="7.5" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAIQAAAAACAAAAIAAABAAQEgAAgAAAAAIQAUAAAIAAQ=</HashCode>
+      <FileName>BillPaymentMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillPaymentWireTransfer" Collapsed="true">
+    <Position X="5.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BillPaymentWireTransfer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillTier" Collapsed="true">
+    <Position X="0.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABI=</HashCode>
+      <FileName>BillTier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MACBilling.BillUtils" Collapsed="true">
+    <Position X="3.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYIQAAAAAAAABAAAEAAgAAhgAAAAEAAAAAAAAACAMA=</HashCode>
+      <FileName>BillUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

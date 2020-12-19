@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" />
+  <xs:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="GetAdRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseGetAdRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAdRequest" nillable="true" type="tns:GetAdRequest" />
+  <xs:complexType name="BaseGetAdRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" base="q1:BaseAPIRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AdReferenceNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CampaignId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CampaignName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CampaignProfiling" nillable="true" type="tns:CampaignProfiling" />
+          <xs:element minOccurs="0" name="CampaignReferenceNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsRandom" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Type" type="q1:AdType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseGetAdRequest" nillable="true" type="tns:BaseGetAdRequest" />
+  <xs:complexType name="CampaignProfiling">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgeGroupFrom" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AgeGroupTo" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditScoreFrom" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CreditScoreTo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Ethnicity" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" minOccurs="0" name="Gender" nillable="true" type="q2:Gender" />
+      <xs:element minOccurs="0" name="HomeOwner" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HouseholdIncomeFrom" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="HouseholdIncomeTo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Keywords" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" minOccurs="0" name="MaritalStatus" nillable="true" type="q3:MaritalStatus" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CampaignProfiling" nillable="true" type="tns:CampaignProfiling" />
+  <xs:complexType name="GetAdsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseGetAdRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAdsRequest" nillable="true" type="tns:GetAdsRequest" />
+  <xs:complexType name="GetAdResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" base="q4:BaseAPIResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AdForm" nillable="true" type="tns:AdForm" />
+          <xs:element minOccurs="0" name="EnterOtpScreen" nillable="true" type="tns:AdEnterOtpScreen" />
+          <xs:element minOccurs="0" name="MobileMesasge" nillable="true" type="tns:AdMobileMessage" />
+          <xs:element minOccurs="0" name="Type" type="q4:AdType" />
+          <xs:element minOccurs="0" name="VerificationPage" nillable="true" type="tns:AdVerificationPage" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAdResponse" nillable="true" type="tns:GetAdResponse" />
+  <xs:complexType name="AdForm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AdBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContentHtml" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AdForm" nillable="true" type="tns:AdForm" />
+  <xs:complexType name="AdBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdBase" nillable="true" type="tns:AdBase" />
+  <xs:complexType name="AdEnterOtpScreen">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AdBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContentHtml" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AdEnterOtpScreen" nillable="true" type="tns:AdEnterOtpScreen" />
+  <xs:complexType name="AdMobileMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AdBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="HashId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AdMobileMessage" nillable="true" type="tns:AdMobileMessage" />
+  <xs:complexType name="AdVerificationPage">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AdBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContentHtml" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AdVerificationPage" nillable="true" type="tns:AdVerificationPage" />
+  <xs:complexType name="GetOTPAdResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:GetAdResponse">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetOTPAdResponse" nillable="true" type="tns:GetOTPAdResponse" />
+  <xs:complexType name="GetAdsByGroupRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseGetAdRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GroupId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAdsByGroupRequest" nillable="true" type="tns:GetAdsByGroupRequest" />
+  <xs:complexType name="GetAdByPassThroughServiceRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" base="q5:BaseAPIRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="HtmlContent" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAdByPassThroughServiceRequest" nillable="true" type="tns:GetAdByPassThroughServiceRequest" />
+  <xs:complexType name="GetAdByPassThroughServiceResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" base="q6:BaseAPIResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PassThrough" nillable="true" type="tns:AdPassThrough" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAdByPassThroughServiceResponse" nillable="true" type="tns:GetAdByPassThroughServiceResponse" />
+  <xs:complexType name="AdPassThrough">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AdBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ContentHtml" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AdPassThrough" nillable="true" type="tns:AdPassThrough" />
+  <xs:complexType name="GetAdFormResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" base="q7:BaseAPIResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AdForm" nillable="true" type="tns:AdForm" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAdFormResponse" nillable="true" type="tns:GetAdFormResponse" />
+</xs:schema>

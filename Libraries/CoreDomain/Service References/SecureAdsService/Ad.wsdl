@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Ad" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Security" />
+      <xsd:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.Ad" />
+      <xsd:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" />
+      <xsd:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.OTP" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAd_GetAd_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAd" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdWithShortUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdWithShortUrl" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdWithShortUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdWithShortUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetOTPAd_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOTPAd" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetOTPAd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOTPAdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetOTPAdWithShortUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOTPAdWithShortUrl" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetOTPAdWithShortUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOTPAdWithShortUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetOTPAdByConsumer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOTPAdByConsumer" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetOTPAdByConsumer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOTPAdByConsumerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetOTPAdByConsumerWithShortUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOTPAdByConsumerWithShortUrl" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetOTPAdByConsumerWithShortUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOTPAdByConsumerWithShortUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdsByGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdsByGroup" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdsByGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdsByGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdsByGroupWithShortUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdsByGroupWithShortUrl" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdsByGroupWithShortUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdsByGroupWithShortUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdByPassThroughService_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdByPassThroughService" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdByPassThroughService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdByPassThroughServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdByPassThroughServiceWithShortUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdByPassThroughServiceWithShortUrl" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdByPassThroughServiceWithShortUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdByPassThroughServiceWithShortUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdForm_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdForm" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdForm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdFormResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdFormWithShortUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdFormWithShortUrl" />
+  </wsdl:message>
+  <wsdl:message name="IAd_GetAdFormWithShortUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdFormWithShortUrlResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAd">
+    <wsdl:operation name="GetAd">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetAd" message="tns:IAd_GetAd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetAdResponse" message="tns:IAd_GetAd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdWithShortUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetAdWithShortUrl" message="tns:IAd_GetAdWithShortUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetAdWithShortUrlResponse" message="tns:IAd_GetAdWithShortUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOTPAd">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetOTPAd" message="tns:IAd_GetOTPAd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetOTPAdResponse" message="tns:IAd_GetOTPAd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOTPAdWithShortUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetOTPAdWithShortUrl" message="tns:IAd_GetOTPAdWithShortUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetOTPAdWithShortUrlResponse" message="tns:IAd_GetOTPAdWithShortUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOTPAdByConsumer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetOTPAdByConsumer" message="tns:IAd_GetOTPAdByConsumer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetOTPAdByConsumerResponse" message="tns:IAd_GetOTPAdByConsumer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOTPAdByConsumerWithShortUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetOTPAdByConsumerWithShortUrl" message="tns:IAd_GetOTPAdByConsumerWithShortUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetOTPAdByConsumerWithShortUrlResponse" message="tns:IAd_GetOTPAdByConsumerWithShortUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdsByGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetAdsByGroup" message="tns:IAd_GetAdsByGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetAdsByGroupResponse" message="tns:IAd_GetAdsByGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdsByGroupWithShortUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetAdsByGroupWithShortUrl" message="tns:IAd_GetAdsByGroupWithShortUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetAdsByGroupWithShortUrlResponse" message="tns:IAd_GetAdsByGroupWithShortUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdByPassThroughService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetAdByPassThroughService" message="tns:IAd_GetAdByPassThroughService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetAdByPassThroughServiceResponse" message="tns:IAd_GetAdByPassThroughService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdByPassThroughServiceWithShortUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetAdByPassThroughServiceWithShortUrl" message="tns:IAd_GetAdByPassThroughServiceWithShortUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetAdByPassThroughServiceWithShortUrlResponse" message="tns:IAd_GetAdByPassThroughServiceWithShortUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdForm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetAdForm" message="tns:IAd_GetAdForm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetAdFormResponse" message="tns:IAd_GetAdForm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdFormWithShortUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAd/GetAdFormWithShortUrl" message="tns:IAd_GetAdFormWithShortUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAd/GetAdFormWithShortUrlResponse" message="tns:IAd_GetAdFormWithShortUrl_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAd" type="tns:IAd">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAd">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetAd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdWithShortUrl">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetAdWithShortUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOTPAd">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetOTPAd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOTPAdWithShortUrl">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetOTPAdWithShortUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOTPAdByConsumer">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetOTPAdByConsumer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOTPAdByConsumerWithShortUrl">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetOTPAdByConsumerWithShortUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdsByGroup">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetAdsByGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdsByGroupWithShortUrl">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetAdsByGroupWithShortUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdByPassThroughService">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetAdByPassThroughService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdByPassThroughServiceWithShortUrl">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetAdByPassThroughServiceWithShortUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdForm">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetAdForm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdFormWithShortUrl">
+      <soap:operation soapAction="http://tempuri.org/IAd/GetAdFormWithShortUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Ad">
+    <wsdl:port name="BasicHttpBinding_IAd" binding="tns:BasicHttpBinding_IAd">
+      <soap:address location="http://api.authenticationads.com/Ad.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

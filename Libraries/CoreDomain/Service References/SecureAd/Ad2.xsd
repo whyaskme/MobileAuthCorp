@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.OTP" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract.OTP" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://api.authenticationads.com/Ad.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" />
+  <xs:complexType name="GetOTPResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" base="q1:BaseAPIResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OTPExpireMinutes" type="xs:int" />
+          <xs:element minOccurs="0" name="OTPTransactionId" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetOTPResponse" nillable="true" type="tns:GetOTPResponse" />
+  <xs:complexType name="GetOTPRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/SAI.Service.API.DataContract" base="q2:BaseAPIRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetOTPRequest" nillable="true" type="tns:GetOTPRequest" />
+</xs:schema>

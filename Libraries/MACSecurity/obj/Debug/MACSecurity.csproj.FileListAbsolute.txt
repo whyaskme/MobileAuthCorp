@@ -1,0 +1,26 @@
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\MACSecurity\bin\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\MACSecurity\bin\Debug\MACSecurity.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\MACSecurity\obj\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\MACSecurity\obj\Debug\MACSecurity.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\MACSecurity\bin\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\MACSecurity\bin\Debug\MACSecurity.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\MACSecurity\obj\Debug\MACSecurity.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\MACSecurity\obj\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\MACSecurity\obj\Debug\MACSecurity.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\bin\Debug\MACSecurity.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\bin\Debug\MACSecurity.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\obj\Debug\MACSecurity.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\obj\Debug\MACSecurity.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\bin\Debug\MACSecurity.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\bin\Debug\MACSecurity.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\obj\Debug\MACSecurity.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\obj\Debug\MACSecurity.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\obj\Debug\MACSecurity.csprojResolveAssemblyReference.cache
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\bin\Debug\MACSecurity.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\bin\Debug\MACSecurity.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\obj\Debug\MACSecurity.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\obj\Debug\MACSecurity.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\bin\Debug\MACSecurity.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\bin\Debug\MACSecurity.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\obj\Debug\MACSecurity.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\MACSecurity\obj\Debug\MACSecurity.pdb

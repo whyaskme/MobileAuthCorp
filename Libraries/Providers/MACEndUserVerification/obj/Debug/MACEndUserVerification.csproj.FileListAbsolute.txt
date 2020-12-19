@@ -1,0 +1,96 @@
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll.config
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACServices.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Bson.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Driver.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACServices.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\KellermanSoftware.Compare-Net-Objects.xml
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.xml
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1\MACServices\ClassLibraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll.config
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACConstants.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACServices.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Bson.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Driver.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACServices.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACConstants.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.pdb
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.xml
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.csprojResolveAssemblyReference.cache
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.dll
+c:\Joes_Data\Development\MobileAuthCorp\MAC_R1_ClassLibraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll.config
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACConstants.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACServices.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Bson.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Driver.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACServices.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACConstants.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.pdb
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.xml
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.csprojResolveAssemblyReference.cache
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.dll
+C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll.config
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACConstants.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACServices.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Web.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Bson.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Driver.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACServices.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACConstants.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Web.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.pdb
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.xml
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.csprojResolveAssemblyReference.cache
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.dll
+D:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll.config
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACEndUserVerification.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACConstants.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACServices.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Web.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Bson.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Driver.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\Microsoft.Web.Administration.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\KellermanSoftware.Compare-Net-Objects.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACServices.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACConstants.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Web.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Bson.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MongoDB.Driver.xml
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\MACSecurity.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\bin\Debug\Newtonsoft.Json.pdb
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.csprojResolveAssemblyReference.cache
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.dll
+C:\Joes Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\Libraries\Providers\MACEndUserVerification\obj\Debug\MACEndUserVerification.pdb

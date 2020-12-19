@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B3B3690A-987F-4ADE-B243-9A44068914C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MACServices</RootNamespace>
+    <AssemblyName>MACServices</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\..\..\..\..\Users\josep_000\Documents\Visual Studio 2013\Projects\localhost\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="KellermanSoftware.Compare-NET-Objects, Version=3.0.0.0, Culture=neutral, PublicKeyToken=d970ace04cc85217, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Website\Bin\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Administration, Version=7.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Windows\System32\inetsrv\Microsoft.Web.Administration.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=1.8.3.9, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Website\Bin\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.8.3.9, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Website\Bin\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\MAC_R1\Bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseRecordOperations.cs" />
+    <Compile Include="Base.cs" />
+    <Compile Include="Administrator.cs" />
+    <Compile Include="DocumentTemplate.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="EventList.cs" />
+    <Compile Include="EventStat.cs" />
+    <Compile Include="EventStatDay.cs" />
+    <Compile Include="EventTypes.cs" />
+    <Compile Include="HelpTopic.cs" />
+    <Compile Include="HelpUtils.cs" />
+    <Compile Include="MBJsonResponse.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="MacListAdHoc.cs" />
+    <Compile Include="MongoDBGridFs.cs" />
+    <Compile Include="OasClientEvent.cs" />
+    <Compile Include="OasClientList.cs" />
+    <Compile Include="AdDetails.cs" />
+    <Compile Include="ProviderAdvertising.cs" />
+    <Compile Include="ProviderUserVerificationLexisNexis.cs" />
+    <Compile Include="ProviderUserVerificationWhitePages.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Relationship.cs" />
+    <Compile Include="Service References\SecureAd\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SSLSupport.cs" />
+    <Compile Include="TypeCountry.cs" />
+    <Compile Include="EndUserEvent.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="MacList.cs" />
+    <Compile Include="OtpSettings.cs" />
+    <Compile Include="Organization.cs" />
+    <Compile Include="MessagingProvider.cs" />
+    <Compile Include="ProviderEmail.cs" />
+    <Compile Include="ProviderSms.cs" />
+    <Compile Include="ProviderVoice.cs" />
+    <Compile Include="TypeDefinitions.cs" />
+    <Compile Include="TypeEvent.cs" />
+    <Compile Include="TypeNameTitle.cs" />
+    <Compile Include="TypeOrganization.cs" />
+    <Compile Include="TypeRegistration.cs" />
+    <Compile Include="TypeState.cs" />
+    <Compile Include="TypeUser.cs" />
+    <Compile Include="TypeVerificationProvider.cs" />
+    <Compile Include="Otp.cs" />
+    <Compile Include="EndUser.cs" />
+    <Compile Include="User.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserAddress.cs" />
+    <Compile Include="UserContact.cs" />
+    <Compile Include="UserProfile.cs" />
+    <Compile Include="UserRole.cs" />
+    <Compile Include="UserSecurity.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="VerificationProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagrams\Client.cd" />
+    <None Include="Service References\SecureAd\Ad.disco" />
+    <None Include="Service References\SecureAd\configuration91.svcinfo" />
+    <None Include="Service References\SecureAd\configuration.svcinfo" />
+    <None Include="Service References\SecureAd\MACServices.SecureAd.GetAdByPassThroughServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureAd\MACServices.SecureAd.GetAdFormResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureAd\MACServices.SecureAd.GetAdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureAd\MACServices.SecureAd.GetOTPAdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SecureAd\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="TypeDefinitionsText\AlreadyProcessed\Countries.txt" />
+    <Content Include="TypeDefinitionsText\AlreadyProcessed\Registration.txt" />
+    <Content Include="TypeDefinitionsText\AlreadyProcessed\States.txt" />
+    <Content Include="TypeDefinitionsText\AlreadyProcessed\VerificationProviders.txt" />
+    <None Include="Service References\SecureAd\Ad.wsdl" />
+    <None Include="Service References\SecureAd\Ad.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureAd\Ad1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureAd\Ad2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureAd\Ad3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureAd\Ad4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureAd\Ad5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SecureAd\Ad6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MACConstants\MACConstants\MACConstants.csproj">
+      <Project>{cd680504-d342-414b-bf56-40d325d45a6d}</Project>
+      <Name>MACConstants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MACSecurity\MACSecurity.csproj">
+      <Project>{5d982c49-0a44-4771-aac6-ca6be4b19eb3}</Project>
+      <Name>MACSecurity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Providers\Data\MongoDB\MongoDB.Web.csproj">
+      <Project>{90bb8808-e091-463d-aafd-5134183bdcf7}</Project>
+      <Name>MongoDB.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SecureAd\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
