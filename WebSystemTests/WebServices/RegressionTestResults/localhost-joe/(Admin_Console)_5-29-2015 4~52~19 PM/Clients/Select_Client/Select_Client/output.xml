@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150529 16:58:16.295" generator="Robot 2.8.7 (Python 2.7.9 on win32)">
+<suite source="C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Clients\Select_Client\Select_Client.txt" id="s1" name="Select Client">
+<test id="s1-t1" name="MAC Admin">
+<kw type="kw" name="Open Admin">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Open Browser">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${URL}</arg>
+<arg>${FF}</arg>
+</arguments>
+<msg timestamp="20150529 16:58:16.579" level="INFO">Opening browser 'Firefox' to base url 'http://localhost'</msg>
+<status status="PASS" endtime="20150529 16:58:32.172" starttime="20150529 16:58:16.578"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20150529 16:58:32.331" starttime="20150529 16:58:32.172"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${DELAY}</arg>
+</arguments>
+<status status="PASS" endtime="20150529 16:58:32.332" starttime="20150529 16:58:32.332"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Page Contains Element">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>txtUsername_Desktop</arg>
+<arg>10</arg>
+</arguments>
+<status status="PASS" endtime="20150529 16:58:32.607" starttime="20150529 16:58:32.333"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>MAC Otp System Administration</arg>
+</arguments>
+<msg timestamp="20150529 16:58:32.735" level="INFO">Page title is 'MAC Otp System Administration'.</msg>
+<status status="PASS" endtime="20150529 16:58:32.735" starttime="20150529 16:58:32.607"></status>
+</kw>
+<status status="PASS" endtime="20150529 16:58:32.735" starttime="20150529 16:58:16.576"></status>
+</kw>
+<kw type="kw" name="Login using OTP">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>txtUsername_Desktop</arg>
+<arg>${USER}</arg>
+</arguments>
+<msg timestamp="20150529 16:58:32.737" level="INFO">Typing text 'QAUser@mobileauthcorp.com' into text field 'txtUsername_Desktop'</msg>
+<status status="PASS" endtime="20150529 16:58:33.257" starttime="20150529 16:58:32.736"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>btnAdminOtpRequest_Desktop</arg>
+</arguments>
+<msg timestamp="20150529 16:58:33.258" level="INFO">Clicking element 'btnAdminOtpRequest_Desktop'.</msg>
+<status status="PASS" endtime="20150529 16:58:37.434" starttime="20150529 16:58:33.257"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Page Contains Element">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>txtPassword_Desktop</arg>
+<arg>5</arg>
+</arguments>
+<status status="PASS" endtime="20150529 16:58:38.650" starttime="20150529 16:58:37.434"></status>
+</kw>
+<kw type="kw" name="${PWD} = Selenium2Library.Get Value">
+<doc>Returns the value attribute of element identified by `locator`.</doc>
+<arguments>
+<arg>hiddenAD</arg>
+</arguments>
+<msg timestamp="20150529 16:58:38.931" level="INFO">${PWD} = 509A78B85C7C985F8C09CB8C9B915DF8</msg>
+<status status="PASS" endtime="20150529 16:58:38.931" starttime="20150529 16:58:38.650"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${PWD}</arg>
+</arguments>
+<msg timestamp="20150529 16:58:38.933" level="INFO">509A78B85C7C985F8C09CB8C9B915DF8</msg>
+<status status="PASS" endtime="20150529 16:58:38.933" starttime="20150529 16:58:38.932"></status>
+</kw>
+<kw type="kw" name="${argList} = BuiltIn.Create List">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${PWD}</arg>
+<arg>${KEY}</arg>
+</arguments>
+<msg timestamp="20150529 16:58:38.936" level="INFO">${argList} = [u'509A78B85C7C985F8C09CB8C9B915DF8', u'530f6e8e675c9b1854a6970b']</msg>
+<status status="PASS" endtime="20150529 16:58:38.936" starttime="20150529 16:58:38.934"></status>
+</kw>
+<kw type="kw" name="${s2l} = BuiltIn.Get Library Instance">
+<doc>Returns the currently active instance of the specified test library.</doc>
+<arguments>
+<arg>Selenium2Library</arg>
+</arguments>
+<msg timestamp="20150529 16:58:38.938" level="INFO">${s2l} = &lt;Selenium2Library.Selenium2Library object at 0x01AD5E90&gt;</msg>
+<status status="PASS" endtime="20150529 16:58:38.937" starttime="20150529 16:58:38.937"></status>
+</kw>
+<kw type="kw" name="${PWD} = BuiltIn.Call Method">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${s2l._current_browser()}</arg>
+<arg>execute_script</arg>
+<arg>return Decrypt(arguments[0], arguments[1]);</arg>
+<arg>@{argList}</arg>
+</arguments>
+<msg timestamp="20150529 16:58:39.140" level="INFO">${PWD} = 8815</msg>
+<status status="PASS" endtime="20150529 16:58:39.140" starttime="20150529 16:58:38.938"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${PWD}</arg>
+</arguments>
+<msg timestamp="20150529 16:58:39.141" level="INFO">8815</msg>
+<status status="PASS" endtime="20150529 16:58:39.141" starttime="20150529 16:58:39.140"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>txtPassword_Desktop</arg>
+<arg>${PWD}</arg>
+</arguments>
+<msg timestamp="20150529 16:58:39.142" level="INFO">Typing text '8815' into text field 'txtPassword_Desktop'</msg>
+<status status="PASS" endtime="20150529 16:58:39.622" starttime="20150529 16:58:39.142"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>btnAdminOtpRequest_Desktop</arg>
+</arguments>
+<msg timestamp="20150529 16:58:39.622" level="INFO">Clicking element 'btnAdminOtpRequest_Desktop'.</msg>
+<status status="PASS" endtime="20150529 16:58:42.412" starttime="20150529 16:58:39.622"></status>
+</kw>
+<status status="PASS" endtime="20150529 16:58:42.412" starttime="20150529 16:58:32.735"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20150529 16:58:42.412" critical="yes" starttime="20150529 16:58:16.575"></status>
+</test>
+<test id="s1-t2" name="Select Client">
+<kw type="kw" name="Select Client From Main Menu">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Wait Until Page Contains Element">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>lnkClients</arg>
+<arg>5</arg>
+</arguments>
+<status status="PASS" endtime="20150529 16:58:42.681" starttime="20150529 16:58:42.416"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>lnkClients</arg>
+</arguments>
+<msg timestamp="20150529 16:58:42.681" level="INFO">Clicking element 'lnkClients'.</msg>
+<status status="PASS" endtime="20150529 17:00:50.725" starttime="20150529 16:58:42.681"></status>
+</kw>
+<status status="PASS" endtime="20150529 17:00:50.725" starttime="20150529 16:58:42.414"></status>
+</kw>
+<kw type="kw" name="Select Client">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Wait Until Page Contains Element">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>dlClients_chosen</arg>
+<arg>5</arg>
+</arguments>
+<status status="PASS" endtime="20150529 17:00:50.870" starttime="20150529 17:00:50.726"></status>
+</kw>
+<kw type="kw" name="${BUTTONVALUE} = Selenium2Library.Get Value">
+<doc>Returns the value attribute of element identified by `locator`.</doc>
+<arguments>
+<arg>btnClientActions</arg>
+</arguments>
+<msg timestamp="20150529 17:00:51.133" level="INFO">${BUTTONVALUE} = Create New</msg>
+<status status="PASS" endtime="20150529 17:00:51.133" starttime="20150529 17:00:50.870"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal As Strings">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${BUTTONVALUE}</arg>
+<arg>Create New</arg>
+</arguments>
+<msg timestamp="20150529 17:00:51.134" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20150529 17:00:51.134" starttime="20150529 17:00:51.133"></status>
+</kw>
+<kw type="kw" name="Select Client In DDL using JS">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${argList} = BuiltIn.Create List">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>formMain</arg>
+<arg>dlClients</arg>
+<arg>${CLIENTNAME}</arg>
+</arguments>
+<msg timestamp="20150529 17:00:51.137" level="INFO">${argList} = [u'formMain', u'dlClients', u'Coffee Shop']</msg>
+<status status="PASS" endtime="20150529 17:00:51.136" starttime="20150529 17:00:51.136"></status>
+</kw>
+<kw type="kw" name="${s2l} = BuiltIn.Get Library Instance">
+<doc>Returns the currently active instance of the specified test library.</doc>
+<arguments>
+<arg>Selenium2Library</arg>
+</arguments>
+<msg timestamp="20150529 17:00:51.137" level="INFO">${s2l} = &lt;Selenium2Library.Selenium2Library object at 0x01AD5E90&gt;</msg>
+<status status="PASS" endtime="20150529 17:00:51.137" starttime="20150529 17:00:51.137"></status>
+</kw>
+<kw type="kw" name="${rtn} = BuiltIn.Call Method">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${s2l._current_browser()}</arg>
+<arg>execute_script</arg>
+<arg>return selectoptionbytext(arguments[0], arguments[1], arguments[2] );</arg>
+<arg>@{argList}</arg>
+</arguments>
+<msg timestamp="20150529 17:00:51.329" level="INFO">${rtn} = Coffee Shop</msg>
+<status status="PASS" endtime="20150529 17:00:51.329" starttime="20150529 17:00:51.138"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal As Strings">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${rtn}</arg>
+<arg>${CLIENTNAME}</arg>
+</arguments>
+<msg timestamp="20150529 17:00:51.330" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20150529 17:00:51.330" starttime="20150529 17:00:51.330"></status>
+</kw>
+<status status="PASS" endtime="20150529 17:00:51.330" starttime="20150529 17:00:51.134"></status>
+</kw>
+<status status="PASS" endtime="20150529 17:00:51.331" starttime="20150529 17:00:50.726"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20150529 17:00:51.563" starttime="20150529 17:00:51.331"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20150529 17:00:51.563" critical="yes" starttime="20150529 16:58:42.413"></status>
+</test>
+<doc>Admin Client Select_Client</doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20150529 17:00:51.564" starttime="20150529 16:58:16.296"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" pass="2" id="s1" name="Select Client">Select Client</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

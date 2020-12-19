@@ -1,0 +1,19 @@
+Groups_Logo:Groups Logo Passed=0 Failed=1
+------- StandardOut ----------------
+
+c:\windows\system32\inetsrv>pybot --variable URL:http://qa.mobileauthcorp.net  --variable "USER:dgleason@mobileauthcorp.com"   --outputdir "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\qa.mobileauthcorp.net\(Admin_Console)_6-11-2015 9~23~08 AM\Groups\Logo\Groups_Logo" "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Groups\Logo\Groups_Logo.txt" 
+==============================================================================
+Groups Logo :: MAC Admin Create New User Test                                 
+==============================================================================
+MAC Admin                                                             | FAIL |
+Variable '${SUT}' not found.
+------------------------------------------------------------------------------
+Groups Logo :: MAC Admin Create New User Test                         | FAIL |
+1 critical test, 0 passed, 1 failed
+1 test total, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\qa.mobileauthcorp.net\(Admin_Console)_6-11-2015 9~23~08 AM\Groups\Logo\Groups_Logo\output.xml
+Log:     C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\qa.mobileauthcorp.net\(Admin_Console)_6-11-2015 9~23~08 AM\Groups\Logo\Groups_Logo\log.html
+Report:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\qa.mobileauthcorp.net\(Admin_Console)_6-11-2015 9~23~08 AM\Groups\Logo\Groups_Logo\report.html
+
+

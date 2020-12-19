@@ -1,0 +1,89 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  MAC Admin Client test suite
+
+*** Test Cases ***
+MAC Admin
+	Open Admin
+	Login Using OTP
+
+*** Test Cases ***
+Create New Client
+	Select Client Menu Item
+	Create Client
+
+*** Test Cases ***
+Select The Client
+	Select Client Menu Item
+	Select Client
+	[Teardown]     Close Browser
+
+*** Variables ***
+${KEY}	530f6e8e675c9b1854a6970b
+${FF}	Firefox
+${DELAY}	0.1
+${CLIENTNAME}	Test Client
+
+*** Keywords ***
+Open Admin
+	Open Browser	${URL}	${FF}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+	Selenium2Library.Wait Until Page Contains Element	txtUsername_Desktop	10
+	Title Should Be	MAC Otp System Administration
+
+Login Using OTP
+	Input Text	txtUsername_Desktop	${USER}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Wait Until Page Contains Element	txtPassword_Desktop	5
+	${PWD}=	Selenium2Library.Get Value	hiddenAD 
+	Log	${PWD}
+	${argList}=    Create List    ${PWD}	${KEY}
+	${s2l}=    Get Library Instance    Selenium2Library
+	${PWD}=    Call Method    ${s2l._current_browser()}    execute_script   return Decrypt(arguments[0], arguments[1]);	@{argList}
+	Log	${PWD}
+	Input Text	txtPassword_Desktop	${PWD}
+	Click Element	btnAdminOtpRequest_Desktop
+
+Select Client Menu Item
+	Selenium2Library.Wait Until Page Contains Element	lnkClients	5
+	Click Element	lnkClients
+
+Create Client
+	Selenium2Library.Wait Until Page Contains Element	btnClientActions	5
+	${BUTTONVALUE}=	Selenium2Library.Get Value	btnClientActions
+	Should Be Equal As Strings	${BUTTONVALUE}	Create New
+	Click Element	btnClientActions
+	Selenium2Library.Wait Until Page Contains Element	txtClientName	5
+	Input Text	txtClientName	${CLIENTNAME}
+	Input Text	txtTaxId	123-323-099
+	Input Text	txtEmail	QAUser@mobileauthcorp.com
+	Input Text	txtPhone	480-555-1212
+	${BUTTONVALUE}=	Selenium2Library.Get Value	btnClientActions
+	Should Be Equal As Strings	${BUTTONVALUE}	Save
+	Click Element	btnClientActions
+	${RESULT}=	Get Text	xpath=.//*[@id='spanClientName']
+	Log	${RESULT}
+	Should Be Equal As Strings	${RESULT}	Name
+	
+
+Select Client
+	Selenium2Library.Wait Until Page Contains Element	dlClients_chosen	5
+	${BUTTONVALUE}=	Selenium2Library.Get Value	btnClientActions
+	Should Be Equal As Strings	${BUTTONVALUE}	Create New
+	Select Client In DDL using JS
+
+#Select client by entering client name into ddl input field using xpath
+Select Client In DDL using xpath
+	Click Element	dlClients_chosen
+	Input Text	xpath=.//*[@id='dlClients_chosen']/div/div/input	${CLIENTNAME}+${\n}
+	Click Element	xpath=.//*[@id='dlClients_chosen']/div/div/input
+
+#Select client by client name using java script function
+Select Client In DDL using JS
+	${argList}=    Create List    formMain	dlClients	${CLIENTNAME}
+	${s2l}=    Get Library Instance    Selenium2Library
+	${rtn}=	Call Method    ${s2l._current_browser()}    execute_script	return selectoptionbytext(arguments[0], arguments[1], arguments[2] );	@{argList}
+	Should Be Equal As Strings	${rtn}	${CLIENTNAME}

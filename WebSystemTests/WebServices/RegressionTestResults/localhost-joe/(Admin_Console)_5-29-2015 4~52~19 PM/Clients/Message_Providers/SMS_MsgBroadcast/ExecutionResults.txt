@@ -1,0 +1,20 @@
+SMS_MsgBroadcast:SMS MsgBroadcast Passed=0 Failed=1
+------- StandardOut ----------------
+
+c:\windows\system32\inetsrv>pybot --variable URL:http://localhost  --variable "USER:QAUser@mobileauthcorp.com"   --outputdir "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Message_Providers\SMS_MsgBroadcast" "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Clients\Message_Providers\SMS_MsgBroadcast.txt" 
+==============================================================================
+SMS MsgBroadcast :: MAC Admin Client test suite                               
+==============================================================================
+Admin Test                                                            | FAIL |
+No keyword with name 'Open Admin' found. Did you mean:
+    Open MAC Admin
+------------------------------------------------------------------------------
+SMS MsgBroadcast :: MAC Admin Client test suite                       | FAIL |
+1 critical test, 0 passed, 1 failed
+1 test total, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Message_Providers\SMS_MsgBroadcast\output.xml
+Log:     C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Message_Providers\SMS_MsgBroadcast\log.html
+Report:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Message_Providers\SMS_MsgBroadcast\report.html
+
+

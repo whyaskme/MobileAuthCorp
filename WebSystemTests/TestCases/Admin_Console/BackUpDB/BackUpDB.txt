@@ -1,0 +1,57 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+*** Variables ***
+${KEY}	530f6e8e675c9b1854a6970b
+${BROWSER}	Firefox
+${DELAY}	0.1
+${HERE}	Here
+
+*** Keywords ***
+Open_Admin
+	Open Browser	${URL}	${BROWSER}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+	Selenium2Library.Wait Until Page Contains Element	txtUsername_Desktop	10
+	Title Should Be	MAC Otp System Administration
+
+Login_Using_OTP
+	MACLibrary.JQ_Input_Text	txtUsername_Desktop	${USER}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Wait Until Page Contains Element	txtPassword_Desktop	5
+	${PWD}=	Selenium2Library.Get Value	hiddenAD 
+	Log	${PWD}
+	${argList}=    Create List    ${PWD}	${KEY}
+	${s2l}=    Get Library Instance    Selenium2Library
+	${PWD}=    Call Method    ${s2l._current_browser()}    execute_script   return Decrypt(arguments[0], arguments[1]);	@{argList}
+	Log	${PWD}
+	MACLibrary.JQ_Input_Text	txtPassword_Desktop	${PWD}
+	Click Element	btnAdminOtpRequest_Desktop
+
+Select_Main_Menu_Item	[Arguments]	${ITEMID}
+	Log	${ITEMID}
+	Selenium2Library.Element Should Be Visible	${ITEMID}
+	Click Element	${ITEMID}
+
+JQ_Input_Text	[Arguments]	${ELEMENTID}	${TEXT}
+\	${JQ}=	Catenate	SEPARATOR=	$("#	${ELEMENTID}	").val("	${TEXT}	")
+\	${s2l}=	Get Library Instance    Selenium2Library
+\	Call Method	${s2l._current_browser()}	execute_script	${JQ}
+
+User_Select_Role	[Arguments]	${TEXT}
+\	Click Element	xpath=.//*[@id='dlUserRoles_chosen']/a
+\	Input Text	xpath=.//*[@id='dlUserRoles_chosen']/div/div/input	${TEXT}${\n}
+
+Select_Clients_From_Main_Menu
+	Selenium2Library.Wait Until Page Contains Element	lnkClients	5
+	Click Element	lnkClients
+
+#Select client by entering client name into ddl input field using xpath
+Select Client	[Arguments]	${CLIENTNAME}
+\	Click Element	dlClients_chosen
+\	Input Text	xpath=.//*[@id='dlClients_chosen']/div/div/input	${CLIENTNAME}${\n}
+
+
+
+

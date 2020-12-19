@@ -1,0 +1,19 @@
+MAC_Users_ViewEventID:MAC Users ViewEventID Passed=0 Failed=1
+------- StandardOut ----------------
+
+c:\windows\system32\inetsrv>pybot --variable URL:http://localhost  --variable "USER:QAUser@mobileauthcorp.com"   --outputdir "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Reports\MAC_Users_ViewEventID" "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Clients\Reports\MAC_Users_ViewEventID.txt" 
+==============================================================================
+MAC Users ViewEventID :: MAC Admin Create New User Test                       
+==============================================================================
+MAC Admin                                                             | FAIL |
+Variable '${SUT}' not found.
+------------------------------------------------------------------------------
+MAC Users ViewEventID :: MAC Admin Create New User Test               | FAIL |
+1 critical test, 0 passed, 1 failed
+1 test total, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Reports\MAC_Users_ViewEventID\output.xml
+Log:     C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Reports\MAC_Users_ViewEventID\log.html
+Report:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Reports\MAC_Users_ViewEventID\report.html
+
+

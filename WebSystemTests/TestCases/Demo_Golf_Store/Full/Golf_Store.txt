@@ -1,0 +1,121 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Demo_Golf_Store Golf_Store
+
+*** Test Cases ***
+Golf Store Demo
+	Open	
+	Verify Landing Page
+	Login
+	${s2l}=    Get Library Instance    Selenium2Library
+	${Result}=	Call Method    ${s2l._current_browser()}    execute_script   return $("#divErrorContainerRegister").is(':visible');
+	Log	${Result}
+	Run Keyword If	${Result}==False
+	...	Unsubscribe
+	Register
+	Login
+
+Other
+	Login
+#	${argList}=    Create List    divErrorContainerRegister
+#	${s2l}=    Get Library Instance    Selenium2Library
+#	${Result}=	Call Method    ${s2l._current_browser()}    execute_script   return isDivVisable(arguments[0]); 	@{argList}
+#	Run Keyword If	"${Result}"=="${NO}"
+#	...	Unsubscribe
+#	Register
+#	Login
+#	Shop
+#	Purchase
+#	Authorize Purchase
+#	Done Shopping
+#	Unsubscribe
+#	[Teardown]     Close Browser
+
+*** Variables ***
+${URL}	http://localhost/demos/php/golfstore/
+${URI}	.otp-ap.us/php/golfstore
+${USER}	QAUser@mobileauthcorp.com
+${FF}	Firefox
+${DELAY}	0.1
+${NO}	NO
+
+*** Keywords ***
+# ------- Golf Shop ASP.Net Demo ------------------------------
+Open
+	Run Keyword If	'${SUT}' != 'LOCALHOST'
+    	...	set test variable    ${URL}    http://${SUT}${URI}	${FF}
+	Log	${URL}
+	Open Browser	${URL}	${FF}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+
+Verify Landing Page
+	Title Should Be	Welcome To MAC Test Shopping Cart
+	Selenium2Library.Element Should Be Visible	hero
+
+Login
+	Input Text	txtLoginName	${USER}
+	Click Element	btnValidateLoginName
+
+Shop
+	Selenium2Library.Wait Until Page Contains Element	btnLoginOTP	30
+	Click Element	btnLoginOTP
+	Selenium2Library.Element Should Be Visible	item7
+	Click Element	item7
+	Selenium2Library.Element Should Be Visible	item8
+	Click Element	item8
+
+Purchase
+	Selenium2Library.Element Should Be Visible	item_subtotal7
+	Selenium2Library.Element Should Be Visible	item_subtotal8
+	Selenium2Library.Element Should Be Visible	btnPurchase
+	Click Element	btnPurchase
+
+Authorize Purchase
+	Selenium2Library.Wait Until Page Contains Element	btnVerifyOtp	30
+	Click Element	btnVerifyOtp
+
+Done Shopping
+	Selenium2Library.Wait Until Page Contains Element	btnNoThanks	30
+	Click Element	btnNoThanks
+	Selenium2Library.Wait Until Page Contains Element	btnHome	30
+	Click Element	btnHome
+
+Register
+	Selenium2Library.Element Should Be Visible	btnToRegister
+	Click Element	btnToRegister
+	Selenium2Library.Wait Until Page Contains Element	registrationMessage	30
+	Input Text	txtFirstName	QAUser
+	Input Text	txtLastName	Test1
+	Input Text	txtCompany	MAC
+	Input Text	txtJobTitle	Tester
+	Input Text	txtMPhoneNo	4802684076
+	Input Text	txtEmailAdr	${USER}
+	Input Text	txtimgcode	QA1234
+	Click Element	chkTermsAndConditions
+	Selenium2Library.Element Should Be Visible	btnRegisterEndUser
+	Click Element	btnRegisterEndUser
+	${s2l}=    Get Library Instance    Selenium2Library
+	${Error}=	Call Method    ${s2l._current_browser()}    execute_script   return $("#messageRow").is(':visible');
+	Log	${Error}
+	Run Keyword If	${Error}==True
+	...	Log and Error
+	...	ELSE
+	...	Selenium2Library.Wait Until Page Contains Element	btnTitleAreaHome	5
+
+Log and Error
+	${Msg}	Get Text	   lbError
+	Log	${Msg}
+	Selenium2Library.Element Should Not Be Visible	lbError
+
+Unsubscribe
+	Click Element	btnTitleAreaHome
+	Selenium2Library.Wait Until Page Contains Element	Button2	30
+	Click Element	Button2
+	Selenium2Library.Wait Until Page Contains Element	txtUnsubscribe	30
+	Input Text	txtUnsubscribe	${USER}
+	Click Element	btnUnsubscribe
+	Selenium2Library.Wait Until Page Contains Element	btnHome1	30
+	Click Element	btnHome1

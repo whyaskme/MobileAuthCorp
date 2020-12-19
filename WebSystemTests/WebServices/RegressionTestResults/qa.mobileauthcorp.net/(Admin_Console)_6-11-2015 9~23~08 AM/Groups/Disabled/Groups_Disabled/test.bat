@@ -1,0 +1,2 @@
+pybot --variable URL:http://qa.mobileauthcorp.net  --variable "USER:dgleason@mobileauthcorp.com"   --outputdir "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\qa.mobileauthcorp.net\(Admin_Console)_6-11-2015 9~23~08 AM\Groups\Disabled\Groups_Disabled" "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Groups\Disabled\Groups_Disabled.txt"
+

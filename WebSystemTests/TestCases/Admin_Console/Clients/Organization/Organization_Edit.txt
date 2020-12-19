@@ -1,0 +1,22 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+Resource	C:/RobotTests/MACLibrary.txt
+
+Documentation  Admin Client Organization Edit
+
+*** Test Cases ***
+MAC Admin
+	MACLibrary.Open_Admin
+	MACLibrary.Login_Using_OTP
+	MACLibrary.Select_Main_Menu_Item	lnkClients
+
+*** Test Cases ***
+Creat New
+	[Teardown]     Close Browser
+
+*** Variables ***
+${CLIENTNAME}	Coffee Shop
+
+*** Keywords ***
+

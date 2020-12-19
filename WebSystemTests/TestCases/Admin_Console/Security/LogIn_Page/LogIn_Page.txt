@@ -1,0 +1,74 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation	Admin_Console Security LogIn_Page
+
+*** Test Cases ***
+MAC Admin
+	Log Variables
+	Open Admin
+	Verify MAC Admin Landing Page
+	Admin Login
+	[Teardown]     Close Browser
+
+*** Variables ***
+${URL}	http://localhost/Admin/Security
+${USER}	QAUser@mobileauthcorp.com
+${PWD}	QA1234
+${FF}	Firefox
+${DELAY}	0.1
+${SYSADMINUSER}	system@mobileauthcorp.com
+
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open Admin
+	Run Keyword If	'${SUT}' != 'LOCALHOST'
+    	...	set test variable    ${URL}    http://${SUT}.mobileauthcorp.net/Admin/Security
+	Log	${URL}
+	Open Browser	${URL}	${FF}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+
+Verify MAC Admin Landing Page
+	Selenium2Library.Wait Until Page Contains Element	txtUsername_Desktop	10
+	Title Should Be	MAC Otp System Administration
+
+Admin Login
+	Run Keyword If	'${SUT}' == 'LOCALHOST'
+	...	Login Using Existing Credentuals
+	...	ELSE				
+	...	Login As QAUser
+	Selenium2Library.Wait Until Page Contains Element	divLoginMyAccountControlsContainer_Desktop	5
+
+Login Using Existing Credentuals
+	Selenium2Library.Element Should Be Visible	LinkUseExistingCredentials_Desktop
+	Input Text	txtUsername_Desktop	${SYSADMINUSER}
+	Click Element	LinkUseExistingCredentials_Desktop
+	Selenium2Library.Wait Until Page Contains Element	txtPassword_Desktop	5
+	Input Text	txtPassword_Desktop	${SYSADMINPWD}
+	Click Element	btnAdminOtpRequest_Desktop
+
+Login As QAUser
+	Input Text	txtUsername_Desktop	${QAUser}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Wait Until Page Contains Element	txtPassword_Desktop	5
+	Input Text	txtPassword_Desktop	${QAPWD}
+	Click Element	btnAdminOtpRequest_Desktop
+
+Create User
+	Selenium2Library.Wait Until Page Contains Element	lnkAdminUsers	10
+	Click Element	lnkAdminUsers	
+	Selenium2Library.Element Should Be Visible	btnSaveUser
+	Input Text	txtFirstName	QAUser
+	Input Text	txtLastName	Tester1
+	Input Text	txtEmail	qa@qa.com
+	Input Text	txtPhone	4802684076
+	Input Text	txtUsername	QATester
+	Input Text	txtPassword	QA1234
+	${s2l}=    Get Library Instance    Selenium2Library
+	Call Method    ${s2l._current_browser()}    execute_script $("#dlRolesAssigned option[id=role2]").attr("selected", true); $("#dlRolesAssigned").trigger("chosen:updated");
+	Click Element	btnSaveUser
+
+Verify New User

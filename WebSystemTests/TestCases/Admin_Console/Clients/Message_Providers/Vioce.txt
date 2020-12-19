@@ -1,0 +1,57 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  MAC Admin Client test suite
+
+*** Test Cases ***
+Admin Test
+	Log Variables
+	Open Admin
+	Verify MAC Admin Landing Page
+	Admin Login
+	[Teardown]     Close Browser
+
+*** Variables ***
+${URL}	http://localhost/Admin/Security
+${FF}	Firefox
+${DELAY}	0.1
+${SYSADMINUSER}	system@mobileauthcorp.com
+${QAUser}	QAUser@mobileauthcorp.com
+
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open MAC Admin
+	Run Keyword If	'${SUT}' != 'LOCALHOST'
+    	...	set test variable    ${URL}    http://${SUT}.mobileauthcorp.net/Admin/Security
+	Log	${URL}
+	Open Browser	${URL}	${FF}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+
+Verify MAC Admin Landing Page
+	Title Should Be	MAC Otp System Administration
+	Selenium2Library.Element Should Be Visible	txtUsername_Desktop
+
+Admin Login
+	Run Keyword If	'${SUT}' == 'LOCALHOST'
+	...	Login Using Existing Credentuals
+	...	ELSE				
+	...	Login As QAUser
+
+Login Using Existing Credentuals
+	Selenium2Library.Element Should Be Visible	LinkUseExistingCredentials_Desktop
+	Input Text	txtUsername_Desktop	${SYSADMINUSER}
+	Click Element	LinkUseExistingCredentials_Desktop
+	Selenium2Library.Element Should Be Visible	txtPassword_Desktop
+	Input Text	txtPassword_Desktop	${SYSADMINPWD}
+	Click Element	btnAdminOtpRequest_Desktop
+
+Login As QAUser
+	Input Text	txtUsername_Desktop	${QAUser}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	txtPassword_Desktop
+	Input Text	txtPassword_Desktop	${QAPWD}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Element Should Be Visible	divLoginMyAccountControlsContainer_Desktop

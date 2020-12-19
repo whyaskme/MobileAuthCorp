@@ -1,0 +1,27 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+Resource	C:/RobotTests/MACLibrary.txt
+
+Documentation  
+
+*** Test Cases ***
+MAC Admin
+	MACLibrary.Open_Admin
+	MACLibrary.Login_Using_OTP
+	MACLibrary.Select_Main_Menu_Item	lnkAdminUsers
+	MACLibrary.User_Select_Role	${SysAdmin}
+#	[Teardown]     Close Browser
+
+*** Variables ***
+${HERE}	Here
+${SysAdmin}	1 - System Administrator
+${GroupAdmin}	2 - Group Administrator
+${ClientAdmin}	3 - Client Administrator
+${AccUser}	4 - Accounting User
+${ClientUser}	5 - Client User
+${GroupUser}	6 - Group User
+${OperUser}	7 - Operations User
+
+*** Keywords ***
+

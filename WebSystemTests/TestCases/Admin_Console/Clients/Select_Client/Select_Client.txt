@@ -1,0 +1,25 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+Resource	C:/RobotTests/MACLibrary.txt
+
+Documentation  Admin Client Select_Client
+
+*** Test Cases ***
+MAC Admin
+	MACLibrary.Open_Admin
+	MACLibrary.Login_Using_OTP
+	MACLibrary.Select_Main_Menu_Item	lnkClients
+
+*** Test Cases ***
+	MACLibrary.JQ_Select_Option_By_Text	formMain	dlClients	${CLIENTNAME}
+	${CNAME}=	Selenium2Library.Get Value	txtClientName
+	Should Be Equal As Strings	${CNAME}	${CLIENTNAME}
+	Sleep	4s
+	[Teardown]     Close Browser
+
+*** Variables ***
+${CLIENTNAME}	Coffee Shop
+
+*** Keywords ***
+

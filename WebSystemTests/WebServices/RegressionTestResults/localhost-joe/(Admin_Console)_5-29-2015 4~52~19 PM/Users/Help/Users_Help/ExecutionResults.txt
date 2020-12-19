@@ -1,0 +1,19 @@
+Users_Help:Users Help Passed=0 Failed=1
+------- StandardOut ----------------
+
+c:\windows\system32\inetsrv>pybot --variable URL:http://localhost  --variable "USER:QAUser@mobileauthcorp.com"   --outputdir "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Users\Help\Users_Help" "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Users\Help\Users_Help.txt" 
+==============================================================================
+Users Help :: Admin_Console Users Users_Help                                  
+==============================================================================
+MAC Admin                                                             | FAIL |
+Variable '${SUT}' not found.
+------------------------------------------------------------------------------
+Users Help :: Admin_Console Users Users_Help                          | FAIL |
+1 critical test, 0 passed, 1 failed
+1 test total, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Users\Help\Users_Help\output.xml
+Log:     C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Users\Help\Users_Help\log.html
+Report:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Users\Help\Users_Help\report.html
+
+

@@ -1,0 +1,7 @@
+Organization_Logo:Organization Logo Passed=0 Failed=1
+------- StandardOut ----------------
+
+c:\windows\system32\inetsrv>pybot --variable URL:http://localhost  --variable "USER:QAUser@mobileauthcorp.com"   --outputdir "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Organization\Organization_Logo" "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Clients\Organization\Organization_Logo.txt" 
+==============================================================================
+Organization Logo :: MAC Admin Create New User Test                           
+

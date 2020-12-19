@@ -1,0 +1,19 @@
+MAC_Reports_Paging:MAC Reports Paging Passed=0 Failed=1
+------- StandardOut ----------------
+
+c:\windows\system32\inetsrv>pybot --variable URL:http://localhost  --variable "USER:QAUser@mobileauthcorp.com"   --outputdir "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Reports\MAC_Reports_Paging" "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Clients\Reports\MAC_Reports_Paging.txt" 
+==============================================================================
+MAC Reports Paging :: MAC Admin Create New User Test                          
+==============================================================================
+MAC Admin                                                             | FAIL |
+Variable '${SUT}' not found.
+------------------------------------------------------------------------------
+MAC Reports Paging :: MAC Admin Create New User Test                  | FAIL |
+1 critical test, 0 passed, 1 failed
+1 test total, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Reports\MAC_Reports_Paging\output.xml
+Log:     C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Reports\MAC_Reports_Paging\log.html
+Report:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Clients\Reports\MAC_Reports_Paging\report.html
+
+

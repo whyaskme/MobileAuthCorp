@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150529 17:01:29.087" generator="Robot 2.8.7 (Python 2.7.9 on win32)">
+<suite source="C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Users\Register_User\Register_User.txt" id="s1" name="Register User">
+<test id="s1-t1" name="MAC Admin">
+<kw type="kw" name="BuiltIn.Log Variables">
+<doc>Logs all variables in the current scope with given log level.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150529 17:01:29.334" level="INFO">${/} = \</msg>
+<msg timestamp="20150529 17:01:29.334" level="INFO">${:} = ;</msg>
+<msg timestamp="20150529 17:01:29.334" level="INFO">${\n} = 
+</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${DEBUG_FILE} = NONE</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${DELAY} = 0.1</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${EMPTY} = </msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${EXECDIR} = c:\windows\system32\inetsrv</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${False} = False</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${FF} = Firefox</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${LOG_FILE} = C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Users\Register_User\Register_User\log.html</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${LOG_LEVEL} = INFO</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${None} = None</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${null} = None</msg>
+<msg timestamp="20150529 17:01:29.335" level="INFO">${OUTPUT_DIR} = C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Users\Register_User\Register_User</msg>
+<msg timestamp="20150529 17:01:29.336" level="INFO">${OUTPUT_FILE} = C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Users\Register_User\Register_User\output.xml</msg>
+<msg timestamp="20150529 17:01:29.336" level="INFO">${PREV_TEST_MESSAGE} = </msg>
+<msg timestamp="20150529 17:01:29.336" level="INFO">${PREV_TEST_NAME} = </msg>
+<msg timestamp="20150529 17:01:29.336" level="INFO">${PREV_TEST_STATUS} = </msg>
+<msg timestamp="20150529 17:01:29.336" level="INFO">${PWD} = QA1234</msg>
+<msg timestamp="20150529 17:01:29.336" level="INFO">${REPORT_FILE} = C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Users\Register_User\Register_User\report.html</msg>
+<msg timestamp="20150529 17:01:29.336" level="INFO">${SPACE} =  </msg>
+<msg timestamp="20150529 17:01:29.336" level="INFO">${SUITE_DOCUMENTATION} = Admin_Console Users Register_User</msg>
+<msg timestamp="20150529 17:01:29.336" level="INFO">${SUITE_METADATA} = {}</msg>
+<msg timestamp="20150529 17:01:29.337" level="INFO">${SUITE_NAME} = Register User</msg>
+<msg timestamp="20150529 17:01:29.337" level="INFO">${SUITE_SOURCE} = C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Users\Register_User\Register_User.txt</msg>
+<msg timestamp="20150529 17:01:29.337" level="INFO">${SYSADMINUSER} = system@mobileauthcorp.com</msg>
+<msg timestamp="20150529 17:01:29.337" level="INFO">${TEMPDIR} = c:\windows\temp</msg>
+<msg timestamp="20150529 17:01:29.337" level="INFO">${TEST_DOCUMENTATION} = </msg>
+<msg timestamp="20150529 17:01:29.337" level="INFO">${TEST_NAME} = MAC Admin</msg>
+<msg timestamp="20150529 17:01:29.338" level="INFO">${True} = True</msg>
+<msg timestamp="20150529 17:01:29.338" level="INFO">${URL} = http://localhost</msg>
+<msg timestamp="20150529 17:01:29.338" level="INFO">${USER} = QAUser@mobileauthcorp.com</msg>
+<msg timestamp="20150529 17:01:29.338" level="INFO">@{EMPTY} = [ ]</msg>
+<msg timestamp="20150529 17:01:29.338" level="INFO">@{TEST_TAGS} = [ ]</msg>
+<status status="PASS" endtime="20150529 17:01:29.338" starttime="20150529 17:01:29.333"></status>
+</kw>
+<kw type="kw" name="Open Admin">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${SUT}' != 'LOCALHOST'</arg>
+<arg>set test variable</arg>
+<arg>${URL}</arg>
+<arg>http://${SUT}.mobileauthcorp.net/Admin/Security</arg>
+</arguments>
+<msg timestamp="20150529 17:01:29.341" level="FAIL">Variable '${SUT}' not found.</msg>
+<status status="FAIL" endtime="20150529 17:01:29.341" starttime="20150529 17:01:29.340"></status>
+</kw>
+<status status="FAIL" endtime="20150529 17:01:29.341" starttime="20150529 17:01:29.339"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20150529 17:01:29.342" starttime="20150529 17:01:29.342"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="FAIL" endtime="20150529 17:01:29.342" critical="yes" starttime="20150529 17:01:29.332">Variable '${SUT}' not found.</status>
+</test>
+<doc>Admin_Console Users Register_User</doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20150529 17:01:29.343" starttime="20150529 17:01:29.088"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" pass="0" id="s1" name="Register User">Register User</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,1 @@
+pybot --variable SUT:QA --outputdir "C:\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Billing\results" "C:\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Billing"

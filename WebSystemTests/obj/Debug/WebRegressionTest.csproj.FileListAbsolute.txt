@@ -1,0 +1,6 @@
+c:\users\tdavis\documents\visual studio 2013\Projects\WebRegressionTest\WebRegressionTest\bin\WebRegressionTest.dll.config
+c:\users\tdavis\documents\visual studio 2013\Projects\WebRegressionTest\WebRegressionTest\bin\WebRegressionTest.dll
+c:\users\tdavis\documents\visual studio 2013\Projects\WebRegressionTest\WebRegressionTest\bin\WebRegressionTest.pdb
+c:\users\tdavis\documents\visual studio 2013\Projects\WebRegressionTest\WebRegressionTest\obj\Debug\WebRegressionTest.csprojResolveAssemblyReference.cache
+c:\users\tdavis\documents\visual studio 2013\Projects\WebRegressionTest\WebRegressionTest\obj\Debug\WebRegressionTest.dll
+c:\users\tdavis\documents\visual studio 2013\Projects\WebRegressionTest\WebRegressionTest\obj\Debug\WebRegressionTest.pdb

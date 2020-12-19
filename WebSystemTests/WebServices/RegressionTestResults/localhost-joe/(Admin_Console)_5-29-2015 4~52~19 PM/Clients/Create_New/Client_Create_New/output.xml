@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150529 16:54:24.675" generator="Robot 2.8.7 (Python 2.7.9 on win32)">
+<suite source="C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Clients\Create_New\Client_Create_New.txt" id="s1" name="Client Create New">
+<test id="s1-t1" name="MAC Admin">
+<kw type="kw" name="Open Admin">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Open Browser">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${URL}</arg>
+<arg>${FF}</arg>
+</arguments>
+<msg timestamp="20150529 16:54:24.885" level="INFO">Opening browser 'Firefox' to base url 'http://localhost'</msg>
+<status status="PASS" endtime="20150529 16:54:37.919" starttime="20150529 16:54:24.884"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20150529 16:54:38.068" starttime="20150529 16:54:37.919"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${DELAY}</arg>
+</arguments>
+<status status="PASS" endtime="20150529 16:54:38.069" starttime="20150529 16:54:38.068"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Page Contains Element">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>txtUsername_Desktop</arg>
+<arg>10</arg>
+</arguments>
+<status status="PASS" endtime="20150529 16:54:38.318" starttime="20150529 16:54:38.069"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>MAC Otp System Administration</arg>
+</arguments>
+<msg timestamp="20150529 16:54:38.440" level="INFO">Page title is 'MAC Otp System Administration'.</msg>
+<status status="PASS" endtime="20150529 16:54:38.440" starttime="20150529 16:54:38.318"></status>
+</kw>
+<status status="PASS" endtime="20150529 16:54:38.440" starttime="20150529 16:54:24.883"></status>
+</kw>
+<kw type="kw" name="Login using OTP">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>txtUsername_Desktop</arg>
+<arg>${USER}</arg>
+</arguments>
+<msg timestamp="20150529 16:54:38.442" level="INFO">Typing text 'QAUser@mobileauthcorp.com' into text field 'txtUsername_Desktop'</msg>
+<status status="PASS" endtime="20150529 16:54:38.971" starttime="20150529 16:54:38.442"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>btnAdminOtpRequest_Desktop</arg>
+</arguments>
+<msg timestamp="20150529 16:54:38.971" level="INFO">Clicking element 'btnAdminOtpRequest_Desktop'.</msg>
+<status status="PASS" endtime="20150529 16:54:40.745" starttime="20150529 16:54:38.971"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Page Contains Element">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>txtPassword_Desktop</arg>
+<arg>5</arg>
+</arguments>
+<status status="PASS" endtime="20150529 16:54:41.798" starttime="20150529 16:54:40.745"></status>
+</kw>
+<kw type="kw" name="${PWD} = Selenium2Library.Get Value">
+<doc>Returns the value attribute of element identified by `locator`.</doc>
+<arguments>
+<arg>hiddenAD</arg>
+</arguments>
+<msg timestamp="20150529 16:54:42.049" level="INFO">${PWD} = 7025DDA3B1EF855D53C8E983EE154AA4</msg>
+<status status="PASS" endtime="20150529 16:54:42.049" starttime="20150529 16:54:41.798"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${PWD}</arg>
+</arguments>
+<msg timestamp="20150529 16:54:42.050" level="INFO">7025DDA3B1EF855D53C8E983EE154AA4</msg>
+<status status="PASS" endtime="20150529 16:54:42.050" starttime="20150529 16:54:42.049"></status>
+</kw>
+<kw type="kw" name="${argList} = BuiltIn.Create List">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${PWD}</arg>
+<arg>${KEY}</arg>
+</arguments>
+<msg timestamp="20150529 16:54:42.051" level="INFO">${argList} = [u'7025DDA3B1EF855D53C8E983EE154AA4', u'530f6e8e675c9b1854a6970b']</msg>
+<status status="PASS" endtime="20150529 16:54:42.051" starttime="20150529 16:54:42.050"></status>
+</kw>
+<kw type="kw" name="${s2l} = BuiltIn.Get Library Instance">
+<doc>Returns the currently active instance of the specified test library.</doc>
+<arguments>
+<arg>Selenium2Library</arg>
+</arguments>
+<msg timestamp="20150529 16:54:42.052" level="INFO">${s2l} = &lt;Selenium2Library.Selenium2Library object at 0x01B8AFD0&gt;</msg>
+<status status="PASS" endtime="20150529 16:54:42.051" starttime="20150529 16:54:42.051"></status>
+</kw>
+<kw type="kw" name="${PWD} = BuiltIn.Call Method">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${s2l._current_browser()}</arg>
+<arg>execute_script</arg>
+<arg>return Decrypt(arguments[0], arguments[1]);</arg>
+<arg>@{argList}</arg>
+</arguments>
+<msg timestamp="20150529 16:54:42.205" level="INFO">${PWD} = 1771</msg>
+<status status="PASS" endtime="20150529 16:54:42.205" starttime="20150529 16:54:42.052"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${PWD}</arg>
+</arguments>
+<msg timestamp="20150529 16:54:42.206" level="INFO">1771</msg>
+<status status="PASS" endtime="20150529 16:54:42.206" starttime="20150529 16:54:42.205"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>txtPassword_Desktop</arg>
+<arg>${PWD}</arg>
+</arguments>
+<msg timestamp="20150529 16:54:42.206" level="INFO">Typing text '1771' into text field 'txtPassword_Desktop'</msg>
+<status status="PASS" endtime="20150529 16:54:42.681" starttime="20150529 16:54:42.206"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>btnAdminOtpRequest_Desktop</arg>
+</arguments>
+<msg timestamp="20150529 16:54:42.681" level="INFO">Clicking element 'btnAdminOtpRequest_Desktop'.</msg>
+<status status="PASS" endtime="20150529 16:54:45.572" starttime="20150529 16:54:42.681"></status>
+</kw>
+<status status="PASS" endtime="20150529 16:54:45.572" starttime="20150529 16:54:38.441"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20150529 16:54:45.573" critical="yes" starttime="20150529 16:54:24.882"></status>
+</test>
+<test id="s1-t2" name="">
+<doc></doc>
+<tags>
+</tags>
+<status status="FAIL" endtime="20150529 16:54:45.574" critical="yes" starttime="20150529 16:54:45.573">Test case name cannot be empty.</status>
+</test>
+<doc>Admin_Console Clients Create_New</doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20150529 16:54:45.575" starttime="20150529 16:54:24.676"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="1">Critical Tests</stat>
+<stat fail="1" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" pass="1" id="s1" name="Client Create New">Client Create New</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

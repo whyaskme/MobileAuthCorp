@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150529 17:01:04.043" generator="Robot 2.8.7 (Python 2.7.9 on win32)">
+<suite source="C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\System_Management\Database_Backup\Database_Backup.txt" id="s1" name="Database Backup">
+<test id="s1-t1" name="MAC Admin Operational Test">
+<kw type="kw" name="Open MAC Admin">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${SUT}' != 'LOCALHOST'</arg>
+<arg>set test variable</arg>
+<arg>${URL}</arg>
+<arg>http://${SUT}.mobileauthcorp.net/Admin/Security</arg>
+</arguments>
+<msg timestamp="20150529 17:01:04.371" level="FAIL">Variable '${SUT}' not found.</msg>
+<status status="FAIL" endtime="20150529 17:01:04.371" starttime="20150529 17:01:04.370"></status>
+</kw>
+<status status="FAIL" endtime="20150529 17:01:04.372" starttime="20150529 17:01:04.369"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20150529 17:01:04.372" starttime="20150529 17:01:04.372"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="FAIL" endtime="20150529 17:01:04.373" critical="yes" starttime="20150529 17:01:04.367">Variable '${SUT}' not found.</status>
+</test>
+<doc>Admin_Console System_Management Backup Database</doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20150529 17:01:04.373" starttime="20150529 17:01:04.044"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" pass="0" id="s1" name="Database Backup">Database Backup</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,29 @@
+<serviceresponse>
+  <testrun appname="Admin_Console" path="localhost-joe\(Admin_Console)_5-28-2015 4~56~09 PM">
+    <appareas>
+      <apparea name="Clients">
+        <testareas>
+          
+          <testarea appname="Admin_Console" apparea="Clients" testarea="Select_Client">
+            <testfolder name="Select_Client" results="passed">
+              <files>
+                <file type="html">/WebSystemTests/WebServices/RegressionTestResults/(Admin_Console)_5-28-2015 4~56~09 PM/Clients/Select_Client/Select_Client/log.html</file>
+                <file type="html">/WebSystemTests/WebServices/RegressionTestResults/(Admin_Console)_5-28-2015 4~56~09 PM/Clients/Select_Client/Select_Client/report.html</file>
+              </files>
+            </testfolder>
+          </testarea>
+
+          <testarea appname="Admin_Console" apparea="Clients" testarea="Update_Message_Providers">
+            <testfolder name="MAC_SysMngt_UpdateMsgProviders" results="failed">
+              <files>
+                <file type="html">/WebSystemTests/WebServices/RegressionTestResults/(Admin_Console)_5-28-2015 4~56~09 PM/Clients/Update_Message_Providers/MAC_SysMngt_UpdateMsgProviders/log.html</file>
+                <file type="html">/WebSystemTests/WebServices/RegressionTestResults/(Admin_Console)_5-28-2015 4~56~09 PM/Clients/Update_Message_Providers/MAC_SysMngt_UpdateMsgProviders/report.html</file>
+              </files>
+            </testfolder>
+          </testarea>
+
+        </testareas>
+      </apparea>
+    </appareas>
+  </testrun>
+</serviceresponse>

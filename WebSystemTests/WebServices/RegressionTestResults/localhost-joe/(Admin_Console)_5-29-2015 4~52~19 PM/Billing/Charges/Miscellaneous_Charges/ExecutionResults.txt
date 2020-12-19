@@ -1,0 +1,19 @@
+Miscellaneous_Charges:Miscellaneous Charges Passed=0 Failed=1
+------- StandardOut ----------------
+
+c:\windows\system32\inetsrv>pybot --variable URL:http://localhost  --variable "USER:QAUser@mobileauthcorp.com"   --outputdir "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Billing\Charges\Miscellaneous_Charges" "C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\TestCases\Admin_Console\Billing\Charges\Miscellaneous_Charges.txt" 
+==============================================================================
+Miscellaneous Charges :: Admin_Console Billing Miscellaneous_Charges          
+==============================================================================
+MAC Admin                                                             | FAIL |
+Variable '${SUT}' not found.
+------------------------------------------------------------------------------
+Miscellaneous Charges :: Admin_Console Billing Miscellaneous_Charges  | FAIL |
+1 critical test, 0 passed, 1 failed
+1 test total, 0 passed, 1 failed
+==============================================================================
+Output:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Billing\Charges\Miscellaneous_Charges\output.xml
+Log:     C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Billing\Charges\Miscellaneous_Charges\log.html
+Report:  C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\WebSystemTests\webservices\RegressionTestResults\localhost-joe\(Admin_Console)_5-29-2015 4~52~19 PM\Billing\Charges\Miscellaneous_Charges\report.html
+
+

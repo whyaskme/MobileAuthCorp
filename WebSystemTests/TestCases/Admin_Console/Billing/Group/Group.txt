@@ -1,0 +1,46 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  Admin_Console Billing History Client_History
+
+*** Test Cases ***
+MAC Admin
+	Open Admin
+	Login using OTP
+	Select Client From Main Menu
+	Select Client
+	[Teardown]     Close Browser
+
+*** Variables ***
+${KEY}	530f6e8e675c9b1854a6970b
+
+${FF}	Firefox
+${DELAY}	0.1
+${CLIENTNAME}	Coffee Shop
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open Admin
+	Open Browser	${URL}	${FF}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+	Selenium2Library.Wait Until Page Contains Element	txtUsername_Desktop	10
+	Title Should Be	MAC Otp System Administration
+
+Login using OTP
+	Input Text	txtUsername_Desktop	${USER}
+	Click Element	btnAdminOtpRequest_Desktop
+	Selenium2Library.Wait Until Page Contains Element	txtPassword_Desktop	5
+	${PWD}=	Selenium2Library.Get Value	hiddenAD 
+	Log	${PWD}
+	${argList}=    Create List    ${PWD}	${KEY}
+	${s2l}=    Get Library Instance    Selenium2Library
+	${PWD}=    Call Method    ${s2l._current_browser()}    execute_script   return Decrypt(arguments[0], arguments[1]);	@{argList}
+	Log	${PWD}
+	Input Text	txtPassword_Desktop	${PWD}
+	Click Element	btnAdminOtpRequest_Desktop
+
+Select Client From Main Menu
+	Selenium2Library.Wait Until Page Contains Element	lnkClients	5
+	Click Element	lnkClients
