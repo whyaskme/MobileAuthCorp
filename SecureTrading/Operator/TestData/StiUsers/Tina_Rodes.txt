@@ -1,0 +1,1 @@
+﻿userName:NA1|firstName:TINA|middleInitial:|lastName:RODES|gender:Male|dob:01/02/1961|emailAddress:test4635@test.com|playerAddress1:2372 W MAIN ST|city:JEFFERSON CITY|county:COLE|state:MISSOURI|zipCode:65109|country:United States|mobileNo:+1-4802684076|landLineNo:+1-1451214528|ssn:870012951|ipAddress:209.237.277.195|CardType:Visa|CardNumber:4000000000000077

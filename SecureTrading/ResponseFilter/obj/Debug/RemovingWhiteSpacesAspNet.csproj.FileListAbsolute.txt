@@ -1,0 +1,8 @@
+C:\Temp\RemovingWhiteSpacesAspNet\RemovingWhiteSpacesAspNet\bin\RemovingWhiteSpacesAspNet.dll.config
+C:\Temp\RemovingWhiteSpacesAspNet\RemovingWhiteSpacesAspNet\bin\RemovingWhiteSpacesAspNet.dll
+C:\Temp\RemovingWhiteSpacesAspNet\RemovingWhiteSpacesAspNet\bin\RemovingWhiteSpacesAspNet.pdb
+C:\Temp\RemovingWhiteSpacesAspNet\RemovingWhiteSpacesAspNet\obj\Debug\RemovingWhiteSpacesAspNet.Global.resources
+C:\Temp\RemovingWhiteSpacesAspNet\RemovingWhiteSpacesAspNet\obj\Debug\RemovingWhiteSpacesAspNet.WebForm1.resources
+C:\Temp\RemovingWhiteSpacesAspNet\RemovingWhiteSpacesAspNet\obj\Debug\RemovingWhiteSpacesAspNet.csproj.GenerateResource.Cache
+C:\Temp\RemovingWhiteSpacesAspNet\RemovingWhiteSpacesAspNet\obj\Debug\RemovingWhiteSpacesAspNet.dll
+C:\Temp\RemovingWhiteSpacesAspNet\RemovingWhiteSpacesAspNet\obj\Debug\RemovingWhiteSpacesAspNet.pdb

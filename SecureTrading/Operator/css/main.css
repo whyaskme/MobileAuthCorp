@@ -1,0 +1,104 @@
+﻿
+body
+{
+    font-family: Verdana, Arial, 'Times New Roman';
+    font-size: 12px;
+    background:#e4e4e4;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    color: #808080;
+    font-size: 11px;
+    /*font-style: italic;*/
+    border-top: dashed 1px #808080;
+    padding-top: 10px;
+    width: 98%;
+}
+
+h2, h4
+{
+    border: none;
+}
+
+h4
+{
+    padding-left: 135px;
+}
+
+input
+{
+    color: #808080;
+}
+
+input[type=text]
+{
+    border: solid 1px #e4e4e4;
+    width: 225px;
+}
+
+input[type=text]:hover
+{
+    border: solid 1px #e4e4e4;
+    width: 225px;
+}
+
+input[type=text]:focus
+{
+    border: solid 1px #ff0000;
+    width: 225px;
+}
+
+select
+{
+    border: solid 1px #e4e4e4;
+    /*width: 215px;*/
+    max-width: 250px;
+    color: #808080;
+}
+
+label
+{
+    font-weight: normal;
+    color: #808080;
+}
+
+div, span
+{
+    font-size: 12px;
+    margin-right: 0px;
+    color: #808080;
+}
+
+.container {
+    margin:0 auto;
+    padding:1rem;
+    max-width:1000px;
+    background:#fff;
+    /*border:1px solid #c0c0c0;*/
+}
+
+.selectMenu {
+    float:left;
+    margin-right:0.25rem;
+    /*width:255px;*/
+}
+
+.buttonContainer {
+    padding:1rem;
+    text-align: center;
+    background:#e9e9e9;
+}
+.results {
+    margin:1rem auto;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:0.813rem;
+    width:100%;
+    height:100%;
+    min-height:16rem;
+}
+
+fieldset {
+    margin-bottom:1rem;
+    border:1px solid #c0c0c0;
+}

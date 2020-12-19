@@ -1,0 +1,29 @@
+C:\Users\tdavis\Documents\Visual Studio 2013\Projects\CallWCF\CallWCF\bin\Debug\CallWCF.exe.config
+C:\Users\tdavis\Documents\Visual Studio 2013\Projects\CallWCF\CallWCF\bin\Debug\CallWCF.exe
+C:\Users\tdavis\Documents\Visual Studio 2013\Projects\CallWCF\CallWCF\bin\Debug\CallWCF.pdb
+C:\Users\tdavis\Documents\Visual Studio 2013\Projects\CallWCF\CallWCF\obj\Debug\CallWCF.exe
+C:\Users\tdavis\Documents\Visual Studio 2013\Projects\CallWCF\CallWCF\obj\Debug\CallWCF.pdb
+C:\Users\tdavis\Documents\Visual Studio 2013\Projects\CallWCF\CallWCF\bin\Debug\Newtonsoft.Json.dll
+C:\Users\tdavis\Documents\Visual Studio 2013\Projects\CallWCF\CallWCF\bin\Debug\Newtonsoft.Json.xml
+C:\Users\tdavis\Documents\Visual Studio 2013\Projects\CallWCF\CallWCF\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\tdavis\Documents\Visual Studio 2013\Projects\CallWCF\CallWCF\bin\Debug\System.Net.Http.Formatting.xml
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\CallWCF.exe.config
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\obj\Debug\CallWCF.exe
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\obj\Debug\CallWCF.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\CallWCF.exe
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\CallWCF.pdb
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\Newtonsoft.Json.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\obj\Debug\CallWCF.csprojResolveAssemblyReference.cache
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.Helpers.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.Mvc.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.Razor.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.WebPages.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.Helpers.xml
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.Mvc.xml
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.Razor.xml
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.WebPages.xml
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\SecureTrading\Operator_Console\bin\Debug\System.Web.WebPages.Razor.xml
