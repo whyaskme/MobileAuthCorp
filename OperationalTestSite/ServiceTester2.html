@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Service Tester</title>
+    <script src="JavaScript/jquery-1.10.2.js"></script>
+    <script src="JavaScript/jquery-ui-1-11-0.js"></script>
+    <script src="JavaScript/OptTest.js"></script>
+</head>
+    <body>
+        <form id="form1">
+            <div style="width:700px;">
+                <fieldset>
+                    <legend>System Under Test</legend>
+                    <input type="text" id="txtSUTName">
+                    <label id="lbSUTNameError"></label>
+                </fieldset>
+                <fieldset style="height: 10pc;">
+                    <legend>Service Tester</legend>
+                    Service Code: <input type="text" id="txtServiceCode">
+                    <input type="button" id="btnExecute" value="Execute" onclick="javascript: execute_click();" />
+                    <fieldset>
+                        <legend>Service Under Test</legend>
+                        <label id="lbServiceName"></label>
+                        &nbsp;:&nbsp;<label id="lbUrl"></label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Test results</legend>
+                        <label id="lbPassFail"></label>&nbsp;:&nbsp;<label id="lbResults"></label>
+                    </fieldset>
+                    <label id="lbLog"></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Test if the required demo merchants accounts are in the database</legend>
+                    Scottsdale Golf Shop
+                    <input type="button" id="btnTestShop" value="Test" onclick="javascript: testShopExists_click();" />
+                    <label id="lbShop"></label>
+                    <br />
+                    Scottsdale Golf Store
+                    <input type="button" id="btnTestStore" value="Test" onclick="javascript: testStoreExists_click();" />
+                    <label id="lbStore"></label>
+                    <br />
+                    The Electric Company
+                    <input type="button" id="btnTestElecCo" value="Test" onclick="javascript: testElecCoExists_click();" />
+                    <label id="lbElecCo"></label>
+                    <br />
+                    The Water Company
+                    <input type="button" id="btnTestWaterCo" value="Test" onclick="javascript: testWaterCoExists_click();" />
+                    <label id="lbWaterCo"></label>
+                    <br />
+                    <!--<input type="button" id="btnTest" value="Test" onclick="javascript: testRequiredDemoMerchantsExists_click();" />-->
+                    <!--<label id="lbMerchantName"></label>&nbsp;-&nbsp;<label id="lbMerchantStatus"></label>-->
+                </fieldset>
+                <textarea style="width:100%;" id="txtLog" rows="10"></textarea>
+            </div> 
+            <!--Request:GetAccountDetails|AccountHolder:Kohl's|CID:53ed31bb74846912e08d5789--> 
+        </form>
+    </body>
+</html>

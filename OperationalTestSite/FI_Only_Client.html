@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>FI Only Bank Client</title>
+    <script src="JavaScript/jquery-1.10.2.js"></script>
+    <script src="JavaScript/jquery-ui-1-11-0.js"></script>
+    <script src="JavaScript/OptTest.js"></script>
+</head>
+<body>
+    <form id="form1">
+        <div>
+            <input type="button" id="btnFill" value="Fill" onclick="javascript: Fill();" />
+            System Under Test: <input type="text" id="txtSUTName">
+
+            <br /><br />
+            Client 
+            Name: <input type="text" id="txtClientName">            
+            Id: <input type="text" id="txtClientId">
+            <input type="button" id="btnGetClientId" value="Get Client Id" onclick="javascript: btnGetClientId_Clicked();" />
+            <br /><br />
+            Registered User:
+            <br />
+            Last Name: <input type="text" id="txtLastName">
+            UID: <input type="text" id="txtUID">
+            <input type="button" id="btnRequestOTPCR" value="Request OTP (Registered)" onclick="javascript: RequestOTPCR();" />
+            <br /><br />
+            Client Managed:
+            <br />
+            Email: <input type="text" id="txtEmail">
+            Phone: <input type="text" id="txtPhone">
+            <input type="button" id="btnRequestOTPCM" value="Request OTP (Managed)" onclick="javascript: RequestOTPCM();" />
+            <br /><br />
+            Request Id: <input type="text" id="txtRID">
+            <input type="button" id="btnGetReply" value="Get Reply" onclick="javascript: GetReply();" />
+            <br /><br />
+            Test Message Reply Service:
+            <br />
+            OTP: <input type="text" id="txtOTP">
+            <input type="button" id="btnSendOTPToReplyService" value="Send OTP To Reply Service" onclick="javascript: SendOTPToReplyService_Click();" />
+            <br />
+            <br />
+            Data Value:&nbsp;<input type="text" id="txtData" value="AAAA" size="64">
+            Key Value:&nbsp;<input type="text" id="txtKey" value="530f6e8e675c9b1854a6970b" size="64">
+            <br />
+            Enc Result:&nbsp;<input type="text" id="txtEncResult" size="64">
+            Clr Result:&nbsp;&nbsp;<input type="text" id="txtClrResult" size="64">
+            <br />
+            <input type="button" id="btnTestEncrypt" value="TestEncrypt" onclick="javascript: TestEncrypt();" />
+            <input type="button" id="btnTestDecrypt" value="TestDecrypt" onclick="javascript: TestDecrypt();" />
+            <br />
+            Results:<label id="lbResults"></label>
+            <br />
+            <textarea id="txtLog" rows="10" cols="80"></textarea>
+        </div>
+
+    </form>
+</body>
+</html>
