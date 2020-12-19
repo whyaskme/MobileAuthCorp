@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150323 16:41:05.530" generator="Robot 2.8.7 (Python 2.7.3 on win32)">
+<suite source="C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests\Admin.txt" id="s1" name="Admin">
+<test id="s1-t1" name="MAC Admin Operational Test">
+<kw type="kw" name="Open Admin">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'$[SUT]' == 'DEMO'</arg>
+<arg>Open Browser</arg>
+<arg>${DEMO_AdminURL}</arg>
+<arg>${FF}</arg>
+<arg>ELSE</arg>
+<arg>Open Browser</arg>
+<arg>${LOCAL_AdminURL}</arg>
+<arg>${FF}</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Open Browser">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${LOCAL_AdminURL}</arg>
+<arg>${FF}</arg>
+</arguments>
+<msg timestamp="20150323 16:41:05.655" level="INFO">Opening browser 'Firefox' to base url 'http://localhost/Admin/Security/Default.aspx'</msg>
+<status status="PASS" endtime="20150323 16:41:17.183" starttime="20150323 16:41:05.655"></status>
+</kw>
+<status status="PASS" endtime="20150323 16:41:17.183" starttime="20150323 16:41:05.655"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${DELAY}</arg>
+</arguments>
+<status status="PASS" endtime="20150323 16:41:17.183" starttime="20150323 16:41:17.183"></status>
+</kw>
+<status status="PASS" endtime="20150323 16:41:17.198" starttime="20150323 16:41:05.655"></status>
+</kw>
+<kw type="kw" name="Verify MAC Admin Landing Page">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>MAC Otp System Administration</arg>
+</arguments>
+<msg timestamp="20150323 16:41:17.355" level="INFO">Page title is 'MAC Otp System Administration'.</msg>
+<status status="PASS" endtime="20150323 16:41:17.355" starttime="20150323 16:41:17.198"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Element Should Be Visible">
+<doc>Verifies that the element identified by `locator` is visible.</doc>
+<arguments>
+<arg>txtUsername_Desktop</arg>
+</arguments>
+<msg timestamp="20150323 16:41:17.355" level="INFO">Verifying element 'txtUsername_Desktop' is visible.</msg>
+<status status="PASS" endtime="20150323 16:41:17.683" starttime="20150323 16:41:17.355"></status>
+</kw>
+<status status="PASS" endtime="20150323 16:41:17.683" starttime="20150323 16:41:17.198"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20150323 16:41:17.917" starttime="20150323 16:41:17.683"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20150323 16:41:17.917" critical="yes" starttime="20150323 16:41:05.655"></status>
+</test>
+<doc>MAC Admin Operational test suite</doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20150323 16:41:17.917" starttime="20150323 16:41:05.530"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" pass="1" id="s1" name="Admin">Admin</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

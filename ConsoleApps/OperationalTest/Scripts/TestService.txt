@@ -1,0 +1,62 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation	Service Test
+
+*** Test Cases ***
+MAC Service Test
+	Open Service Test Page
+	Verify Service Test Page
+	Set System Under Test
+	Process The List Of Services
+	${log}=	Get Text	lbLog
+	Close Browser
+	${Entries}=	Split String	${log}	,
+	:FOR	${Entry}	IN	@{Entries}
+	\	Log	${Entry}
+	Should Be Equal	${RESULT}	PASS
+
+*** Variables ***
+${FF}	Firefox
+${DELAY}	0.1
+${RESULT}	PASS
+
+*** Keywords ***
+# ------- Admin ---------------------------------------------
+Open Service Test Page
+	Open Browser	${URL}	${FF}
+	Set Selenium speed	${DELAY}
+
+Verify Service Test Page
+	Title Should Be	Service Tester
+
+Set System Under Test
+	Selenium2Library.Element Should Be Visible	txtSUTName
+	Input Text	txtSUTName	${SUT}
+
+Process The List Of Services
+	Set Test Variable	${RESULT}	PASS
+	Selenium2Library.Element Should Be Visible	txtServiceCode
+	${ServicesToTest}=	Split String	${SERVICECODES}	,		
+	:FOR	${ServiceToTest}	IN	@{ServicesToTest}
+	\	Log	${ServiceToTest}
+	\	Input Text	txtServiceCode	${ServiceToTest}
+	\	Selenium2Library.Element Should Be Visible	btnExecute
+	\	Click Button	btnExecute
+	\	Selenium2Library.Wait Until Page Contains Element	lbResults	30
+	\	${reply}=	Get Text	lbResults
+	\	Log	${reply}	INFO
+	\	${PF}=	Get Text	lbPassFail
+	\	Run Keyword If	'${PF}' == 'Fail'	Set Fail
+	\	Log	${RESULT}	INFO
+
+Set Fail
+	Set Test Variable	${RESULT}	FAIL
+
+Result Test
+	${log}=	Get Text	lbLog
+	Log	${log}	INFO
+	Should Match	${RESULT}	PASS
+	
+	

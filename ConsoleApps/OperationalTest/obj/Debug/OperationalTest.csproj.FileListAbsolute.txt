@@ -1,0 +1,1 @@
+C:\Joes_Data\Development\MobileAuthCorp\MAC-OTP-System\Dev\R1.0\ConsoleApps\OperationalTest\obj\Debug\OperationalTest.csprojResolveAssemblyReference.cache

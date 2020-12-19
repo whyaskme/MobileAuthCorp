@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150323 09:43:55.571" generator="Robot 2.8.7 (Python 2.7.3 on win32)">
+<suite source="C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests\OperationalTest.txt" id="s1" name="OperationalTest">
+<test id="s1-t1" name="MAC Admin Operational Test">
+<kw type="kw" name="BuiltIn.Log Variables">
+<doc>Logs all variables in the current scope with given log level.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${/} = \</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${:} = ;</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${\n} = 
+</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${DEBUG_FILE} = NONE</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${DELAY} = 0.1</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${DEMO_AdminURL} = http://corp.mobileauthcorp.com/Admin/Security/Default.aspx</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${EMPTY} = </msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${EXECDIR} = C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${False} = False</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${FF} = Firefox</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${LOCAL_AdminURL} = http://localhost/Admin/Security/Default.aspx</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${LOC} = LOCALHOST</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${LOG_FILE} = C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests\OperationalTest_results\log.html</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${LOG_LEVEL} = INFO</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${None} = None</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${null} = None</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${OUTPUT_DIR} = C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests\OperationalTest_results</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${OUTPUT_FILE} = C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests\OperationalTest_results\output.xml</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${PREV_TEST_MESSAGE} = </msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${PREV_TEST_NAME} = </msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${PREV_TEST_STATUS} = </msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${QA_UserName} = QAUser@mobileauthcorp.com</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${QAPWD} = QA1234</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${REPORT_FILE} = C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests\OperationalTest_results\report.html</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${SPACE} =  </msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${SUITE_DOCUMENTATION} = MAC Admin Operational test suite</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${SUITE_METADATA} = {}</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${SUITE_NAME} = OperationalTest</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${SUITE_SOURCE} = C:\Development_OTP_System\MAC-OTP-System\Dev\R1.0\QA\OperationalTests\OperationalTest.txt</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${TEMPDIR} = c:\users\tdavis\appdata\local\temp</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${TEST_DOCUMENTATION} = </msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${TEST_NAME} = MAC Admin Operational Test</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">${True} = True</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">@{EMPTY} = [ ]</msg>
+<msg timestamp="20150323 09:43:55.711" level="INFO">@{TEST_TAGS} = [ ]</msg>
+<status status="PASS" endtime="20150323 09:43:55.711" starttime="20150323 09:43:55.711"></status>
+</kw>
+<kw type="kw" name="Open Admin">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'$[INSTANCE]' == 'DEMO'</arg>
+<arg>Open Browser</arg>
+<arg>${DEMO_AdminURL}</arg>
+<arg>${FF}</arg>
+<arg>ELSE</arg>
+<arg>Open Browser</arg>
+<arg>${LOCAL_AdminURL}</arg>
+<arg>${FF}</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Open Browser">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${LOCAL_AdminURL}</arg>
+<arg>${FF}</arg>
+</arguments>
+<msg timestamp="20150323 09:43:55.711" level="INFO">Opening browser 'Firefox' to base url 'http://localhost/Admin/Security/Default.aspx'</msg>
+<status status="PASS" endtime="20150323 09:44:02.002" starttime="20150323 09:43:55.711"></status>
+</kw>
+<status status="PASS" endtime="20150323 09:44:02.002" starttime="20150323 09:43:55.711"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${DELAY}</arg>
+</arguments>
+<status status="PASS" endtime="20150323 09:44:02.002" starttime="20150323 09:44:02.002"></status>
+</kw>
+<status status="PASS" endtime="20150323 09:44:02.002" starttime="20150323 09:43:55.711"></status>
+</kw>
+<kw type="kw" name="Verify MAC Admin Landing Page">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>MAC Otp System Administration</arg>
+</arguments>
+<msg timestamp="20150323 09:44:02.167" level="INFO">Page title is 'MAC Otp System Administration'.</msg>
+<status status="PASS" endtime="20150323 09:44:02.167" starttime="20150323 09:44:02.002"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Element Should Be Visible">
+<doc>Verifies that the element identified by `locator` is visible.</doc>
+<arguments>
+<arg>xtxtUsername_Desktop</arg>
+</arguments>
+<msg timestamp="20150323 09:44:02.167" level="INFO">Verifying element 'xtxtUsername_Desktop' is visible.</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150323 09:44:02.839" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20150323 09:44:02.839" starttime="20150323 09:44:02.292"></status>
+</kw>
+<msg timestamp="20150323 09:44:02.839" level="FAIL">The element 'xtxtUsername_Desktop' should be visible, but it is not.</msg>
+<status status="FAIL" endtime="20150323 09:44:02.839" starttime="20150323 09:44:02.167"></status>
+</kw>
+<status status="FAIL" endtime="20150323 09:44:02.839" starttime="20150323 09:44:02.002"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20150323 09:44:03.074" starttime="20150323 09:44:02.839"></status>
+</kw>
+<doc></doc>
+<tags>
+</tags>
+<status status="FAIL" endtime="20150323 09:44:03.074" critical="yes" starttime="20150323 09:43:55.711">The element 'xtxtUsername_Desktop' should be visible, but it is not.</status>
+</test>
+<doc>MAC Admin Operational test suite</doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20150323 09:44:03.074" starttime="20150323 09:43:55.571"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" pass="0" id="s1" name="OperationalTest">OperationalTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

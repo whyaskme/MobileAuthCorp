@@ -1,0 +1,41 @@
+*** Settings ***
+Library	Selenium2Library
+Library	String
+
+Documentation  MAC Test Bank (PHP) Operational test
+
+*** Test Cases ***
+Test Bank Demo Operational Test
+	Log Variables
+	Open Test Bank
+	Verify Test Bank Landing Page
+	Test Bank Login
+	[Teardown]     Close Browser
+
+*** Variables ***
+${URL}	http://localhost/demos/php/bankdemo
+${URI}	.otp-ap.us/php/bankdemo
+${FF}	Firefox
+${DELAY}	0.1
+
+
+*** Keywords ***
+# --------- Test Bank PHP Demo ----------------------------------
+Open Test Bank
+	Run Keyword If	'${SUT}' != 'LOCALHOST'
+    	...	set test variable    ${URL}    http://${SUT}${URI}
+	Log	${URL}
+	Open Browser	${URL}	${FF}
+	Maximize Browser Window
+	Set Selenium speed	${DELAY}
+
+Verify Test Bank Landing Page
+	Title Should Be	MAC Bank
+	Selenium2Library.Element Should Be Visible	login-submit-button
+
+Test Bank Login
+	Input Text	user_id	${USER}
+	Click Element	login-submit-button
+
+Verify Test Bank Login Page
+	Selenium2Library.Element Should Be Visible	otp-submit-button

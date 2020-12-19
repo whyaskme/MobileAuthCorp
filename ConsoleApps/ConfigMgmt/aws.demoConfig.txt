@@ -1,0 +1,10 @@
+clientName:Scottsdale Golf Shop
+MacServicesUrl:http://test.mobileauthcorp.com/macservices/
+macbankUrl:http://test.mobileauthcorp.com/macservices/Test/MacTestBank.asmx/WsMacTestBank
+registerUrl:http://www.otp-ap.us/Registration/default.aspx
+EmailServer:services.mobileauthcorp.com
+EmailPort:25
+EmailLoginUserName:info@services.mobileauthcorp.com
+EmailPassword:idFj01&1
+EmailToAddress:info@mobileauthcorp.com
+EmailFromAddress:info@services.mobileauthcorp.com
