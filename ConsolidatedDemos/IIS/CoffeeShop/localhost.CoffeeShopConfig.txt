@@ -1,0 +1,10 @@
+clientName:Coffee Shop
+MacServicesUrl:http://localhost/macservices/
+macbankUrl:http://localhost/macservices/Test/MacTestBank.asmx/WsMacTestBank
+registerUrl:http://localhost/Demos/IIS/Registration/default.aspx
+EmailServer:info@services.mobileauthcorp.com
+EmailPort:25
+EmailLoginUserName:info@services.mobileauthcorp.com
+EmailPassword:jumP4000c
+EmailToAddress:info@services.mobileauthcorp.com
+EmailFromAddress:info@services.mobileauthcorp.com

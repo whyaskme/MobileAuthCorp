@@ -1,0 +1,10 @@
+clientName:Coffee Shop
+MacServicesUrl:http://test-integration.mobileauthcorp.net/macservices/
+macbankUrl:http://test-integration.mobileauthcorp.net/macservices/Test/MacTestBank.asmx/WsMacTestBank
+registerUrl:http://test-integration.otp-ap.us/iis/Registration/default.aspx
+EmailServer:services.mobileauthcorp.com
+EmailPort:25
+EmailLoginUserName:info@services.mobileauthcorp.com
+EmailPassword:jumP4000c
+EmailToAddress:info@services.mobileauthcorp.com
+EmailFromAddress:info@services.mobileauthcorp.com

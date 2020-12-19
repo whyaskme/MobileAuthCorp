@@ -1,0 +1,8 @@
+macbankUrl:http://www.mobileauthcorp.net/macservices/Test/MacTestBank.asmx/WsMacTestBank
+RegistrationType:OpenRegister
+EmailServer:services.mobileauthcorp.com
+EmailPort:25
+EmailLoginUserName:info@services.mobileauthcorp.com
+EmailPassword:jumP4000c
+EmailToAddress:info@services.mobileauthcorp.com
+EmailFromAddress:info@services.mobileauthcorp.com

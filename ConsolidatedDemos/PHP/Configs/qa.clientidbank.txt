@@ -1,0 +1,8 @@
+[config]
+clientName = "MAC Test Bank"
+clientId = "53ed31bb74846912e08d5789"
+requestOtpUrl = "http://qa.mobileauthcorp.net/macservices/Otp/RequestOtp.asmx/WsRequestOtp"
+verifyOtpUrl = "http://qa.mobileauthcorp.net/macservices/Otp/ValidateOtp.asmx/WsValidateOtp"
+macbankUrl = "http://qa.mobileauthcorp.net/macservices/Test/MacTestBank.asmx/WsMacTestBank"
+registerUrl = "http://qa.otp-ap.us/IIS/Registration/default.aspx"
+useServerClientId = 1

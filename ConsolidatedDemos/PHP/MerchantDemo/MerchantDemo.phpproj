@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>MerchantDemo</Name>
+    <ProjectGuid>3fd996d6-9ce9-4829-bd73-9c8f79e78dd4</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MerchantDemo</RootNamespace>
+    <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
+    <AssemblyName>MerchantDemo</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <IncludeDebugInformation>false</IncludeDebugInformation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="cart.php" />
+    <Compile Include="cartAjax.php" />
+    <Compile Include="checkout.php" />
+    <Compile Include="clientid.php" />
+    <Compile Include="footer_mac.html.php" />
+    <Compile Include="forgot.php" />
+    <Compile Include="forgot_passwordForm.html.php" />
+    <Compile Include="forgot_passwordForm.php" />
+    <Compile Include="header_basic.html.php" />
+    <Compile Include="header_mac.html.php" />
+    <Compile Include="header_none.php" />
+    <Compile Include="includes\db_class.php" />
+    <Compile Include="includes\functions.php" />
+    <Compile Include="includes\iniFiles.php" />
+    <Compile Include="includes\macCurlSubmitter_class.php" />
+    <Compile Include="includes\macRequest_class.php" />
+    <Compile Include="includes\product_class.php" />
+    <Compile Include="includes\product_class_db.php" />
+    <Compile Include="includes\product_class_file.php" />
+    <Compile Include="includes\random_image2.php" />
+    <Compile Include="includes\user_class.php" />
+    <Compile Include="includes\validate_class.php" />
+    <Compile Include="index.php" />
+    <Compile Include="i_clientid_form.html.php" />
+    <Compile Include="i_login_form.html.php" />
+    <Compile Include="i_otp_form.html.php" />
+    <Compile Include="i_render_cart.html.php" />
+    <Compile Include="i_render_checkout.html.php" />
+    <Compile Include="i_render_home.html.php" />
+    <Compile Include="i_render_main.html.php" />
+    <Compile Include="i_render_order.html.php" />
+    <Compile Include="i_render_order_print.html.php" />
+    <Compile Include="i_render_products.html.php" />
+    <Compile Include="i_render_profile.html.php" />
+    <Compile Include="i_render_verify.html.php" />
+    <Compile Include="login.php" />
+    <Compile Include="loginform.php" />
+    <Compile Include="logout.php" />
+    <Compile Include="main.php" />
+    <Compile Include="otpform.php" />
+    <Compile Include="outImage.php" />
+    <Compile Include="products.php" />
+    <Compile Include="profile.php" />
+    <Compile Include="purchase.php" />
+    <Compile Include="purchase_print.php" />
+    <Compile Include="validate_otp.php" />
+    <Compile Include="verify.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bootstrap\config.json" />
+    <Content Include="bootstrap\css\bootstrap-theme.css" />
+    <Content Include="bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap\css\bootstrap.css" />
+    <Content Include="bootstrap\css\bootstrap.min.css" />
+    <Content Include="bootstrap\css\testbootstrap.css" />
+    <Content Include="bootstrap\css\testbootstrap_mac_blue.css" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bootstrap\js\bootstrap.js" />
+    <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="css\mac.css" />
+    <Content Include="css\navbar_blue.css" />
+    <Content Include="css\navbar_grey.css" />
+    <Content Include="css\navbar_ltblue.css" />
+    <Content Include="css\override_bootstrap.css" />
+    <Content Include="css\override_bootstrap_readonly.css" />
+    <Content Include="css\override_mac_printer_friendly.css" />
+    <Content Include="data\product_file.json" />
+    <Content Include="data\product_file2.json" />
+    <Content Include="footer_basic.html" />
+    <Content Include="images\arrow_refresh.png" />
+    <Content Include="images\deletebutton.gif" />
+    <Content Include="images\deletebutton2.gif" />
+    <Content Include="images\deletebutton2.jpg" />
+    <Content Include="images\deletetrash.png" />
+    <Content Include="images\DSC02084.jpg" />
+    <Content Include="images\footer_foto.jpg" />
+    <Content Include="images\footer_foto_md.jpg" />
+    <Content Include="images\hero.jpg" />
+    <Content Include="images\hero_md.jpg" />
+    <Content Include="images\hero_sub.jpg" />
+    <Content Include="images\hero_sub_md.jpg" />
+    <Content Include="images\ik_card.png" />
+    <Content Include="images\ik_cart.png" />
+    <Content Include="images\ik_cart_w.png" />
+    <Content Include="images\ik_user.png" />
+    <Content Include="images\line_hero.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logo_lg.png" />
+    <Content Include="images\logo_md.png" />
+    <Content Include="images\mac-logo_md_new.png" />
+    <Content Include="images\mac-logo_new.png" />
+    <Content Include="images\view_refresh.png" />
+    <Content Include="images\wait_snake_red.gif" />
+    <Content Include="i_render_cart.html" />
+    <Content Include="js\formatter.js" />
+    <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\macCart.js" />
+    <Content Include="js\macCartEvents.js" />
+    <Content Include="js\randomImage.js" />
+    <Content Include="pictures\driver-1.jpg" />
+    <Content Include="pictures\golfballs.jpg" />
+    <Content Include="pictures\golf_polo.jpg" />
+    <Content Include="pictures\hat.png" />
+    <Content Include="pictures\ironset1.jpg" />
+    <Content Include="pictures\ironset2.jpg" />
+    <Content Include="pictures\item1.jpg" />
+    <Content Include="pictures\item2.jpg" />
+    <Content Include="pictures\item3.jpg" />
+    <Content Include="pictures\item4.jpg" />
+    <Content Include="pictures\item5.jpg" />
+    <Content Include="pictures\item6.jpg" />
+    <Content Include="pictures\ladiesgolfhat.jpg" />
+    <Content Include="pictures\ladiesgolfshoes.jpg" />
+    <Content Include="pictures\ladys_top.jpg" />
+    <Content Include="pictures\mensgolfshoes.jpg" />
+    <Content Include="pictures\putter.jpg" />
+    <Content Include="pictures\Untitled-1.jpg" />
+    <Content Include="pictures\Untitled-1.psd" />
+    <Content Include="pictures\Untitled-10.jpg" />
+    <Content Include="pictures\Untitled-10.psd" />
+    <Content Include="pictures\Untitled-11.jpg" />
+    <Content Include="pictures\Untitled-11.psd" />
+    <Content Include="pictures\Untitled-12.jpg" />
+    <Content Include="pictures\Untitled-12.psd" />
+    <Content Include="pictures\Untitled-13.jpg" />
+    <Content Include="pictures\Untitled-13.psd" />
+    <Content Include="pictures\Untitled-14.jpg" />
+    <Content Include="pictures\Untitled-14.psd" />
+    <Content Include="pictures\Untitled-15.jpg" />
+    <Content Include="pictures\Untitled-15.psd" />
+    <Content Include="pictures\Untitled-16.jpg" />
+    <Content Include="pictures\Untitled-16.psd" />
+    <Content Include="pictures\Untitled-17.jpg" />
+    <Content Include="pictures\Untitled-17.psd" />
+    <Content Include="pictures\Untitled-18.jpg" />
+    <Content Include="pictures\Untitled-18.psd" />
+    <Content Include="pictures\Untitled-19.jpg" />
+    <Content Include="pictures\Untitled-19.psd" />
+    <Content Include="pictures\Untitled-2.jpg" />
+    <Content Include="pictures\Untitled-2.psd" />
+    <Content Include="pictures\Untitled-20.jpg" />
+    <Content Include="pictures\Untitled-20.psd" />
+    <Content Include="pictures\Untitled-21.psd" />
+    <Content Include="pictures\Untitled-21b.jpg" />
+    <Content Include="pictures\Untitled-21b.psd" />
+    <Content Include="pictures\Untitled-22.jpg" />
+    <Content Include="pictures\Untitled-22.psd" />
+    <Content Include="pictures\Untitled-23.jpg" />
+    <Content Include="pictures\Untitled-23.psd" />
+    <Content Include="pictures\Untitled-24.jpg" />
+    <Content Include="pictures\Untitled-24.psd" />
+    <Content Include="pictures\Untitled-25.jpg" />
+    <Content Include="pictures\Untitled-25.psd" />
+    <Content Include="pictures\Untitled-26.jpg" />
+    <Content Include="pictures\Untitled-26.psd" />
+    <Content Include="pictures\Untitled-3.jpg" />
+    <Content Include="pictures\Untitled-3.psd" />
+    <Content Include="pictures\Untitled-4.jpg" />
+    <Content Include="pictures\Untitled-4.psd" />
+    <Content Include="pictures\Untitled-5.jpg" />
+    <Content Include="pictures\Untitled-5.psd" />
+    <Content Include="pictures\Untitled-6.jpg" />
+    <Content Include="pictures\Untitled-6.psd" />
+    <Content Include="pictures\Untitled-7.jpg" />
+    <Content Include="pictures\Untitled-7.psd" />
+    <Content Include="pictures\Untitled-8.jpg" />
+    <Content Include="pictures\Untitled-8.psd" />
+    <Content Include="pictures\Untitled-9.jpg" />
+    <Content Include="pictures\Untitled-9.psd" />
+    <Content Include="pictures\waterbottle.jpg" />
+    <Content Include="pictures\wedge.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bootstrap\" />
+    <Folder Include="bootstrap\css\" />
+    <Folder Include="bootstrap\fonts\" />
+    <Folder Include="bootstrap\js\" />
+    <Folder Include="css\" />
+    <Folder Include="data\" />
+    <Folder Include="images\" />
+    <Folder Include="includes\" />
+    <Folder Include="js\" />
+    <Folder Include="pictures\" />
+  </ItemGroup>
+</Project>

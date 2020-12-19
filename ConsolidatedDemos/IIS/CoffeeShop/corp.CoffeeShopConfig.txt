@@ -1,0 +1,10 @@
+clientName:Coffee Shop
+MacServicesUrl:http://corp.mobileauthcorp.com/macservices/
+macbankUrl:http://corp.mobileauthcorp.com/macservices/Test/MacTestBank.asmx/WsMacTestBank
+registerUrl:http://www.otp-ap.com/iis/Registration/default.aspx
+EmailServer:services.mobileauthcorp.com
+EmailPort:25
+EmailLoginUserName:info@services.mobileauthcorp.com
+EmailPassword:jumP4000c
+EmailToAddress:info@services.mobileauthcorp.com
+EmailFromAddress:info@services.mobileauthcorp.com

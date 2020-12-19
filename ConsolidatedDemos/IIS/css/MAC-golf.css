@@ -1,0 +1,12 @@
+﻿body {
+}
+
+.specials {
+    border: 1px solid #fff;
+    margin: 0 auto;
+    color: #fff;
+    height: 200px;
+    max-width: 299px;
+    width: 100%;
+    background-image: url('../img/specials/white_bg.png');
+}

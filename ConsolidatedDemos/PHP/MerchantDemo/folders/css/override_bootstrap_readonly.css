@@ -1,0 +1,6 @@
+/* specific bootstrap over-ride   */
+
+.form-control[readonly] {
+   background-color: #FFF !important;
+   border-style: none;
+} 

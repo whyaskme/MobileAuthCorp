@@ -1,0 +1,9 @@
+[config]
+clientName = "Scottsdale Golf Store"
+clientId = "53ebb04d7484691d4ce32a27"
+requestOtpUrl = "http://production-staging.mobileauthcorp.net/macservices/Otp/RequestOtp.asmx/WsRequestOtp"
+verifyOtpUrl = "http://production-staging.mobileauthcorp.net/macservices/Otp/ValidateOtp.asmx/WsValidateOtp"
+macbankUrl = "http://production-staging.mobileauthcorp.net/macservices/Test/MacTestBank.asmx/WsMacTestBank"
+registerUrl = "http://production-staging.otp-ap.us/IIS/Registration/default.aspx"
+defaultClientId = "530f6e8e675c9b1854a6970b"
+useServerClientId = 1

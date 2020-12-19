@@ -1,0 +1,2 @@
+[10-Dec-2014 10:48:53 America/New_York] PHP Warning:  explode() expects parameter 2 to be string, array given in /home/lbdemomo/public_html/clientid.php on line 84
+[28-Dec-2014 13:04:31 America/New_York] PHP Warning:  trim() expects parameter 1 to be string, array given in /home/lbdemomo/public_html/index.php on line 44

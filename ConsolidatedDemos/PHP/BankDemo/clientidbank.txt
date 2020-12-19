@@ -1,0 +1,6 @@
+clientName = "MAC Demo Bank"
+cliendId = "53ed31bb74846912e08d5789"
+requestOtpUrl = "http://demo.mobileauthcorp.net/macservices/Otp/RequestOtp.asmx/WsRequestOtp"
+verifyOtpUrl = "http://demo.mobileauthcorp.net/macservices/Otp/ValidateOtp.asmx/WsValidateOtp"
+macbankUrl = "http://demo.mobileauthcorp.net/macservices/Test/MacTestBank.asmx/WsMacTestBank"
+registerUrl = "http://demo.otp-ap.us/IIS/Registration/default.aspx"

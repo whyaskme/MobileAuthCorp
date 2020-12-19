@@ -1,0 +1,13 @@
+/*   over-ride for printer friendly */
+
+body {
+    margin: 0px 0px 0px 0px;
+    max-width: 670px;
+}
+
+h4 {
+    font-weight: 600;
+}
+tr.cart-cell-header {
+    background: none repeat scroll 0 0 #FFFFFF;
+}

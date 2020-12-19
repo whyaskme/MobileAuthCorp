@@ -1,0 +1,42 @@
+<div id="columnMain">
+<p style="text-align: center;"><span style="font-weight: bold;"><span style="font-family: Verdana;">MAC </span></span></p>
+    <p style="text-align: center;"><span style="font-weight: bold;"><span style="font-family: Verdana;">Test Shopping Cart</span></span></p>
+    <table id="cart-content" class="cart-content">
+     <tr>
+       <th class="cart-cell-header image-thumb-container">&nbsp;</th><th>product number</th><th>description</th><th>unit price</th><th>qty</th><th>total price</th>
+     </tr>
+    <?php
+        if(!empty($products)) {
+            foreach($products as $index => $product) {
+                echo  '
+    <tr id="cart'.$product['product_number'].'" class="cart-row">
+     <td class="cart-cell image-thumb-container">
+      <img src="pictures/'.$product['image_name'].'" class="cart-cell image-thumb" />
+      </td>
+     <td >'.
+      $product['product_number'].
+     '</td>
+     <td >'.
+      $product['description'].
+     '</td>
+     <td > $<span class="cart-product-price">'.
+      $product['price'].'</span>
+     </td>
+     <td >
+      <input type="text" name="order_qty" value="'.$product['qty'].'"  maxlength="3" size="1">
+     </td> 
+	 <td>
+	   $<span class="cart-total-product-price">'.$product['total_price'].'</span>
+	 </td>
+      
+    </tr>';
+     }
+    echo '<tr>
+       <td colspan="3" class="cart-cell-header image-thumb-container">&nbsp;</td>
+       <td colspan="2" class="text-bold">order total</td>
+       <td class="text-bold">$<span class="cart-order-total"></span></td>
+     </tr>';
+
+    }
+    ?>
+</table>
